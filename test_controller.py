@@ -18,8 +18,10 @@ np.random.seed(1)
 # weights
 type_pg_weight = 1
 magnitude_pg_weight = 0.5
+weights_pg_weight = 1
 type_entropy_weight = 0.1
 magnitude_entropy_weight = 0.1
+weights_weight = 0.1
 baseline_decay = 0.9
 learning_rate = 1e-5
 
@@ -62,15 +64,18 @@ for iteration in tqdm(range(iterations)):
 
     # Loss Calculation.
     reward = reward + type_entropy_weight * entropies['type'] + \
-                    magnitude_entropy_weight * entropies['magnitude']
+                    magnitude_entropy_weight * entropies['magnitude'] + \
+                    weights_weight * entropies['weight']
     if baseline is None:
         baseline = reward
     else:
         baseline = baseline_decay*baseline.detach() + (1-baseline_decay)*reward
     adv = reward - baseline
-    loss = -adv * (type_pg_weight*log_probs['type'].reshape(batch_size, -1) + \
-                magnitude_pg_weight*log_probs['magnitude'].reshape(batch_size, -1))
-    loss = loss.sum()
+    loss_op = -adv * (type_pg_weight*log_probs['type'].reshape(batch_size, -1) + \
+                      magnitude_pg_weight*log_probs['magnitude'].reshape(batch_size, -1))
+    
+    loss_weight =  -adv * weights_pg_weight*log_probs['weight'].reshape(batch_size, -1)
+    loss = loss_op.sum() + loss_weight.sum()
 
     # BP.
     optimizer.zero_grad()

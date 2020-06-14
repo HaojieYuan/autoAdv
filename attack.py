@@ -33,13 +33,17 @@ def attack(img_batch, model, aug_list=None, type='iterative', momentum_mu=None,
     loss_fn = torch.nn.CrossEntropyLoss()
     while i < nb_iter:
         adv_x_tmp = adv_x.clone().detach().to(torch.float).requires_grad_(True)    
+        
+        adv_x_list = [adv_x_tmp]         
         if aug_list is not None:
-            adv_x_list = [aug_func[1](aug_func[0](adv_x_tmp)) for aug_func in aug_list]
+            adv_x_list.extend([aug_func[1](aug_func[0](adv_x_tmp)) for aug_func in aug_list['augs']])
+            weights = aug_list['weights']
         else:
-            adv_x_list = [adv_x_tmp]
+            weights = [1]
+
         loss = torch.tensor(0.).to(device)
-        for j in adv_x_list:
-            loss = loss + loss_fn(model(j), y)
+        for j, k in zip(adv_x_list, weights):
+            loss = loss + k * loss_fn(model(j), y)
         if not targeted:
             loss = -loss
         adv_x_tmp = single_step(loss, adv_x_tmp, eps_iter, ord, clip_min=clip_min, clip_max=clip_max)

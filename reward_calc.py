@@ -10,11 +10,14 @@ import pdb
 random.seed(1)
 
 def get_rewards(actions):
-    # a bacth of actions
+    # a batch of actions
     # calculate them separately.
+    actions_op = actions['op']
+    actions_weight = actions['weight']
     rewards = []
-    for policy in actions:
+    for policy, weight in zip(actions_op, actions_weight):
         # policy [5, 2, 2]
+        # weight [6]
         aug_list = []
         for sub_policy in policy:
             # sub_policy [2, 2]
@@ -27,8 +30,10 @@ def get_rewards(actions):
                 op_type = AUG_TYPE[op_type]
                 sub_aug_list.append(augmentation(op_type, op_mag))
             aug_list.append(sub_aug_list)
-        
-        reward = get_reward(aug_list)
+        weight = weight.to(torch.float)
+        weight = torch.nn.functional.softmax(weight, dim=-1).detach().cpu().tolist()
+        aug = {'augs':aug_list,'weights':weight}
+        reward = get_reward(aug)
         rewards.append(reward)
     return torch.Tensor(rewards).unsqueeze(1).cuda(0)
     
@@ -61,8 +66,8 @@ def load_dataset(dataset_name, batch_size, shuffle=True, Full=False):
     if dataset_name == 'cifar10':
         dataset = torchvision.datasets.CIFAR10(cifar10_root, train=True, 
                                                transform=transform, download=True)
-        dataset_split = 30
-        #dataset_split = 500
+        #dataset_split = 30
+        dataset_split = 500
         proxy_model = cifar10_models.resnet18(pretrained=True)
         eval_model = cifar10_models.inception_v3(pretrained=True)
         test_model = cifar10_models.mobilenet_v2(pretrained=True)
