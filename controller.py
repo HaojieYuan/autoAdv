@@ -19,22 +19,20 @@ class Controller(nn.Module):
         self.lstm = torch.nn.LSTMCell(self.hid_size, self.hid_size)        
         
         # Embedding is for mapping action into a predifined dictionary.
-        # short-cut 11
+        # weight 11
         # op1 len(AUG_TYPE)*11
         # op2 len(AUG_TYPE)*11
-        # weight 11
-        # encoder should have input size: 11 + len(AUG_TYPE)*11 + ((len(AUG_TYPE)*11)**2)*11
-        all_possible_inputs = 11 + len(AUG_TYPE)*11 + ((len(AUG_TYPE)*11)**2)*11
+        all_possible_inputs = 11 + len(AUG_TYPE)*11
         self.encoder = nn.Embedding(all_possible_inputs, self.hid_size) # action has possibilities of type * magnitude
         
         # action is consist by both aug type and magnitude.
         self.decoder_type = nn.Linear(self.hid_size, len(AUG_TYPE))
         self.decoder_magnitude = nn.Linear(self.hid_size, 11)     # magnitude is discriticized from 0 to 10.
 
-        self.decoder_weight = nn.Linear(self.hid_size*2, 11)      # weight is extracted from concated feature
+        self.decoder_weight = nn.Linear(self.hid_size, 11)  
 
 
-    def forward(self, x, hidden, batch_size):
+    def forward_op(self, x, hidden, batch_size):
         if x is None:
             x = self.initHidden(batch_size)
             embed = x
@@ -48,11 +46,18 @@ class Controller(nn.Module):
 
         return type_logit, magnitude_logit, (hx, cx)
     
-    def weight_extract(self, hiddens):
-        concated_hiddens = torch.cat(hiddens, -1)
-        weight_logit = self.decoder_weight(concated_hiddens)
+    def forward_weight(self, x, hidden, batch_size):
+        if x is None:
+            x = self.initHidden(batch_size)
+            embed = x
+        else:
+            embed = self.encoder(x)
+        hx, cx = self.lstm(embed, hidden)
 
-        return weight_logit
+        # decode
+        weight_logit = self.decoder_weight(hx)
+
+        return weight_logit, (hx, cx)
 
 
     def initHidden(self, batch_size):
@@ -74,7 +79,7 @@ class Controller(nn.Module):
         hidden = (self.initHidden(batch_size), self.initHidden(batch_size))
 
         # extract short-cut weight
-        short_cut_logit = self.weight_extract([hidden[0], hidden[0]])
+        short_cut_logit, hidden = self.forward_weight(x, hidden, batch_size)
         short_cut_prob = F.softmax(short_cut_logit, dim=-1)
         short_cut_log_prob = F.log_softmax(short_cut_logit, dim=-1)
         short_cut_entropy = -(short_cut_log_prob * short_cut_prob).sum(1, keepdim=True)
@@ -95,10 +100,9 @@ class Controller(nn.Module):
             sub_magnitude_entropies =[]
             sub_selected_type_log_probs = []
             sub_selected_mag_log_probs = []
-            hiddens = []
             operations = []
             for j in range(sub_policy_operation):
-                type_logit, magnitude_logit, hidden = self.forward(x, hidden, batch_size)
+                type_logit, magnitude_logit, hidden = self.forward_op(x, hidden, batch_size)
                 action_type_prob = F.softmax(type_logit, dim=-1)
                 action_magnitude_prob = F.softmax(magnitude_logit, dim=-1)
 
@@ -115,7 +119,7 @@ class Controller(nn.Module):
 
                 sub_actions.append(action)
 
-                x = action_type*11 + action_magnitude
+                x = 11 + action_type*11 + action_magnitude
                 operations.append(x)
                 x = x.squeeze(1)
                 x = x.requires_grad_(False)
@@ -127,15 +131,14 @@ class Controller(nn.Module):
                 selected_mag_log_prob = action_magnitude_log_prob.gather(1, action_magnitude.data) 
                 sub_selected_mag_log_probs.append(selected_mag_log_prob)
 
-                hiddens.append(hidden[0])
             
             # extract weight
-            weight_logit = self.weight_extract(hiddens)
+            weight_logit, hidden = self.forward_weight(x, hidden, batch_size)
             weight_prob = F.softmax(weight_logit, dim=-1)
             weight_log_prob = F.log_softmax(weight_logit, dim=-1)
             weight_entropy = -(weight_log_prob * weight_prob).sum(1, keepdim=True)
             weight = weight_prob.multinomial(1) # bacth_size * 1
-            x = 11 + len(AUG_TYPE)*11 + weight*(operations[0]*(len(AUG_TYPE)*11)+operations[1])
+            x = weight
             x = x.squeeze(1)
             x = x.requires_grad_(False)
             selected_weight_log_prob = weight_log_prob.gather(1, weight.data)
