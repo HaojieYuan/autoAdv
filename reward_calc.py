@@ -66,8 +66,8 @@ def load_dataset(dataset_name, batch_size, shuffle=True, Full=False):
     if dataset_name == 'cifar10':
         dataset = torchvision.datasets.CIFAR10(cifar10_root, train=True, 
                                                transform=transform, download=True)
-        #dataset_split = 30
-        dataset_split = 500
+        dataset_split = 30
+        #dataset_split = 500
         proxy_model = cifar10_models.resnet18(pretrained=True)
         eval_model = cifar10_models.inception_v3(pretrained=True)
         test_model = cifar10_models.mobilenet_v2(pretrained=True)
