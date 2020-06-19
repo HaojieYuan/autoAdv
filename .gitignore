@@ -2,3 +2,4 @@ __pycache__
 cifar10_models/__pycache__
 cifar10_models/state_dicts
 cifar10_models/state_dicts.zip
+controller_best.ckpt
