@@ -10,12 +10,12 @@ random.seed(1)
 
 
 
-op_list  =  [[['rotation',5],['translation',7]],
-            [['rotation',7],['rotation',4]],
-            [['rotation',5],['horizontal_flip',8]],
-            [['translation',10],['horizontal_flip',5]],
-            [['rotation',1],['resize_padding',4]]]
-weight = torch.Tensor([7, 6, 4, 8, 7, 4])
+op_list  =  [[['horizontal_flip',6],['resize_padding',8]],
+            [['horizontal_flip',9],['gaussian_noise',4]],
+            [['horizontal_flip',7],['resize_padding',1]],
+            [['vertical_flip',10],['horizontal_flip',9]],
+            [['resize_padding',4],['resize_padding',2]]]
+weight = torch.Tensor([6, 0, 1, 8, 4, 5])
 weight = torch.nn.functional.softmax(weight, dim=-1).detach().cpu().tolist()
 
 '''
