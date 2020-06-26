@@ -31,7 +31,8 @@ def get_rewards(actions):
                 sub_aug_list.append(augmentation(op_type, op_mag))
             aug_list.append(sub_aug_list)
         weight = weight.to(torch.float)
-        weight = torch.nn.functional.softmax(weight, dim=-1).detach().cpu().tolist()
+        #weight = torch.nn.functional.softmax(weight, dim=-1).detach().cpu().tolist()
+        weight = weight/weight.sum().detach().cpu().tolist()
         aug = {'augs':aug_list,'weights':weight}
         reward = get_reward(aug)
         rewards.append(reward)
