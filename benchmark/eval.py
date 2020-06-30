@@ -5,11 +5,15 @@ from __future__ import division
 from __future__ import print_function
 
 import math
-import inception_resnet_v2
 
 import tensorflow as tf
-from tensorflow.contrib.slim.nets import inception
 
+import sys
+sys.path.insert(0, "/home/haojieyuan/autoAdv/benchmark/models/research/slim")
+
+from nets import resnet_v2
+from nets import inception
+from nets import inception_resnet_v2
 
 slim = tf.contrib.slim
 
@@ -41,7 +45,7 @@ tf.app.flags.DEFINE_string(
 
 tf.app.flags.DEFINE_string(
     'model_name', 'inception_v3',
-    'Name of the model to use, either "inception_v3" or "inception_resnet_v2"')
+    'Name of the model to use, either "inception_v3" "inception_v4" "resnet_v2" or "inception_resnet_v2"')
 
 tf.app.flags.DEFINE_float(
     'moving_average_decay', None,
@@ -126,9 +130,17 @@ def create_model(x, reuse=None):
     with slim.arg_scope(inception.inception_v3_arg_scope()):
       return inception.inception_v3(
           x, num_classes=NUM_CLASSES, is_training=False, reuse=reuse)
+  elif FLAGS.model_name == 'inception_v4':
+    with slim.arg_scope(inception.inception_v4_arg_scope()):
+      return inception.inception_v4(
+          x, num_classes=NUM_CLASSES, is_training=False, reuse=reuse)
   elif FLAGS.model_name == 'inception_resnet_v2':
     with slim.arg_scope(inception_resnet_v2.inception_resnet_v2_arg_scope()):
       return inception_resnet_v2.inception_resnet_v2(
+          x, num_classes=NUM_CLASSES, is_training=False, reuse=reuse)
+  elif FLAGS.model_name == 'resnet_v2':
+    with slim.arg_scope(resnet_v2.resnet_arg_scope()):
+      return resnet_v2.resnet_v2_152(
           x, num_classes=NUM_CLASSES, is_training=False, reuse=reuse)
   else:
     raise ValueError('Invalid model name: %s' % (FLAGS.model_name))
@@ -339,6 +351,11 @@ def main(_):
     # Define the metrics #
     ######################
     predictions = tf.argmax(logits, 1)
+
+    # other wise predictions will be (B, 1, 1001)
+    #if FLAGS.model_name == 'resnet_v2':
+    #  predictions = tf.squeeze(predictions)
+
     labels = tf.squeeze(labels)
     names_to_values, names_to_updates = slim.metrics.aggregate_metric_map({
         'Accuracy': slim.metrics.streaming_accuracy(predictions, labels),
