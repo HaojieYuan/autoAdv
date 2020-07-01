@@ -9,7 +9,7 @@ import cifar10_models
 import pdb
 random.seed(1)
 
-def get_rewards(actions):
+def get_rewards(actions, device_id=1):
     # a batch of actions
     # calculate them separately.
     actions_op = actions['op']
@@ -32,11 +32,11 @@ def get_rewards(actions):
             aug_list.append(sub_aug_list)
         weight = weight.to(torch.float)
         #weight = torch.nn.functional.softmax(weight, dim=-1).detach().cpu().tolist()
-        weight = weight/weight.sum().detach().cpu().tolist()
+        weight = (weight/weight.sum()).detach().cpu().tolist()
         aug = {'augs':aug_list,'weights':weight}
-        reward = get_reward(aug)
+        reward = get_reward(aug, device_id=device_id)
         rewards.append(reward)
-    return torch.Tensor(rewards).unsqueeze(1).cuda(0)
+    return torch.Tensor(rewards).unsqueeze(1)
     
 
 def get_reward(aug_list, batch_size=8, device_id=1, dataset_name='cifar10'):

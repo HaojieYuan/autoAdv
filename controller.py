@@ -61,7 +61,8 @@ class Controller(nn.Module):
 
 
     def initHidden(self, batch_size):
-        return torch.zeros(batch_size, self.hid_size, requires_grad=False).cuda(0)
+        device = next(self.parameters()).device
+        return torch.zeros(batch_size, self.hid_size, requires_grad=False).to(device)
 
 
     def sample(self, batch_size, sub_policy_num=5, sub_policy_operation=2):

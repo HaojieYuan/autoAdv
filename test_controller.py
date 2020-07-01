@@ -32,11 +32,13 @@ iterations = 1000
 # Netwrok hypher params
 hid_size = 1000
 ckpt_path = './controller_best.ckpt'
+controller_device_id = 8
+attack_deivce_id = 9
 
 
 # Initilaize
 baseline = None
-model = Controller(hid_size).cuda(0)
+model = Controller(hid_size).cuda(controller_device_id)
 optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
 # Logger
@@ -53,7 +55,7 @@ for iteration in tqdm(range(iterations)):
     actions, log_probs, entropies = model.sample(batch_size) 
 
     #reward = torch.randn(batch_size, 1).cuda(0)
-    reward = get_rewards(actions)
+    reward = get_rewards(actions, device_id=attack_deivce_id).cuda(controller_device_id)
     log(logger, iteration, actions, reward)
 
     reward_sum = torch.sum(reward)

@@ -1,11 +1,13 @@
 import torch
 import numpy as np
 import math
+import pdb
 
 def attack(img_batch, model, aug_list=None, type='iterative', momentum_mu=None,
            y=None, eps=5, eps_iter=2, nb_iter=3, ord=2, clip_min=0, clip_max=1):
     
     device = img_batch.device
+    
     if ord not in [np.inf, 1, 2]:
         raise ValueError("Norm order must be either np.inf or 2.")
     l2 = (clip_max-clip_min)/255 * math.sqrt(img_batch.shape[1]*img_batch.shape[2]*img_batch.shape[3])

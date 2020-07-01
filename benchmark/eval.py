@@ -6,6 +6,9 @@ from __future__ import print_function
 
 import math
 
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+
 import tensorflow as tf
 
 import sys
@@ -41,7 +44,8 @@ tf.app.flags.DEFINE_string(
 
 
 tf.app.flags.DEFINE_string(
-    'test_part', 'dev', 'Test ImageNet dev partition or final test partition. ')
+    'test_tfrecords', '/home/haojieyuan/Data/ImageNet/nips2017dev.tfrecords',
+    'Test tesorflow records file path. ')
 
 tf.app.flags.DEFINE_string(
     'model_name', 'inception_v3',
@@ -299,12 +303,8 @@ def main(_):
   #if not FLAGS.dataset_dir:
   #  raise ValueError('You must supply the dataset directory with --dataset_dir')
 
-  if FLAGS.test_part == 'dev':
-    records_file = '/home/haojieyuan/Data/ImageNet/nips2017dev.tfrecords'
-    sample_num = 923
-  elif FLAGS.test_part == 'test':
-    records_file = '/home/haojieyuan/Data/ImageNet/nips2017test.tfrecords'
-    sample_num = 4649
+  sample_num = 1000
+  records_file = FLAGS.test_tfrecords
 
   tf.logging.set_verbosity(tf.logging.INFO)
   with tf.Graph().as_default():
