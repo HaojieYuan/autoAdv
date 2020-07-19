@@ -1,6 +1,7 @@
 
-IMG_DIR=/home/haojieyuan/autoAdv/benchmark/attacks/DI/M-DI-2-FGSM_attack_out_inception_resnet_v2
-
+#IMG_DIR=/home/haojieyuan/autoAdv/benchmark/attacks/DI/M-DI-2-FGSM_attack_out_inception_resnet_v2
+#IMG_DIR=/home/haojieyuan/autoAdv/benchmark/attacks/TI/ours_TI_DIM_ens
+IMG_DIR=$1
 
 TMP_OUT=./tmp.tfrecords
 CUDA_VISIBLE_DEVICES=8 python transform2TFrecords.py --folder $IMG_DIR --out $TMP_OUT
