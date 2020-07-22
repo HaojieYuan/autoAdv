@@ -14,14 +14,4 @@ benchmark/attacks/DI/M-DI-2-FGSM_attack_out_inception_v3
 benchmark/attacks/DI/M-DI-2-FGSM_attack_out_inception_v4
 benchmark/attacks/DI/M-DI-2-FGSM_attack_out_resnet
 benchmark/attacks/TI/dataset/images
-benchmark/attacks/TI/TI_DIM_attack_out_ens
-benchmark/attacks/TI/TI_DIM_attack_out_inception_resnet_v2
-benchmark/attacks/TI/TI_DIM_attack_out_inception_v3
-benchmark/attacks/TI/TI_DIM_attack_out_inception_v4
-benchmark/attacks/TI/TI_DIM_attack_out_resnet
-benchmark/attacks/TI/ours_TI_DIM_ens
-benchmark/attacks/TI/ours_TI_DIM_inception_resnet_v2
-benchmark/attacks/TI/ours_TI_DIM_inception_v3
-benchmark/attacks/TI/ours_TI_DIM_inception_v4
-benchmark/attacks/TI/ours_TI_DIM_resnet
-benchmark/attacks/TI/TI_ens
+benchmark/attacks/TI/out
