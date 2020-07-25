@@ -9,12 +9,17 @@ import cifar10_models
 import pdb
 random.seed(1)
 
-def get_rewards(actions):
-    # a bacth of actions
+
+def get_rewards(actions, device_id=1):
+    # a batch of actions
     # calculate them separately.
+    actions_op = actions['op']
+    actions_weight = actions['weight']
     rewards = []
-    for policy in actions:
+    for policy, weight in zip(actions_op, actions_weight):
         # policy [5, 2, 2]
+        # weight [6]
+
         aug_list = []
         for sub_policy in policy:
             # sub_policy [2, 2]
@@ -27,11 +32,16 @@ def get_rewards(actions):
                 op_type = AUG_TYPE[op_type]
                 sub_aug_list.append(augmentation(op_type, op_mag))
             aug_list.append(sub_aug_list)
-        
-        reward = get_reward(aug_list)
+
+        weight = weight.to(torch.float)
+        #weight = torch.nn.functional.softmax(weight, dim=-1).detach().cpu().tolist()
+        weight = (weight/weight.sum()).detach().cpu().tolist()
+        aug = {'augs':aug_list,'weights':weight}
+        reward = get_reward(aug, device_id=device_id)
         rewards.append(reward)
-    return torch.Tensor(rewards).unsqueeze(1).cuda(0)
-    
+    return torch.Tensor(rewards).unsqueeze(1)
+
+
 
 def get_reward(aug_list, batch_size=8, device_id=1, dataset_name='cifar10'):
     data_loader, proxy_model, eval_model, test_model = load_dataset(dataset_name, batch_size)
@@ -50,7 +60,7 @@ def get_reward(aug_list, batch_size=8, device_id=1, dataset_name='cifar10'):
     del eval_model
     del test_model
 
-    return reward 
+    return reward
 
 
 
@@ -59,7 +69,7 @@ def load_dataset(dataset_name, batch_size, shuffle=True, Full=False):
     cifar10_root = '/home/haojieyuan/Data/CIFAR_10_data'
     transform = transforms.Compose([transforms.ToTensor()])
     if dataset_name == 'cifar10':
-        dataset = torchvision.datasets.CIFAR10(cifar10_root, train=True, 
+        dataset = torchvision.datasets.CIFAR10(cifar10_root, train=True,
                                                transform=transform, download=True)
         dataset_split = 30
         #dataset_split = 500
@@ -68,7 +78,7 @@ def load_dataset(dataset_name, batch_size, shuffle=True, Full=False):
         test_model = cifar10_models.mobilenet_v2(pretrained=True)
     else:
         pass
-    
+
     if not Full:
         dataset_mask = random.sample(range(len(dataset)), len(dataset)//dataset_split)
         dataset = torch.utils.data.Subset(dataset, dataset_mask)

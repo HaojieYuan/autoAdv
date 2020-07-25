@@ -2,17 +2,21 @@ import torch
 import numpy as np
 import math
 
+import pdb
+
+
 def attack(img_batch, model, aug_list=None, type='iterative', momentum_mu=None,
            y=None, eps=5, eps_iter=2, nb_iter=3, ord=2, clip_min=0, clip_max=1):
-    
+
     device = img_batch.device
+
     if ord not in [np.inf, 1, 2]:
         raise ValueError("Norm order must be either np.inf or 2.")
     l2 = (clip_max-clip_min)/255 * math.sqrt(img_batch.shape[1]*img_batch.shape[2]*img_batch.shape[3])
     if ord == 2:
         eps = eps*l2
         eps_iter = eps_iter*l2
-    
+
     x0 = img_batch.clone().detach().to(torch.float).requires_grad_(False)
     if y is None:
         _, y = torch.max(model(x0), 1)
@@ -26,20 +30,26 @@ def attack(img_batch, model, aug_list=None, type='iterative', momentum_mu=None,
     adv_x = x + eta
     if clip_min is not None or clip_max is not None:
         adv_x = torch.clamp(adv_x, clip_min, clip_max)
-    
+
     i = 0
     if momentum_mu is not None:
         momentum = eta.clone().detach()
     loss_fn = torch.nn.CrossEntropyLoss()
     while i < nb_iter:
-        adv_x_tmp = adv_x.clone().detach().to(torch.float).requires_grad_(True)    
+        adv_x_tmp = adv_x.clone().detach().to(torch.float).requires_grad_(True)
+
+
+        adv_x_list = [adv_x_tmp]
         if aug_list is not None:
-            adv_x_list = [aug_func[1](aug_func[0](adv_x_tmp)) for aug_func in aug_list]
+            adv_x_list.extend([aug_func[1](aug_func[0](adv_x_tmp)) for aug_func in aug_list['augs']])
+            weights = aug_list['weights']
         else:
-            adv_x_list = [adv_x_tmp]
+            weights = [1]
+
         loss = torch.tensor(0.).to(device)
-        for j in adv_x_list:
-            loss = loss + loss_fn(model(j), y)
+        for j, k in zip(adv_x_list, weights):
+            loss = loss + k * loss_fn(model(j), y)
+
         if not targeted:
             loss = -loss
         adv_x_tmp = single_step(loss, adv_x_tmp, eps_iter, ord, clip_min=clip_min, clip_max=clip_max)
@@ -57,7 +67,7 @@ def attack(img_batch, model, aug_list=None, type='iterative', momentum_mu=None,
         if clip_min is not None or clip_max is not None:
             adv_x = torch.clamp(adv_x, clip_min, clip_max)
         i += 1
-    
+
     return adv_x
 
 
@@ -73,7 +83,7 @@ def single_step(loss, adv_x, eps, ord, clip_min=None, clip_max=None):
         adv_x = torch.clamp(adv_x, clip_min, clip_max)
 
     return adv_x
-        
+
 
 def optimize_linear(grad, eps, ord=np.inf):
     """
