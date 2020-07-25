@@ -210,16 +210,17 @@ def clip_eta(eta, ord, eps):
 
 def augment(x, aug_policy):
     x_out = []
-    for sub_policy in aug_policy:
-        aug_type  = AUG_TYPE[sub_policy[0]]
-        aug_prob  = sub_policy[2] + 1  # 1~10
-        aug_range = sub_policy[3] + 1 # 1~10
+    for branch in aug_policy:
+        aug_x = x
+        for j in range(1, len(branch)):
+            aug_type  = AUG_TYPE[branch[0]]
+            aug_prob  = branch[1] + 1 # 1~10
+            aug_range = branch[2] + 1 # 1~10
 
-        if random.uniform(0, 10) < aug_prob:
-            aug_mag = random.choice(range(0, int(aug_range)+1))
-            aug_x = augmentation(x, aug_type, aug_mag)
-        else:
-            aug_x = x
+            if random.uniform(0, 10) < aug_prob:
+                aug_mag = random.choice(range(0, int(aug_range)+1))
+                aug_x = augmentation(aug_x, aug_type, aug_mag)
+
         x_out.append(aug_x)
 
     return x_out
@@ -227,7 +228,8 @@ def augment(x, aug_policy):
 
 
 def get_weights(aug_policy):
-    weights = [policy[1] for policy in aug_policy]
+    #weights = [policy[1] for policy in aug_policy]
+    weights = [branch[0] for branch in aug_policy]
     weights = torch.tensor(weights).to(torch.float)
 
     # Normalize

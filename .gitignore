@@ -14,4 +14,5 @@ benchmark/attacks/DI/M-DI-2-FGSM_attack_out_inception_v3
 benchmark/attacks/DI/M-DI-2-FGSM_attack_out_inception_v4
 benchmark/attacks/DI/M-DI-2-FGSM_attack_out_resnet
 benchmark/attacks/TI/dataset/images
+benchmark/attacks/TI/outv1
 benchmark/attacks/TI/out
