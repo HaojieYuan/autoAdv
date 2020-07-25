@@ -39,16 +39,16 @@ class RewardCal():
         self.arrange_model_devices()
 
     def arrange_model_devices(self):
-        self.models[0].cuda(4)  # resnet18
-        self.models[1].cuda(4)  # alexnet
-        self.models[2].cuda(4)  # squeezenet
+        self.models[0].cuda(1)  # resnet18
+        self.models[1].cuda(2)  # alexnet
+        self.models[2].cuda(0)  # squeezenet
 
-        self.models[3].cuda(5)  # vgg16
-        self.models[4].cuda(6)  # densenet
-        self.models[5].cuda(7)  # shufflenet
-        self.models[6].cuda(7)  # mobilenet
-        self.models[7].cuda(8)  # resnext
-        self.models[8].cuda(8)  # mnasnet
+        self.models[3].cuda(3)  # vgg16
+        self.models[4].cuda(4)  # densenet
+        self.models[5].cuda(5)  # shufflenet
+        self.models[6].cuda(0)  # mobilenet
+        self.models[7].cuda(6)  # resnext
+        self.models[8].cuda(7)  # mnasnet
         '''
         self.models[3].cuda(9)  # densenet
         self.models[4].cuda(9)  # shufflenet
