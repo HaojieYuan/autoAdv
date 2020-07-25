@@ -213,9 +213,9 @@ def augment(x, aug_policy):
     for branch in aug_policy:
         aug_x = x
         for j in range(1, len(branch)):
-            aug_type  = AUG_TYPE[branch[0]]
-            aug_prob  = branch[1] + 1 # 1~10
-            aug_range = branch[2] + 1 # 1~10
+            aug_type  = AUG_TYPE[branch[j][0]]
+            aug_prob  = branch[j][1] + 1 # 1~10
+            aug_range = branch[j][2] + 1 # 1~10
 
             if random.uniform(0, 10) < aug_prob:
                 aug_mag = random.choice(range(0, int(aug_range)+1))

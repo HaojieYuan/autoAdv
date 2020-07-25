@@ -24,6 +24,8 @@ parser.add_argument('--datasplit', default=500, type=int,
                     help=' peice num of Imagenet dataset should be splited. ')
 parser.add_argument('--log', default='random_search.log', type=str,
                     help=' log file saved in log dir. ')
+
+
 # Search space hyper parameters
 ARGS = parser.parse_args()
 OP_NUM = ARGS.opnum
@@ -42,21 +44,13 @@ epoch = 300
 
 RESUME = False
 resume = 210
-policy = [[2.0, 7.0, 8.0, 8.0],
-          [3.0, 9.0, 7.0, 7.0],
-          [1.0, 9.0, 7.0, 9.0],
-          [4.0, 9.0, 9.0, 8.0],
-          [2.0, 8.0, 9.0, 9.0]]
-best_policy = [[2.0, 7.0, 8.0, 8.0],
-               [3.0, 9.0, 8.0, 7.0],
-               [1.0, 9.0, 8.0, 9.0],
-               [4.0, 9.0, 9.0, 8.0],
-               [2.0, 8.0, 9.0, 9.0]]
+policy = None
+best_policy = None
 best_reward =  13.447103881835938
 
 
 
-#           # diffferent operations on same branch
+#           # different operations on same branch
 # [[weight, [type, prob, range], [type, prob, range]...], # different branch
 #  [weight, [type, prob, range], [type, prob, range]...], # different branch
 #  ...]
@@ -174,7 +168,7 @@ def single_epoch(policy, reward_getter, lr=0.1, sample_batch=10):
 
     reward_getter.randomrize_models()
 
-    policy_update = np.array(policy)
+    policy_update = policy.copy()
 
     # Sample deltas and update policy
     for i in range(sample_batch):
@@ -186,15 +180,19 @@ def single_epoch(policy, reward_getter, lr=0.1, sample_batch=10):
         policy_plus = remove_duplicate(policy_plus)
         policy_minus = remove_duplicate(policy_minus)
 
-        reward_plus = reward_getter.get_reward(policy_plus)
-        reward_minus = reward_getter.get_reward(policy_minus)
+        reward_plus = reward_getter.get_reward(policy_plus,
+                                               batch_size=ARGS.attackbatch,
+                                               dataset_split=ARGS.datasplit)
+        reward_minus = reward_getter.get_reward(policy_minus,
+                                                batch_size=ARGS.attackbatch,
+                                                dataset_split=ARGS.datasplit)
 
         # Remove duplicate may change delta, so we recalculate delta here.
         true_delta = update_policy(policy_plus, policy_minus, -1) #policy_plus-policy_minus
 
         # The actual delta should be policy_plus - policy
         # so we have 0.5*lr here.
-        policy_update = update_policy(policy, true_delta,
+        policy_update = update_policy(policy_update, true_delta,
                                       0.5*lr/sample_batch * (reward_plus-reward_minus))
 
 
@@ -223,8 +221,7 @@ if __name__ == '__main__':
         policy = random_policy()
         resume = -1
 
-    reward_getter = RewardCal(batch_size=ARGS.attackbatch,
-                              dataset_split=ARGS.datasplit)
+    reward_getter = RewardCal()
 
     logger = logging.getLogger('controller')
     hdlr = logging.FileHandler(os.path.join('./log', ARGS.log))
