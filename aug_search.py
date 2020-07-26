@@ -5,12 +5,16 @@ import random
 
 # TODO: color augmentation
 AUG_TYPE = {0: 'resize_padding', 1: 'translation', 2: 'rotation',
-            3: 'gaussian_noise', 4: 'horizontal_flip', 5: 'vertical_flip'}
+            3: 'gaussian_noise', 4: 'horizontal_flip', 5: 'vertical_flip',
+            6: 'scaling', 7: 'invert', 8: 'solarize'}
 
 def augmentation(img_tensor, op_type, magnitude):
     ''' augmentation that capable of backward.
         with given magnitude, augmentations are done with random directions.
-        returns augmented img tensor
+        Inputs: img_tensor range from 0 to 1,
+                operation type in str description,
+                magnitude range from 0 to 9.
+        Return: augmented img tensor.
     '''
     if op_type == 'resize_padding':
         img_w = img_tensor.shape[2]
@@ -70,6 +74,33 @@ def augmentation(img_tensor, op_type, magnitude):
 
     elif op_type == 'vertical_flip':
         return torch.flip(img_tensor, [2])
+
+    elif op_type == 'scaling':
+        # Refer to ICLR 2020 paper:
+        # "NESTEROV ACCELERATED GRADIENT AND SCALE INVARIANCE FOR ADVERSARIAL ATTACKS"
+        # https://arxiv.org/abs/1908.06281
+        # And its implementation:
+        # https://github.com/JHL-HUST/SI-NI-FGSM/blob/master/si_mi_fgsm.py
+        # In its implementation, the scaling op is performed on image scaled to [-1, 1].
+        # We don't know if such op is resonable because it is actually reduing contrast
+        # to a biased mean [125, 125, 125]. However, we still follow such implementation here.
+        # Meanwhile, the original implementation uses 1, 1/2, 1/4, 1/8, 1/16
+        # which is actually 1, 0.5, 0.25, 0.125, 0.0625.
+        # Here we make search range roughly contains such scales, 0.1 to 1.0
+        img_tensor = img_tensor*2.0 -1.0
+        magnitude = 1.0 - 0.1*magnitude
+        img_tensor = img_tensor * magnitude
+        img_tensor = (img_tensor + 1.0)/2.0
+
+        return img_tensor
+
+    elif op_type == 'invert':
+        return 1.0 - img_tensor
+
+    elif op_type == 'solarize':
+        solarize_threshold = 256 - 25.6*magnitude
+        return torch.where(img_tensor < solarize_threshold, img_tensor, 1.0-img_tensor)
+
     else:
         print(op_type)
         assert False, "Unknown augmentation type."
