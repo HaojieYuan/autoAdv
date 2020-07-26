@@ -89,7 +89,8 @@ else:
     USE_AUTO_AUG = False
 
 AUG_TYPE = {0: 'resize_padding', 1: 'translation', 2: 'rotation',
-            3: 'gaussian_noise', 4: 'horizontal_flip', 5: 'vertical_flip'}
+            3: 'gaussian_noise', 4: 'horizontal_flip', 5: 'vertical_flip',
+            6: 'scaling', 7: 'invert', 8: 'solarize', 9: 'equalize'}
 
 
 def augmentation(type, prob, mag_range, input_tensor):
@@ -165,6 +166,19 @@ def augmentation(type, prob, mag_range, input_tensor):
     elif op_type == 'vertical_flip':
         v_fliped = tf.image.flip_up_down(input_tensor)
         return tf.cond(tf.random_uniform(shape=[1])[0] < tf.constant(0.1*prob), lambda:v_fliped, lambda: input_tensor)
+
+    elif op_type == 'scaling':
+        pass
+
+    elif op_type == 'invert':
+        pass
+
+    elif op_type == 'solarize':
+        pass
+
+    elif op_type == 'equalize':
+        input_tensor = (input_tensor + 1.0)/2.0 * 255.0 # -1~1 to 0~255
+
 
 
 

@@ -6,7 +6,7 @@ import random
 # TODO: color augmentation
 AUG_TYPE = {0: 'resize_padding', 1: 'translation', 2: 'rotation',
             3: 'gaussian_noise', 4: 'horizontal_flip', 5: 'vertical_flip',
-            6: 'scaling', 7: 'invert', 8: 'solarize'}
+            6: 'scaling', 7: 'invert', 8: 'solarize', 9: 'equalize'}
 
 def augmentation(img_tensor, op_type, magnitude):
     ''' augmentation that capable of backward.
@@ -100,6 +100,38 @@ def augmentation(img_tensor, op_type, magnitude):
     elif op_type == 'solarize':
         solarize_threshold = 256 - 25.6*magnitude
         return torch.where(img_tensor < solarize_threshold, img_tensor, 1.0-img_tensor)
+
+    elif op_type == 'equalize':
+        # code taken from https://github.com/kornia/
+        img_tensor = img_tensor * 255. #0~1 to 0~255
+
+        def scale_channel(im, c):
+            im = im[c, :, :]
+            histo = torch.histc(im, bins=256, min=0, max=255)
+            nonzero_histo = torch.reshape(histo[histo!=0], [-1])
+            step = (torch.sum(nonzero_histo)-nonzero_histo[-1]) // 255
+
+            def build_lut(histo, step):
+                lut = (torch.cumsum(histo, 0)) + (step//2)//step
+                lut = torch.cat([torch.zeros(1), lut[:-1]])
+
+                return torch.clamp(lut, 0, 255)
+
+            if step == 0:
+                result = im
+            else:
+                result = torch.gather(build_lut(histo, step), 0, im.flatten().long())
+                result = result.reshape_as(im)
+
+            return result/255.
+
+        res = []
+        for image in img_tensor:
+            scaled_image = torch.stack([scale_channel(image, i)] for i in range(len(image)))
+            res.append(scaled_image)
+
+        return torch.stack(res)
+
 
     else:
         print(op_type)
