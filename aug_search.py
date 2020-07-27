@@ -119,7 +119,7 @@ def augmentation(img_tensor, op_type, magnitude):
             if step == 0:
                 result = im
             else:
-                result = torch.gather(build_lut(histo, step), 0, im.flatten().long())
+                result = torch.gather(build_lut(histo, step), 0, im.flatten())
                 result = result.reshape_as(im)
 
             return result/255.
