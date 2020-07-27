@@ -98,7 +98,7 @@ def augmentation(img_tensor, op_type, magnitude):
         return 1.0 - img_tensor
 
     elif op_type == 'solarize':
-        solarize_threshold = 256 - 25.6*magnitude
+        solarize_threshold = 1.0 - 0.09*magnitude
         return torch.where(img_tensor < solarize_threshold, img_tensor, 1.0-img_tensor)
 
     elif op_type == 'equalize':

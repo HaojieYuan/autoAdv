@@ -168,17 +168,67 @@ def augmentation(type, prob, mag_range, input_tensor):
         return tf.cond(tf.random_uniform(shape=[1])[0] < tf.constant(0.1*prob), lambda:v_fliped, lambda: input_tensor)
 
     elif op_type == 'scaling':
-        pass
+        mag = tf.random_uniform((), 0, mag_range, dtype=tf.int32)
+        mag = tf.cast(mag, tf.float32)
+        scaling_factor = 1.0 - 0.1*mag # 1.0~0.1
+        scaled_tensor = scaled_tensor*input_tensor
+        return tf.cond(tf.random_uniform(shape=[1])[0] < tf.constant(0.1*prob), lambda:scaled_tensor, lambda: input_tensor)
 
     elif op_type == 'invert':
-        pass
+        inverted = 1.0 - input_tensor
+        return tf.cond(tf.random_uniform(shape=[1])[0] < tf.constant(0.1*prob), lambda:inverted, lambda: input_tensor)
 
     elif op_type == 'solarize':
-        pass
+        mag = tf.random_uniform((), 0, mag_range, dtype=tf.int32)
+        mag = tf.cast(mag, tf.float32)
+        input_tensor = (input_tensor + 1.0)/2.0 # -1~1 to 0~1
+        solarize_threshold = 1.0 - 0.09*mag
+        mask = tf.greater(input_tensor, solarize_threshold)
+        mask = tf.cast(mask, tf.float32)
+
+        solarized = input_tensor*(1.0-mask) + (1.0-input_tensor)*mask # invert those above thres
+        solarized = solarized*2.0 - 1.0  # 0~1 to -1~1
+
+        return tf.cond(tf.random_uniform(shape=[1])[0] < tf.constant(0.1*prob), lambda:solarized, lambda: input_tensor)
+
+
 
     elif op_type == 'equalize':
         input_tensor = (input_tensor + 1.0)/2.0 * 255.0 # -1~1 to 0~255
 
+        # batch dim iterate
+        out = []
+        for i in range(input_tensor.shape[0]):
+            img = input_tensor[i,:,:,:] # NHWC -> HWC
+            #img = tf.expand_dims(img, 0)
+
+            eqalized_img = []
+
+            for j in range(img.shape[-1]):
+                channel_j = img[:,:,j]  # HWC -> HW
+                channel_j = tf.expand_dims(channel_j, -1) # HW -> HWC
+                value_range = tf.constant([0., 255.], dtype=tf.float32)
+                histogram = tf.histogram_fixed_width(channel_j, value_range, 256)
+                cdf = tf.cumsum(histogram)
+                cdf_min = cdf[tf.reduce_min(tf.where(tf.greater(cdf, 0)))]
+
+                img_shape = tf.shape(channel_j)
+                pix_cnt = img_shape[-3] * img_shape[-2]
+                px_map = tf.round(tf.to_float(cdf - cdf_min) * 255. / tf.to_float(pix_cnt-1))
+                px_map = tf.cast(px_map, tf.uint8)
+
+                eq_hist = tf.expand_dims(tf.gather_nd(px_mp, tf.cast(channel_j, tf.int32)), 2)
+
+                equalized_img.append(eq_hist)
+
+
+            out.append(tf.concat(equalized_img, -1)) #[[HWC], [HWC], [HWC]]
+
+
+        out_batch = tf.stack(out) # [] -> NHWC
+        out_batch = (out_batch/255.0)*2.0 - 1.0 # 0~255 -> -1~1
+
+        return tf.cond(tf.random_uniform(shape=[1])[0] < tf.constant(0.1*prob), lambda:out_batch, lambda: input_tensor)
 
 
 
