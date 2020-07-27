@@ -106,7 +106,7 @@ def augmentation(img_tensor, op_type, magnitude):
 
         def scale_channel(im, c):
             im = im[c, :, :]
-            histo = torch.histc(im, bins=256, min=0, max=255)
+            histo = torch.histc(im, bins=256, min=0, max=255).detach()
             nonzero_histo = torch.reshape(histo[histo!=0], [-1])
             step = (torch.sum(nonzero_histo)-nonzero_histo[-1]) // 255
 

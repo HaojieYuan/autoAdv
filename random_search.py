@@ -174,10 +174,6 @@ def single_epoch(policy, reward_getter, lr=0.1, sample_batch=10):
     for i in range(sample_batch):
         sample_delta = random_policy()
 
-        sample_delta[0][1][0] = 6
-        sample_delta[1][1][0] = 8
-        sample_delta[2][1][0] = 9
-
         policy_plus  = restrict(update_policy(policy, sample_delta, interval))
         policy_minus = restrict(update_policy(policy, sample_delta, -interval))
 
