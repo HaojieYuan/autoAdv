@@ -3,7 +3,6 @@ import math
 
 import random
 
-# TODO: color augmentation
 AUG_TYPE = {0: 'resize_padding', 1: 'translation', 2: 'rotation',
             3: 'gaussian_noise', 4: 'horizontal_flip', 5: 'vertical_flip',
             6: 'scaling', 7: 'invert', 8: 'solarize', 9: 'equalize'}
@@ -127,7 +126,7 @@ def augmentation(img_tensor, op_type, magnitude):
 
         res = []
         for image in img_tensor:
-            scaled_image = torch.stack([scale_channel(image, i)] for i in range(len(image)))
+            scaled_image = torch.stack([scale_channel(image, i) for i in range(len(image))])
             res.append(scaled_image)
 
         return torch.stack(res)
