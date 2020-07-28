@@ -14,7 +14,7 @@ class RewardCal():
         imgnet_resize = transforms.Compose([transforms.Resize(342),
                                             transforms.CenterCrop(299),
                                             transforms.ToTensor()])
-        self.dataset = torchvision.datasets.ImageNet('/home/haojieyuan/Data/ImageNet/ILSVRC_2012',
+        self.dataset = torchvision.datasets.ImageNet('/mnt/lustre/feichi/haojie/Data/ILSVRC_2012',
                                                      split='val', transform=imgnet_resize)
         self.imgnet_norm = transforms.Normalize(mean=[0.485, 0.456, 0.406],
                                                 std=[0.229, 0.224, 0.225])
@@ -39,24 +39,25 @@ class RewardCal():
         self.arrange_model_devices()
 
     def arrange_model_devices(self):
-        '''
+
         self.models[0].cuda(1)  # resnet18
         self.models[1].cuda(2)  # alexnet
         self.models[2].cuda(0)  # squeezenet
 
         self.models[3].cuda(3)  # vgg16
-        self.models[4].cuda(4)  # densenet
+        self.models[4].cuda(4)  # densenet 内存瓶颈
         self.models[5].cuda(5)  # shufflenet
         self.models[6].cuda(0)  # mobilenet
         self.models[7].cuda(6)  # resnext
         self.models[8].cuda(7)  # mnasnet
-        '''
+
         '''
         self.models[3].cuda(9)  # densenet
         self.models[4].cuda(9)  # shufflenet
         self.models[5].cuda(8)  # mobilenet
         self.models[6].cuda(9)  # resnext
         self.models[7].cuda(9)  # mnasnet
+        '''
         '''
         self.models[0].cuda(1)  # resnet18
         self.models[1].cuda(1)  # alexnet
@@ -67,6 +68,7 @@ class RewardCal():
         self.models[6].cuda(1)  # mobilenet
         self.models[7].cuda(1)  # resnext
         self.models[8].cuda(2)  # mnasnet
+        '''
 
 
 

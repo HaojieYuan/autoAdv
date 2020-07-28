@@ -101,19 +101,21 @@ def augmentation(img_tensor, op_type, magnitude):
         solarize_threshold = 1.0 - 0.09*magnitude
         return torch.where(img_tensor < solarize_threshold, img_tensor, 1.0-img_tensor)
 
+
+
     elif op_type == 'equalize':
         # code taken from https://github.com/kornia/
         img_tensor = img_tensor * 255. #0~1 to 0~255
 
         def scale_channel(im, c):
             im = im[c, :, :]
-            histo = torch.histc(im, bins=256, min=0, max=255)
+            histo = torch.histc(im, bins=256, min=0, max=255).detach()
             nonzero_histo = torch.reshape(histo[histo!=0], [-1])
             step = (torch.sum(nonzero_histo)-nonzero_histo[-1]) // 255
 
             def build_lut(histo, step):
                 lut = (torch.cumsum(histo, 0)) + (step//2)//step
-                lut = torch.cat([torch.zeros(1), lut[:-1]])
+                lut = torch.cat([torch.zeros(1).to(im.device).long(), lut[:-1]])
 
                 return torch.clamp(lut, 0, 255)
 
@@ -121,13 +123,13 @@ def augmentation(img_tensor, op_type, magnitude):
                 result = im
             else:
                 result = torch.gather(build_lut(histo, step), 0, im.flatten().long())
-                result = result.reshape_as(im)
+                result = result.reshape_as(im).to(torch.float32)
 
             return result/255.
 
         res = []
         for image in img_tensor:
-            scaled_image = torch.stack([scale_channel(image, i)] for i in range(len(image)))
+            scaled_image = torch.stack([scale_channel(image, i) for i in range(len(image))])
             res.append(scaled_image)
 
         return torch.stack(res)

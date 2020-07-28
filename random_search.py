@@ -35,11 +35,12 @@ WEIGHT_SPACE = 10
 PROB_SPACE = 10
 RANGE_SPACE = 10
 
+print(OP_NUM, os.environ['SLURM_STEP_NODELIST'])
 
 # Search process hyper parameters
-interval = 0.3
+interval = 0.5
 sample_batch = ARGS.policybatch
-lr = 0.1
+lr = 25
 epoch = 300
 
 RESUME = False
