@@ -115,7 +115,7 @@ def augmentation(img_tensor, op_type, magnitude):
             def build_lut(histo, step):
                 lut = (torch.cumsum(histo, 0)) + (step//2)//step
 
-                lut = torch.cat([torch.zeros(1).to(im.device), lut[:-1]])
+                lut = torch.cat([torch.zeros(1).to(im.device).long(), lut[:-1]])
 
                 return torch.clamp(lut, 0, 255)
 

@@ -114,9 +114,26 @@ class RewardCal():
         rewards = []
         for img_batch, y in dataloader:
 
-            img_batch_adv = attack(img_batch, self.proxy_models,
-                                   aug_policy=policy, y=y, targeted=False,
-                                   momentum_mu=1.0,  preprocess=self.imgnet_norm)
+            failed = True
+            split = 1
+
+            while failed:
+                img_batch_s = split_batch(img_batch, split)
+                y_s = split_batch(y, split)
+                try:
+                    img_batch_adv = [attack(img_batch_, self.proxy_models,
+                                            aug_policy=policy, y=y_, targeted=False,
+                                            momentum_mu=1.0,  preprocess=self.imgnet_norm) \
+                                            for img_batch_, y_ in zip(img_batch_s, y_s)]
+
+                    failed = False
+                except:
+                    split = split*2
+                    if split > img_batch.shape[0]:
+                        assert False, " branch num too large. "
+
+            img_batch_adv = torch.cat(img_batch_adv, 0)
+
             # normalize for evaluation
             img_batch_adv = torch.stack([self.imgnet_norm(img_adv) for img_adv in img_batch_adv])
 
@@ -146,8 +163,18 @@ class RewardCal():
 
         return reward
 
+def split_batch(img_batch, split):
+    out = []
+    assert img_batch.shape[0]%split == 0, "set batch to 2^k"
+    slice_num = img_batch.shape[0]//split
 
+    for i in range(split):
+        if i != split - 1:
+            out.append(img_batch[i*slice_num:(i+1)*slice_num])
+        else:
+            out.append(img_batch[i*slice_num:])
 
+    return out
 
 
 
