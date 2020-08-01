@@ -3,9 +3,13 @@ import math
 
 import random
 
+#AUG_TYPE = {0: 'resize_padding', 1: 'translation', 2: 'rotation',
+#            3: 'gaussian_noise', 4: 'horizontal_flip', 5: 'vertical_flip',
+#            6: 'scaling', 7: 'invert', 8: 'solarize', 9: 'equalize'}
+
 AUG_TYPE = {0: 'resize_padding', 1: 'translation', 2: 'rotation',
             3: 'gaussian_noise', 4: 'horizontal_flip', 5: 'vertical_flip',
-            6: 'scaling', 7: 'invert', 8: 'solarize', 9: 'equalize'}
+            6: 'scaling', 7: 'invert', 8: 'solarize'}
 
 def augmentation(img_tensor, op_type, magnitude):
     ''' augmentation that capable of backward.

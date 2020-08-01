@@ -40,14 +40,14 @@ class RewardCal():
 
     def arrange_model_devices(self):
 
-        self.models[0].cuda(1)  # resnet18
-        self.models[1].cuda(2)  # alexnet
-        self.models[2].cuda(0)  # squeezenet
+        self.models[0].cuda(0)  # resnet18
+        self.models[1].cuda(1)  # alexnet
+        self.models[2].cuda(2)  # squeezenet
 
         self.models[3].cuda(3)  # vgg16
-        self.models[4].cuda(4)  # densenet 内存瓶颈
-        self.models[5].cuda(5)  # shufflenet
-        self.models[6].cuda(0)  # mobilenet
+        #self.models[4].cuda(4)  # densenet 内存瓶颈
+        self.models[5].cuda(4)  # shufflenet
+        self.models[6].cuda(5)  # mobilenet
         self.models[7].cuda(6)  # resnext
         self.models[8].cuda(7)  # mnasnet
 

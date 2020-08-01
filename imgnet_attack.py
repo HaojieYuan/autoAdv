@@ -24,7 +24,11 @@ def attack(img_batch, models, aug_policy=None, momentum_mu=None, targeted=False,
     x0 = img_batch.clone().detach().to(torch.float).requires_grad_(False)
 
     if y is None:
-        _, y = torch.max(models[0](x0), 1)
+        if preprocess:
+            x_infer = torch.stack([preprocess(img_adv) for img_adv in x0])
+        else:
+            x_infer = x0
+        _, y = torch.max(models[0](x_infer), 1)
 
     if aug_policy is not None:
         aug_num = len(aug_policy)
@@ -64,6 +68,9 @@ def attack(img_batch, models, aug_policy=None, momentum_mu=None, targeted=False,
                 adv_x_list = torch.cat(augment(adv_x, aug_policy), dim=0)
             else:
                 adv_x_list = adv_x
+
+            if preprocess:
+                adv_x_list = torch.stack([preprocess(img_adv) for img_adv in adv_x_list])
 
 
             loss = (weights * loss_fn(model(adv_x_list), y.to(device))).mean()

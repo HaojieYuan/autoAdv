@@ -40,7 +40,7 @@ print(OP_NUM, os.environ['SLURM_STEP_NODELIST'])
 # Search process hyper parameters
 interval = 0.5
 sample_batch = ARGS.policybatch
-lr = 25
+lr = 5
 epoch = 300
 
 RESUME = False
@@ -58,6 +58,25 @@ best_reward =  13.447103881835938
 
 def random_policy():
     ''' Sample a policy randomly. '''
+    policy = []
+    for i in range(OP_NUM):
+        branch = []
+
+        weight_ = random.randint(0, WEIGHT_SPACE-1)
+        branch.append(weight_)
+
+        for j in  range(OP_DEPTH):
+            type_ = random.randint(-(WEIGHT_SPACE-1), TYPE_SPACE-1)
+            prob_ = random.randint(-(PROB_SPACE-1), PROB_SPACE-1)
+            range_ = random.randint(-(RANGE_SPACE-1), RANGE_SPACE-1)
+
+            branch.append([type_, prob_, range_])
+
+        policy.append(branch)
+
+    return policy
+
+def random_delta():
     policy = []
     for i in range(OP_NUM):
         branch = []
@@ -173,7 +192,7 @@ def single_epoch(policy, reward_getter, lr=0.1, sample_batch=10):
 
     # Sample deltas and update policy
     for i in range(sample_batch):
-        sample_delta = random_policy()
+        sample_delta = random_delta()
 
         policy_plus  = restrict(update_policy(policy, sample_delta, interval))
         policy_minus = restrict(update_policy(policy, sample_delta, -interval))
