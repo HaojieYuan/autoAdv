@@ -77,7 +77,8 @@ if os.path.exists(FLAGS.autoaug_file):
     USE_AUTO_AUG = True
     with open(FLAGS.autoaug_file) as f:
         AUG_POLICY = eval(f.readline())
-    AUG_weights = [aug_weight for aug_type, aug_weight, aug_prob, aug_range in AUG_POLICY]
+    #AUG_weights = [aug_weight for aug_type, aug_weight, aug_prob, aug_range in AUG_POLICY]
+    AUG_weights = [branch[0] for branch in AUG_POLICY]
     w_sum = sum(AUG_weights)
     AUG_weights = [aug_weight/w_sum for aug_weight in AUG_weights]
 
@@ -90,7 +91,7 @@ else:
 
 AUG_TYPE = {0: 'resize_padding', 1: 'translation', 2: 'rotation',
             3: 'gaussian_noise', 4: 'horizontal_flip', 5: 'vertical_flip',
-            6: 'scaling', 7: 'invert', 8: 'solarize', 9: 'equalize'}
+            6: 'scaling', 7: 'invert', 8: 'solarize'}
 
 
 def augmentation(type, prob, mag_range, input_tensor):
@@ -233,10 +234,18 @@ def augmentation(type, prob, mag_range, input_tensor):
 
 
 def autoaug_diversity(input_tensor):
-    auged_list = [augmentation(aug_type, aug_prob, aug_range, input_tensor) for \
-                               aug_type, aug_weight, aug_prob, aug_range in AUG_POLICY]
+    #auged_list = [augmentation(aug_type, aug_prob, aug_range, input_tensor) for \
+    #                           aug_type, aug_weight, aug_prob, aug_range in AUG_POLICY]
+    auged_list = [branch_augmentation(input_tensor, branch_policy[1:]) for \
+                                      branch_policy in AUG_POLICY]
 
     return tf.concat(auged_list, 0) # concat on 0 axis
+
+def branch_augmentation(x, branch_policy):
+    for aug_type, aug_prob, aug_range in branch_policy:
+        x = augmentation(aug_type, aug_prob, aug_range, x)
+
+    return x
 
 
 
@@ -372,11 +381,6 @@ def graph(x, y, i, x_max, x_min, grad, aug_x=None):
                                                              label_smoothing=0.0,
                                                              weights=0.4)
     else:
-        #logits = tf.reshape(logits, [AUG_num, FLAGS.batch_size, -1])
-        #if FLAGS.target_model != 'resnet':
-        #    auxlogits = tf.reshape(auxlogits, [AUG_num, FLAGS.batch_size, -1])
-        #y = tf.reshape(y, [AUG_num, FLAGS.batch_size, -1])
-
         cross_entropy = tf.losses.softmax_cross_entropy(y,
                                                         logits,
                                                         label_smoothing=0.0,
@@ -386,20 +390,6 @@ def graph(x, y, i, x_max, x_min, grad, aug_x=None):
                                                                  auxlogits,
                                                                  label_smoothing=0.0,
                                                                  weights=AUG_weights_04)
-        '''
-        cross_entropy = 0
-
-        for i in range(AUG_num):
-            cross_entropy += AUG_weights[i]*tf.losses.softmax_cross_entropy(y[i],
-                                                                         logits[i],
-                                                                         label_smoothing=0.0,
-                                                                         weights=1.0)
-            if FLAGS.target_model != 'resnet':
-                cross_entropy += AUG_weights[i]*tf.losses.softmax_cross_entropy(y[i],
-                                                                             auxlogits[i],
-                                                                             label_smoothing=0.0,
-                                                                             weights=0.4)
-        '''
 
 
     noise = tf.gradients(cross_entropy, x)[0]
