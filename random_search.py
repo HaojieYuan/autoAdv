@@ -4,7 +4,7 @@ import logging
 import random
 
 from aug_search import AUG_TYPE
-from reward_calc_imgnet import RewardCal
+from reward_calc import RewardCal
 from tqdm import tqdm
 import argparse
 import os
@@ -24,6 +24,8 @@ parser.add_argument('--datasplit', default=500, type=int,
                     help=' peice num of Imagenet dataset should be splited. ')
 parser.add_argument('--log', default='random_search.log', type=str,
                     help=' log file saved in log dir. ')
+parser.add_argument('--dataset', default='imagenet', type=str,
+                    help=' dataset that we search on, available choices are imagenet or cifar10. ')
 
 
 # Search space hyper parameters
@@ -241,7 +243,7 @@ if __name__ == '__main__':
         policy = random_policy()
         resume = -1
 
-    reward_getter = RewardCal()
+    reward_getter = RewardCal(args.dataset)
 
     logger = logging.getLogger('controller')
     hdlr = logging.FileHandler(os.path.join('./log', ARGS.log))
