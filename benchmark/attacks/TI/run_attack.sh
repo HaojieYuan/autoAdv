@@ -19,9 +19,10 @@ NUM_ITER=$3
 MOMENTUM=$4
 DI_PROB=$5
 USE_TI=$6
-AUTO_AUGFILE=$7
+USE_SI=$7
+AUTO_AUGFILE=$8
 
-OUT_DIR_PREFIX=$8
+OUT_DIR_PREFIX=$9
 
 
 OUTPUT_DIR=./out/${OUT_DIR_PREFIX}_ens/
@@ -38,6 +39,7 @@ CUDA_VISIBLE_DEVICES=$CUDA_ID python attack_iter.py \
   --num_iter=$NUM_ITER \
   --momentum=$MOMENTUM \
   --use_ti=$USE_TI \
+  --use_si=$USE_SI \
   --prob=$DI_PROB \
   --autoaug_file="$AUTO_AUGFILE"
 
@@ -57,6 +59,7 @@ CUDA_VISIBLE_DEVICES=$CUDA_ID python attack_iter.py \
   --num_iter=$NUM_ITER \
   --momentum=$MOMENTUM \
   --use_ti=$USE_TI \
+  --use_si=$USE_SI \
   --prob=$DI_PROB \
   --autoaug_file="$AUTO_AUGFILE"
 
@@ -75,6 +78,7 @@ CUDA_VISIBLE_DEVICES=$CUDA_ID python attack_iter.py \
   --num_iter=$NUM_ITER \
   --momentum=$MOMENTUM \
   --use_ti=$USE_TI \
+  --use_si=$USE_SI \
   --prob=$DI_PROB \
   --autoaug_file="$AUTO_AUGFILE"
 
@@ -93,6 +97,7 @@ CUDA_VISIBLE_DEVICES=$CUDA_ID python attack_iter.py \
   --num_iter=$NUM_ITER \
   --momentum=$MOMENTUM \
   --use_ti=$USE_TI \
+  --use_si=$USE_SI \
   --prob=$DI_PROB \
   --autoaug_file="$AUTO_AUGFILE"
 
@@ -111,6 +116,7 @@ CUDA_VISIBLE_DEVICES=$CUDA_ID python attack_iter.py \
   --num_iter=$NUM_ITER \
   --momentum=$MOMENTUM \
   --use_ti=$USE_TI \
+  --use_si=$USE_SI \
   --prob=$DI_PROB \
   --autoaug_file="$AUTO_AUGFILE"
 

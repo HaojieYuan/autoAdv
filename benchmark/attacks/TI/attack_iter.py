@@ -76,8 +76,8 @@ if FLAGS.use_ti:
 
 if FLAGS.use_si:
     print("Using SI.")
-    SI_weights = [1.0, 1.0, 1.0, 1.0, 1.0]
-    SI_weights_04 = [0.4, 0.4, 0.4, 0.4, 0.4]
+    SI_weights = FLAGS.batch_size*[1.0, 1.0, 1.0, 1.0, 1.0]
+    SI_weights_04 = FLAGS.batch_size*[0.4, 0.4, 0.4, 0.4, 0.4]
 
 if os.path.exists(FLAGS.autoaug_file):
     print("Using auto augment.")
