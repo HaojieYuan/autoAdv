@@ -3,6 +3,7 @@ import torchvision
 import torchvision.transforms as transforms
 import numpy as np
 
+import cifar10_models
 from aug_search import AUG_TYPE
 from attacks import attack
 import random
@@ -37,7 +38,15 @@ class RewardCal():
             #self.models = [resnet18, alexnet, squeezenet, densenet, shufflenet,
             #               mobilenet, resnext, mnasnet]
         elif self.datset == 'cifar10':
-            pass
+            assert False, 'Not supported yet.'
+            cifar_to_tensor = transforms.Compose([transforms.ToTensor()])
+            self.dataset = torchvision.datasets.CIFAR10(root='/home/haojieyuan/Data/CIFAR_10_data', train=False,
+                                       download=False, transform=cifar_to_tensor)
+            self.normalize = transforms.Normalize(mean=[0.4914, 0.4822, 0.4465],
+                                                  std=[0.2023, 0.1994, 0.2010])
+            resnet18 = cifar10_models.resnet18(pretrained=True)
+            mobilenet_v2 = cifar10_models.mobilenet_v2(pretrained=True)
+            googlenet = cifa10_models.googlenet(pretrained=True)
 
         else:
             assert False

@@ -242,6 +242,7 @@ if __name__ == '__main__':
         best_reward = 0
         policy = random_policy()
         resume = -1
+        best_policy = policy.copy()
 
     reward_getter = RewardCal(args.dataset)
 
@@ -255,6 +256,9 @@ if __name__ == '__main__':
     for i in tqdm(range(resume+1, epoch)):
         policy, reward, epoch_best_policy, epoch_best_reward = single_epoch(policy, reward_getter,
                                                                             lr=lr, sample_batch=sample_batch)
+
+        # Eval models are randomrized, recalculate best policy.
+        best_reward = reward_getter.get_reward(best_policy)
 
         if reward > best_reward:
             best_reward = reward
