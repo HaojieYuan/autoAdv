@@ -58,6 +58,8 @@ tf.flags.DEFINE_float('momentum', 1.0, 'Momentum.')
 
 tf.flags.DEFINE_bool('use_ti', False, 'Use translation invariant or not.')
 
+tf.flags.DEFINE_bool('use_si', False, 'Use scale invariant or not.')
+
 tf.flags.DEFINE_float('prob', 0.4, 'probability of using diverse inputs.')
 
 tf.flags.DEFINE_string('autoaug_file', '', 'auto augmentation search result.')
@@ -71,6 +73,11 @@ if FLAGS.prob !=0 :
 
 if FLAGS.use_ti:
     print("Using TI.")
+
+if FLAGS.use_si:
+    print("Using SI.")
+    SI_weights = [1.0, 1.0, 1.0, 1.0, 1.0]
+    SI_weights_04 = [0.4, 0.4, 0.4, 0.4, 0.4]
 
 if os.path.exists(FLAGS.autoaug_file):
     print("Using auto augment.")
@@ -88,6 +95,9 @@ if os.path.exists(FLAGS.autoaug_file):
     AUG_num = len(AUG_POLICY)
 else:
     USE_AUTO_AUG = False
+
+assert not(FLAGS.use_si and USE_AUTO_AUG), "Using both auto aug and scale invariant is not supported yet."
+
 
 AUG_TYPE = {0: 'resize_padding', 1: 'translation', 2: 'rotation',
             3: 'gaussian_noise', 4: 'horizontal_flip', 5: 'vertical_flip',
@@ -248,6 +258,12 @@ def branch_augmentation(x, branch_policy):
     return x
 
 
+def si_diversity(input_tensor):
+    scale_list = [1.0, 1.0/2.0, 1.0/4.0, 1.0/8.0, 1.0/16.0]
+    si_list = [input_tensor*scale_factor for scale_factor in scale_list]
+
+    return tf.concat(si_list, 0)
+
 
 def gkern(kernlen=21, nsig=3):
   """Returns a 2D Gaussian kernel array."""
@@ -324,8 +340,21 @@ def graph(x, y, i, x_max, x_min, grad, aug_x=None):
         aug_x = autoaug_diversity(x)    # x -> [aug_type*bs, w, h, c]
         y = tf.tile(y, [AUG_num, 1])    # y -> [aug_type*bs, 1]
 
+        logits_weights = AUG_weights_1
+        aux_logits_weights = AUG_weights_04
+
+    elif FLAGS.use_si:
+        aug_x = si_diversity(x)         # x -> [5*bs, w, h, c]
+        y = tf.tile(y, [5, 1])          # y -> [5*bs, 1]
+
+        logits_weights = SI_weights
+        aux_logits_weights = SI_weights_04
+
     else:
         aug_x = x
+
+        logits_weights = 1.0
+        aux_logits_weights = 0.4
 
 
 
@@ -370,27 +399,15 @@ def graph(x, y, i, x_max, x_min, grad, aug_x=None):
         assert False, "Unknown arch."
 
 
-    if not USE_AUTO_AUG:
-        cross_entropy = tf.losses.softmax_cross_entropy(y,
-                                                        logits,
-                                                        label_smoothing=0.0,
-                                                        weights=1.0)
-        if FLAGS.target_model != 'resnet':
-            cross_entropy += tf.losses.softmax_cross_entropy(y,
-                                                             auxlogits,
-                                                             label_smoothing=0.0,
-                                                             weights=0.4)
-    else:
-        cross_entropy = tf.losses.softmax_cross_entropy(y,
-                                                        logits,
-                                                        label_smoothing=0.0,
-                                                        weights=AUG_weights_1)
-        if FLAGS.target_model != 'resnet':
-                cross_entropy += tf.losses.softmax_cross_entropy(y,
-                                                                 auxlogits,
-                                                                 label_smoothing=0.0,
-                                                                 weights=AUG_weights_04)
-
+    cross_entropy = tf.losses.softmax_cross_entropy(y,
+                                                    logits,
+                                                    label_smoothing=0.0,
+                                                    weights=logits_weights)
+    if FLAGS.target_model != 'resnet':
+        cross_entropy += tf.losses.softmax_cross_entropy(y,
+                                                         auxlogits,
+                                                         label_smoothing=0.0,
+                                                         weights=aux_logits_weights)
 
     noise = tf.gradients(cross_entropy, x)[0]
     if FLAGS.use_ti:

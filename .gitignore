@@ -1,4 +1,6 @@
 __pycache__
+*.pyc
+*.tfrecords
 cifar10_models/__pycache__
 cifar10_models/state_dicts
 cifar10_models/state_dicts.zip
