@@ -4,6 +4,10 @@ __pycache__
 *.ckpt
 *.pth
 *.zip
+*.tar.gz
+*.ckpt.data-00000-of-00001
+*.ckpt.index
+*.ckpt.meta
 benchmark/1stHGD/*
 !benchmark/1stHGD/Guided-Denoise-master/
 benchmark/1stHGD/Guided-Denoise-master/*
