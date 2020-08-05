@@ -5,6 +5,8 @@ __pycache__
 *.pth
 *.zip
 benchmark/1stHGD/*
+!benchmark/1stHGD/Guided-Denoise-master/
+benchmark/1stHGD/Guided-Denoise-master/*
 !benchmark/1stHGD/Guided-Denoise-master/nips_deploy
 cifar10_models/__pycache__
 cifar10_models/state_dicts
