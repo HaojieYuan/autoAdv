@@ -308,10 +308,10 @@ def main(_):
   sess = tf.Session(graph=graph)
   sess.run(init)
 
-  inc_res_saver.restore(sess, 'ens_adv_inception_resnet_v2.ckpt')
-  adv_inc_saver.restore(sess, 'adv_inception_v3.ckpt')
-  res_saver.restore(sess, 'resnet_v2_152.ckpt')
-  vgg_saver.restore(sess, 'vgg_16.ckpt')
+  inc_res_saver.restore(sess, '../../pretrained/ensemble/ens_adv_inception_resnet_v2.ckpt')
+  adv_inc_saver.restore(sess, './adv_inception_v3.ckpt')
+  res_saver.restore(sess, '../../pretrained/normal/resnet_v2_152.ckpt')
+  vgg_saver.restore(sess, './vgg_16.ckpt')
 
   res = []
   all_files = []
@@ -329,6 +329,35 @@ def main(_):
       for filename, label in zip(all_files, res):
         out_file.write('{0},{1}\n'.format(filename, label))
   sess.close()
+
+  gt_label = '/home/haojieyuan/Data/ImageNet/nips2017_dev_gt_label.txt'
+  f = open(gt_label)
+  gt_dict = {}
+  for line in f:
+      img_name, gt_label = line.strip().split(' ')
+      gt_dict[img_name] = int(gt_label)
+
+  f.close()
+
+  prediction = FLAGS.output_file
+  f = open(prediction)
+  predict_dict = {}
+  for line in f:
+      img_name, predict = line.strip().split(',')
+      predict_dict[img_name] = int(predict)
+
+  f.close()
+
+  assert len(gt_dict.keys())==len(predict_dict.keys())
+
+  total = len(gt_dict.keys())
+  incorrect = 0
+  for img_id in gt_dict.keys():
+      if gt_dict[img_id] != predict_dict[img_id]:
+          incorrect = incorrect + 1
+
+  print(" Attack success rate: {}".format(incorrect*1.0/(total*1.0)))
+
 
 
 if __name__ == '__main__':

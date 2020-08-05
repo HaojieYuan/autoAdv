@@ -9,9 +9,9 @@
 #   OUTPUT_FILE - file to store classification labels
 #
 
-INPUT_DIR=$1
-OUTPUT_FILE=$2
+INPUT_DIR=/home/haojieyuan/Data/ImageNet/nips2017_dev
+OUTPUT_FILE=./out_list.txt
 
-python defense_mmd.py \
+CUDA_VISIBLE_DEVICES=8 python defense_mmd.py \
   --input_dir="${INPUT_DIR}" \
   --output_file="${OUTPUT_FILE}"
