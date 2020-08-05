@@ -421,6 +421,11 @@ def graph(x, y, i, x_max, x_min, grad, aug_x=None):
     if USE_AUTO_AUG:
         y = tf.reshape(y, [AUG_num, FLAGS.batch_size, -1])
         y = y[0]
+    elif FLAGS.use_si:
+        y = tf.reshape(y, [5, FLAGS.batch_size, -1])
+        y = y[0]
+    else:
+        pass
 
     if DEBUG_:
         return x, y, i, x_max, x_min, noise, aug_x

@@ -1,6 +1,11 @@
 __pycache__
 *.pyc
 *.tfrecords
+*.ckpt
+*.pth
+*.zip
+benchmark/1stHGD/*
+!benchmark/1stHGD/Guided-Denoise-master/nips_deploy
 cifar10_models/__pycache__
 cifar10_models/state_dicts
 cifar10_models/state_dicts.zip
@@ -8,7 +13,6 @@ controller_best.ckpt
 benchmark/__MACOSX
 benchmark/models-r1.12.0.zip
 benchmark/pretrained
-benchmark/1stHGD
 benchmark/attacks/DI/DI-2-FGSM-master.zip
 benchmark/attacks/DI/M-DI-2-FGSM_attack_out_ens
 benchmark/attacks/DI/M-DI-2-FGSM_attack_out_inception_resnet_v2
