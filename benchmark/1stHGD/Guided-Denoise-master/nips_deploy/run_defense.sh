@@ -9,9 +9,30 @@
 #   OUTPUT_FILE - file to store classification labels
 #
 
-INPUT_DIR=/home/haojieyuan/Data/ImageNet/nips2017_dev
-OUTPUT_FILE=./out_list.txt
+CUDA_ID=$1
+INPUT_DIR=$2
 
-CUDA_VISIBLE_DEVICES=0 python defense.py \
-  --input_dir="${INPUT_DIR}" \
-  --output_file="${OUTPUT_FILE}"
+
+echo "1st eval."
+
+CUDA_VISIBLE_DEVICES=$CUDA_ID python defense.py \
+  --input_dir="../../attacks/TI/outv1/${INPUT_DIR}_inception_v3/" \
+  --output_file="${INPUT_DIR}_inception_v3.txt"
+
+
+CUDA_VISIBLE_DEVICES=$CUDA_ID python defense.py \
+  --input_dir="../../attacks/TI/outv1/${INPUT_DIR}_inception_v4/" \
+  --output_file="${INPUT_DIR}_inception_v4.txt"
+
+
+CUDA_VISIBLE_DEVICES=$CUDA_ID python defense.py \
+  --input_dir="../../attacks/TI/outv1/${INPUT_DIR}_inception_resnet_v2/" \
+  --output_file="${INPUT_DIR}_inception_resnet_v2.txt"
+
+
+CUDA_VISIBLE_DEVICES=$CUDA_ID python defense.py \
+  --input_dir="../../attacks/TI/outv1/${INPUT_DIR}_resnet/" \
+  --output_file="${INPUT_DIR}_resnet.txt"
+
+
+echo "1st eval done."
