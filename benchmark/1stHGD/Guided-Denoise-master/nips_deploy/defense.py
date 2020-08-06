@@ -87,25 +87,25 @@ def main():
         net3 = incepv3model.net
         net4 = rexmodel.net
 
-        checkpoint = torch.load('denoise_res_015.ckpt')
+        checkpoint = torch.load(os.path.join(os.path.dirname(__file__),'denoise_res_015.ckpt'))
         if isinstance(checkpoint, dict) and 'state_dict' in checkpoint:
             resmodel.load_state_dict(checkpoint['state_dict'])
         else:
             resmodel.load_state_dict(checkpoint)
 
-        checkpoint = torch.load('denoise_inres_014.ckpt')
+        checkpoint = torch.load(os.path.join(os.path.dirname(__file__),'denoise_inres_014.ckpt'))
         if isinstance(checkpoint, dict) and 'state_dict' in checkpoint:
             inresmodel.load_state_dict(checkpoint['state_dict'])
         else:
             inresmodel.load_state_dict(checkpoint)
 
-        checkpoint = torch.load('denoise_incepv3_012.ckpt')
+        checkpoint = torch.load(os.path.join(os.path.dirname(__file__),'denoise_incepv3_012.ckpt'))
         if isinstance(checkpoint, dict) and 'state_dict' in checkpoint:
             incepv3model.load_state_dict(checkpoint['state_dict'])
         else:
             incepv3model.load_state_dict(checkpoint)
 
-        checkpoint = torch.load('denoise_rex_001.ckpt')
+        checkpoint = torch.load(os.path.join(os.path.dirname(__file__),'denoise_rex_001.ckpt'))
         if isinstance(checkpoint, dict) and 'state_dict' in checkpoint:
             rexmodel.load_state_dict(checkpoint['state_dict'])
         else:

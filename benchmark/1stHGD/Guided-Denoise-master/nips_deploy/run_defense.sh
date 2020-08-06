@@ -11,28 +11,28 @@
 
 CUDA_ID=$1
 INPUT_DIR=$2
-
+work_path=$(dirname $0)
 
 echo "1st eval."
 
-CUDA_VISIBLE_DEVICES=$CUDA_ID python defense.py \
-  --input_dir="../../attacks/TI/outv1/${INPUT_DIR}_inception_v3/" \
-  --output_file="${INPUT_DIR}_inception_v3.txt"
+CUDA_VISIBLE_DEVICES=$CUDA_ID python $work_path/defense.py \
+  --input_dir="${work_path}/../../../attacks/TI/outv1/${INPUT_DIR}_inception_v3/" \
+  --output_file="${work_path}/${INPUT_DIR}_inception_v3.txt"
 
 
-CUDA_VISIBLE_DEVICES=$CUDA_ID python defense.py \
-  --input_dir="../../attacks/TI/outv1/${INPUT_DIR}_inception_v4/" \
-  --output_file="${INPUT_DIR}_inception_v4.txt"
+CUDA_VISIBLE_DEVICES=$CUDA_ID python $work_path/defense.py \
+  --input_dir="${work_path}/../../../attacks/TI/outv1/${INPUT_DIR}_inception_v4/" \
+  --output_file="${work_path}/${INPUT_DIR}_inception_v4.txt"
 
 
-CUDA_VISIBLE_DEVICES=$CUDA_ID python defense.py \
-  --input_dir="../../attacks/TI/outv1/${INPUT_DIR}_inception_resnet_v2/" \
-  --output_file="${INPUT_DIR}_inception_resnet_v2.txt"
+CUDA_VISIBLE_DEVICES=$CUDA_ID python $work_path/defense.py \
+  --input_dir="${work_path}/../../../attacks/TI/outv1/${INPUT_DIR}_inception_resnet_v2/" \
+  --output_file="${work_path}/${INPUT_DIR}_inception_resnet_v2.txt"
 
 
-CUDA_VISIBLE_DEVICES=$CUDA_ID python defense.py \
-  --input_dir="../../attacks/TI/outv1/${INPUT_DIR}_resnet/" \
-  --output_file="${INPUT_DIR}_resnet.txt"
+CUDA_VISIBLE_DEVICES=$CUDA_ID python $work_path/defense.py \
+  --input_dir="${work_path}/../../../attacks/TI/outv1/${INPUT_DIR}_resnet/" \
+  --output_file="${work_path}/${INPUT_DIR}_resnet.txt"
 
 
 echo "1st eval done."

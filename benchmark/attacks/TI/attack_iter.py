@@ -275,6 +275,7 @@ def gkern(kernlen=21, nsig=3):
   kernel = kernel_raw / kernel_raw.sum()
   return kernel
 
+# 7 for normal models, 15 for adv trained models.
 kernel = gkern(7, 3).astype(np.float32)
 stack_kernel = np.stack([kernel, kernel, kernel]).swapaxes(2, 0)
 stack_kernel = np.expand_dims(stack_kernel, 3)

@@ -10,9 +10,9 @@
 
 
 
-sh run_attack.sh 8 10 10 1.0 0   True False None TI_MI_FGSM    1> ./out/ti_mi_fgsm_log.log 2>&1
-echo "TI-MI Done."
-sh run_attack.sh 8 10 10 1.0 0.7 True Flase None DI_TI_MI_FGSM 1> ./out/di_ti_mi_fgsm_log.log 2>&1
+#sh run_attack.sh 8 10 10 1.0 0   True False None TI_MI_FGSM    1> ./out/ti_mi_fgsm_log.log 2>&1
+#echo "TI-MI Done."
+sh run_attack.sh 8 10 10 1.0 0.7 True False None DI_TI_MI_FGSM 1> ./out/di_ti_mi_fgsm_log.log 2>&1
 echo "DI-TI-MI Done."
 sh run_attack.sh 8 2  10 1.0 0   True True  None SI_TI_MI_FGSM 1> ./out/si_ti_mi_fgsm_log.log 2>&1
 echo "SI-TI-MI Done."

@@ -308,10 +308,14 @@ def main(_):
   sess = tf.Session(graph=graph)
   sess.run(init)
 
-  inc_res_saver.restore(sess, '../../pretrained/ensemble/ens_adv_inception_resnet_v2.ckpt')
-  adv_inc_saver.restore(sess, './adv_inception_v3.ckpt')
-  res_saver.restore(sess, '../../pretrained/normal/resnet_v2_152.ckpt')
-  vgg_saver.restore(sess, './vgg_16.ckpt')
+  inc_res_saver.restore(sess, os.path.join(os.path.dirname(__file__),
+                              '../../pretrained/ensemble/ens_adv_inception_resnet_v2.ckpt'))
+  adv_inc_saver.restore(sess, os.path.join(os.path.dirname(__file__),
+                              './adv_inception_v3.ckpt'))
+  res_saver.restore(sess, os.path.join(os.path.dirname(__file__),
+                          '../../pretrained/normal/resnet_v2_152.ckpt'))
+  vgg_saver.restore(sess, os.path.join(os.path.dirname(__file__),
+                          './vgg_16.ckpt'))
 
   res = []
   all_files = []
