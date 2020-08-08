@@ -44,7 +44,6 @@ CUDA_VISIBLE_DEVICES=$CUDA_ID python attack_iter.py \
   --autoaug_file="$AUTO_AUGFILE"
 
 
-
 OUTPUT_DIR=./out/${OUT_DIR_PREFIX}_resnet/
 CUDA_VISIBLE_DEVICES=$CUDA_ID python attack_iter.py \
   --input_dir="${INPUT_DIR}" \

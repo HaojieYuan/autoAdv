@@ -375,6 +375,7 @@ def graph(x, y, i, x_max, x_min, grad, aug_x=None):
     with slim.arg_scope(resnet_v2.resnet_arg_scope()):
         logits_resnet, end_points_resnet = resnet_v2.resnet_v2_152(
             input_diversity(aug_x), num_classes=num_classes, is_training=False)
+        pdb.set_trace()
 
 
     if FLAGS.target_model == 'ens':
@@ -492,6 +493,9 @@ def main(_):
             x_adv, _, _, _, _, _, x_aug = tf.while_loop(stop, graph, [x_input, y, i, x_max, x_min, grad, x_aug])
         else:
             x_adv, _, _, _, _, _ = tf.while_loop(stop, graph, [x_input, y, i, x_max, x_min, grad])
+
+
+        pdb.set_trace()
 
         # Run computation
         s1 = tf.train.Saver(slim.get_model_variables(scope='InceptionV3'))
