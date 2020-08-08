@@ -26,13 +26,17 @@ for line in f:
     # friendly for training procedure.
     label = int(line.strip().split(' ')[1]) - 1
 
-    image = Image.open(os.path.join(img_prefix, img_name)).tobytes()
+    image = Image.open(os.path.join(img_prefix, img_name))
+    width, height = image.size
+    img_b = image.tobytes()
 
     example = tf.train.Example(
         features=tf.train.Features(
             feature={
-                'img_raw':tf.train.Feature(bytes_list=tf.train.BytesList(value=[image])),
-                'label':tf.train.Feature(int64_list=tf.train.Int64List(value=[label]))}))
+                'img_raw':tf.train.Feature(bytes_list=tf.train.BytesList(value=[img_b])),
+                'label':tf.train.Feature(int64_list=tf.train.Int64List(value=[label])),
+                'height':tf.train.Feature(int64_list=tf.train.Int64List(value=[height])),
+                'width':tf.train.Feature(int64_list=tf.train.Int64List(value=[width]))}))
 
 
     writer.write(record=example.SerializeToString())
