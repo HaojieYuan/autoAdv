@@ -45,7 +45,7 @@ tf.app.flags.DEFINE_string(
     'Directory where checkpoints and event logs are written to.')
 
 
-tf.app.flags.DEFINE_integer('max_number_of_steps', None,
+tf.app.flags.DEFINE_integer('max_number_of_steps', 2000,
                             'The maximum number of training steps.')
 
 tf.app.flags.DEFINE_integer(
@@ -221,10 +221,15 @@ def main(_):
 
         # Datset preparation: hyper params.
         if FLAGS.dataset_name == 'oxfordFlowers':
+            print("Training on Oxford Flowers Dataset")
             class_num = 102
+
         elif FLAGS.dataset_name == 'fgvcAircraft':
+            print("Training on FGVC Aircraft dataset.")
             class_num = 100
+
         elif FLAGS.dataset_name == 'stanfordCars':
+            print("Training on stanford Cars dataset.")
             class_num = 196
         else:
             assert False, 'Unknown dataset name.'
@@ -306,7 +311,7 @@ def main(_):
 
         total_loss = tf.add_n([loss for loss in tf.get_collection(tf.GraphKeys.LOSSES)])
         grad = optimizer.compute_gradients(total_loss, var_list=variables_to_train)
-        grad_updates = optimizer.apply_gradients(grad)
+        grad_updates = optimizer.apply_gradients(grad, global_step=tf_global_step)
         update_ops.append(grad_updates)
         update_op = tf.group(*update_ops)
 
@@ -325,6 +330,7 @@ def main(_):
             logdir=FLAGS.train_dir,
             init_fn=_get_init_fn(),
             summary_op=summary_op,
+            global_step=tf_global_step,
             number_of_steps=FLAGS.max_number_of_steps,
             log_every_n_steps=FLAGS.log_every_n_steps,
             save_summaries_secs=FLAGS.save_summaries_secs,

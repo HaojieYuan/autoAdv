@@ -1,0 +1,57 @@
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:242: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:276: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:188: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: __init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:94: __init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.TFRecordDataset`.
+WARNING:tensorflow:From train_model.py:249: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From train_model.py:285: softmax_cross_entropy (from tensorflow.contrib.losses.python.losses.loss_ops) is deprecated and will be removed after 2016-12-30.
+Instructions for updating:
+Use tf.losses.softmax_cross_entropy instead. Note that the order of the logits and labels arguments has been changed.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/losses/python/losses/loss_ops.py:398: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/losses/python/losses/loss_ops.py:399: compute_weighted_loss (from tensorflow.contrib.losses.python.losses.loss_ops) is deprecated and will be removed after 2016-12-30.
+Instructions for updating:
+Use tf.losses.compute_weighted_loss instead.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/losses/python/losses/loss_ops.py:147: add_loss (from tensorflow.contrib.losses.python.losses.loss_ops) is deprecated and will be removed after 2016-12-30.
+Instructions for updating:
+Use tf.losses.add_loss instead.
+Training on FGVC Aircraft dataset.
+Traceback (most recent call last):
+  File "train_model.py", line 343, in <module>
+    tf.app.run()
+  File "/home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/platform/app.py", line 125, in run
+    _sys.exit(main(argv))
+  File "train_model.py", line 304, in main
+    summaries.add(tf.summary.histogram(variable.op.name, variable))
+  File "/home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/summary/summary.py", line 187, in histogram
+    tag=tag, values=values, name=scope)
+  File "/home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/ops/gen_logging_ops.py", line 284, in histogram_summary
+    "HistogramSummary", tag=tag, values=values, name=name)
+  File "/home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/framework/op_def_library.py", line 787, in _apply_op_helper
+    op_def=op_def)
+  File "/home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/util/deprecation.py", line 488, in new_func
+    return func(*args, **kwargs)
+  File "/home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/framework/ops.py", line 3193, in create_op
+    @deprecated_args(None,
+KeyboardInterrupt

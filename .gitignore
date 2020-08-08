@@ -8,6 +8,7 @@ __pycache__
 *.ckpt.data-00000-of-00001
 *.ckpt.index
 *.ckpt.meta
+benchmark/fine_grain_datsets/ckpts
 benchmark/1stHGD/*
 !benchmark/1stHGD/Guided-Denoise-master/
 benchmark/1stHGD/Guided-Denoise-master/*
