@@ -217,7 +217,7 @@ def main(_):
     tf.logging.set_verbosity(tf.logging.INFO)
 
     with tf.Graph().as_default():
-        #tf_global_step = tf.train.get_or_create_global_step()
+        tf_global_step = tf.train.get_or_create_global_step()
 
         # Datset preparation: hyper params.
         if FLAGS.dataset_name == 'oxfordFlowers':
