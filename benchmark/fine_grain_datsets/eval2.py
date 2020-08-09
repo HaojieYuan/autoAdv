@@ -8,11 +8,11 @@ import os
 
 from nets import inception
 from nets import nets_factory
-
+from nets import inception_v3, inception_v4
 import pdb
 
 slim = tf.contrib.slim
-from preprocess import preprocess_for_train
+
 
 tf.app.flags.DEFINE_integer(
     'batch_size', 64, 'The number of samples in each batch.')
@@ -213,8 +213,35 @@ def _get_init_fn():
                                           ignore_missing_vars=FLAGS.ignore_missing_vars)
 
 
+
 def main(_):
+    batch_shape = [FLAGS.batch_size, 299, 299, 3]
     tf.logging.set_verbosity(tf.logging.INFO)
+
+    with tf.Graph().as_default():
+
+        x_input = tf.placeholder(tf.float32, shape=batch_shape)
+
+        with slim.arg_scope(inception_v3.inception_v3_arg_scope()):
+            logits_v3, end_points_v3 = inception_v3.inception_v3(
+                x_input, num_classes=num_classes, is_training=False)
+
+            predicted_labels = tf.argmax(end_points_v3['Predictions'], 1)
+            y = tf.one_hot(predicted_labels, num_classes)
+
+            s1 = tf.train.Saver(slim.get_model_variables(scope='InceptionV3'))
+
+            if tf.gfile.IsDirectory(FLAGS.checkpoint_path):
+                checkpoint_path = tf.train.latest_checkpoint(FLAGS.checkpoint_path)
+            else:
+                checkpoint_path = FLAGS.checkpoint_path
+
+            with tf.Session() as sess:
+                s1.restore(sess, checkpoint_path)
+
+
+
+
 
     with tf.Graph().as_default():
         tf_global_step = tf.train.get_or_create_global_step()
@@ -242,9 +269,7 @@ def main(_):
             common_queue_min=FLAGS.batch_size)
         [train_image, train_label, im_h, im_w] = train_provider.get(['image', 'label',
                                                                      'height', 'width'])
-        #train_image = preprocess_for_eval(train_image, im_h, im_w)
-        train_image = preprocess_for_train(
-            train_image, im_h, im_w, None, add_image_summaries=False)
+        train_image = preprocess_for_eval(train_image, im_h, im_w)
         train_images, train_labels = tf.train.batch(
             [train_image, train_label], batch_size=FLAGS.batch_size,
             num_threads=FLAGS.num_preprocessing_threads,
@@ -324,9 +349,16 @@ def main(_):
         # Some other summary.
         summaries.add(tf.summary.scalar('total_loss', total_loss))
         summary_op = tf.summary.merge(list(summaries), name='summary_op')
+        predictions = tf.argmax(logits, 1)
+
+        names_to_values, names_to_updates = slim.metrics.aggregate_metric_map({
+        'Accuracy': slim.metrics.streaming_accuracy(predictions, labels),
+        'Recall_5': slim.metrics.streaming_sparse_recall_at_k(
+            logits, tf.reshape(labels, [-1, 1]), 5),
+        })
 
 
-        # Start Training.
+        # Start Evaluating.
         slim.learning.train(
             train_tensor,
             logdir=FLAGS.train_dir,
@@ -339,6 +371,15 @@ def main(_):
             save_interval_secs=FLAGS.save_interval_secs
             )
 
+        slim.evaluation.evaluation_loop(
+            'local',
+            checkpoint_dir,
+            log_dir,
+            num_evals=num_batches,
+            eval_op=names_to_updates.values(),
+            summary_op=tf.summary.merge(summary_ops),
+            final_op=[names_to_values['Accuracy'], names_to_values['Recall_5']],
+            eval_interval_secs=eval_interval_secs)
 
 
 

@@ -19,7 +19,7 @@ Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.TFReco
 WARNING:tensorflow:From train_model.py:251: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
 Instructions for updating:
 Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
-Training on FGVC Aircraft dataset.
+Training on stanford Cars dataset.
 Traceback (most recent call last):
   File "train_model.py", line 346, in <module>
     tf.app.run()

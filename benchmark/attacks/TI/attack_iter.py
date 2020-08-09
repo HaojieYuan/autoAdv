@@ -495,7 +495,6 @@ def main(_):
             x_adv, _, _, _, _, _ = tf.while_loop(stop, graph, [x_input, y, i, x_max, x_min, grad])
 
 
-        pdb.set_trace()
 
         # Run computation
         s1 = tf.train.Saver(slim.get_model_variables(scope='InceptionV3'))

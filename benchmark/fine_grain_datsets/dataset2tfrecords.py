@@ -27,6 +27,7 @@ for line in f:
     label = int(line.strip().split(' ')[1]) - 1
 
     image = Image.open(os.path.join(img_prefix, img_name))
+    image = image.convert('RGB')
     width, height = image.size
     img_b = image.tobytes()
 

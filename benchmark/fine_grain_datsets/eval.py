@@ -17,8 +17,11 @@ sys.path.insert(0, "/home/haojieyuan/autoAdv/benchmark/models/research/slim")
 from nets import resnet_v2
 from nets import inception
 from nets import inception_resnet_v2
+from nets import nets_factory
+import pdb
 
 slim = tf.contrib.slim
+from preprocess import preprocess_for_eval
 
 tf.app.flags.DEFINE_integer(
     'batch_size', 50, 'The number of samples in each batch.')
@@ -78,7 +81,7 @@ FLAGS = tf.app.flags.FLAGS
 IMAGE_SIZE = 299
 NUM_CLASSES = FLAGS.num_classes
 
-
+'''
 def preprocess_for_eval(image, in_height, in_width, scope=None):
     # make it same as ImageNet
     out_height = 299
@@ -99,7 +102,7 @@ def preprocess_for_eval(image, in_height, in_width, scope=None):
     image = tf.multiply(image, 2.0)
 
     return image
-
+'''
 
 def create_model(x, reuse=None):
   """Create model graph.
@@ -134,123 +137,7 @@ def create_model(x, reuse=None):
   else:
     raise ValueError('Invalid model name: %s' % (FLAGS.model_name))
 
-'''
-def step_target_class_adversarial_images(x, eps, one_hot_target_class):
-  """Base code for one step towards target class methods.
 
-  Args:
-    x: source images
-    eps: size of adversarial perturbation
-    one_hot_target_class: one hot encoded target classes for all images
-
-  Returns:
-    tensor with adversarial images
-  """
-  logits, end_points = create_model(x, reuse=True)
-  cross_entropy = tf.losses.softmax_cross_entropy(one_hot_target_class,
-                                                  logits,
-                                                  label_smoothing=0.1,
-                                                  weights=1.0)
-  cross_entropy += tf.losses.softmax_cross_entropy(one_hot_target_class,
-                                                   end_points['AuxLogits'],
-                                                   label_smoothing=0.1,
-                                                   weights=0.4)
-  x_adv = x - eps * tf.sign(tf.gradients(cross_entropy, x)[0])
-  x_adv = tf.clip_by_value(x_adv, -1.0, 1.0)
-  return tf.stop_gradient(x_adv)
-
-
-def stepll_adversarial_images(x, eps):
-  """One step towards least likely class (Step L.L.) adversarial examples.
-
-  This method is an alternative to FGSM which does not use true classes.
-  Method is described in the "Adversarial Machine Learning at Scale" paper,
-  https://arxiv.org/abs/1611.01236
-
-  Args:
-    x: source images
-    eps: size of adversarial perturbation
-
-  Returns:
-    adversarial images
-  """
-  logits, _ = create_model(x, reuse=True)
-  least_likely_class = tf.argmin(logits, 1)
-  one_hot_ll_class = tf.one_hot(least_likely_class, NUM_CLASSES)
-  return step_target_class_adversarial_images(x, eps, one_hot_ll_class)
-
-
-def stepllnoise_adversarial_images(x, eps):
-  """Step L.L. with noise method.
-
-  This is an imporvement of Step L.L. method. This method is better against
-  adversarially trained models which learn to mask gradient.
-  Method is described in the section "New randomized one shot attack" of
-  "Ensemble Adversarial Training: Attacks and Defenses" paper,
-  https://arxiv.org/abs/1705.07204
-
-  Args:
-    x: source images
-    eps: size of adversarial perturbation
-
-  Returns:
-    adversarial images
-  """
-  logits, _ = create_model(x, reuse=True)
-  least_likely_class = tf.argmin(logits, 1)
-  one_hot_ll_class = tf.one_hot(least_likely_class, NUM_CLASSES)
-  x_noise = x + eps / 2 * tf.sign(tf.random_normal(x.shape))
-  return step_target_class_adversarial_images(x_noise, eps / 2,
-                                              one_hot_ll_class)
-
-
-def get_input_images(dataset_images):
-  """Gets input images for the evaluation.
-
-  Args:
-    dataset_images: tensor with dataset images
-
-  Returns:
-    tensor with input images, which is either dataset images or adversarial
-    images.
-
-  Raises:
-    ValueError: if adversarial method specified by --adversarial_method flag
-      is invalid.
-  """
-  # adversarial_eps defines max difference of values of pixels if
-  # pixels are in range [0, 255]. However values of dataset pixels are
-  # in range [-1, 1], so converting epsilon.
-  eps = FLAGS.adversarial_eps / 255 * 2.0
-
-  if FLAGS.adversarial_method == 'stepll':
-    return stepll_adversarial_images(dataset_images, eps)
-  elif FLAGS.adversarial_method == 'stepllnoise':
-    return stepllnoise_adversarial_images(dataset_images, eps)
-  elif FLAGS.adversarial_method == 'none':
-    return dataset_images
-  else:
-    raise ValueError('Invalid adversarial method: %s'
-                     % (FLAGS.adversarial_method))
-
-
-def _parse_data(example_proto):
-    parsed_features=tf.parse_single_example(
-        serialized=example_proto,
-        features={
-            "image_raw":tf.FixedLenFeature(shape=(),dtype=tf.string),
-            "label":tf.FixedLenFeature(shape=(),dtype=tf.int64),
-            "target_label":tf.FixedLenFeature(shape=(),dtype=tf.int64)
-        }
-    )
-
-    # get single feature
-    raw = parsed_features["image_raw"]
-    label = parsed_features["label"]
-    # decode raw
-    image = tf.decode_raw(bytes=raw, out_type=tf.int64)
-    return image,label
-'''
 
 def get_dataset(dataset_name, partition):
     if dataset_name == 'oxfordFlowers':
@@ -312,7 +199,7 @@ def main(_):
     # Prepare dataset #
     ###################
     #dataset = imagenet.get_split(FLAGS.split_name, FLAGS.dataset_dir)
-    dataset = get_dataset(FLAGS.dataset_name, 'test')
+    dataset = get_dataset(FLAGS.dataset_name, 'train')
 
     provider = slim.dataset_data_provider.DatasetDataProvider(
         dataset,
@@ -321,7 +208,11 @@ def main(_):
         common_queue_min=FLAGS.batch_size)
 
     [dataset_image, label, im_h, im_w] = provider.get(['image', 'label', 'height', 'width'])
-    dataset_image = preprocess_for_eval(dataset_image, im_h, im_w)
+    #dataset_image = preprocess_for_eval(dataset_image, im_h, im_w)
+    dataset_image = slim.preprocessing.inception_preprocessing.preprocess_for_eval(
+      dataset_image, im_h, im_w)
+
+    #label = tf.constant(1, dtype=tf.int64)
     dataset_images, labels = tf.train.batch(
         [dataset_image, label],
         batch_size=FLAGS.batch_size,
@@ -331,10 +222,21 @@ def main(_):
     ########################################
     # Define the model and input exampeles #
     ########################################
+
     create_model(tf.placeholder(tf.float32, shape=dataset_images.shape))
     #input_images = get_input_images(dataset_images)
     input_images = dataset_images
     logits, _ = create_model(input_images, reuse=True)
+
+    '''
+    network_fn = nets_factory.get_network_fn(
+            'inception_v3',
+            num_classes=NUM_CLASSES,
+            is_training=False)
+
+    logits, end_points = network_fn(dataset_images)
+    '''
+
 
     if FLAGS.moving_average_decay > 0:
       variable_averages = tf.train.ExponentialMovingAverage(
@@ -354,7 +256,9 @@ def main(_):
     #if FLAGS.model_name == 'resnet_v2':
     #  predictions = tf.squeeze(predictions)
 
-    labels = tf.squeeze(labels)
+
+    #labels = tf.squeeze(labels)
+    #labels = slim.one_hot_encoding(labels, NUM_CLASSES)
     names_to_values, names_to_updates = slim.metrics.aggregate_metric_map({
         'Accuracy': slim.metrics.streaming_accuracy(predictions, labels),
         'Recall_5': slim.metrics.streaming_sparse_recall_at_k(
@@ -376,6 +280,10 @@ def main(_):
       checkpoint_path = FLAGS.checkpoint_path
 
     tf.logging.info('Evaluating %s' % checkpoint_path)
+
+    # Not Useful.
+    #slim.assign_from_checkpoint_fn(checkpoint_path, variables_to_restore,
+    #                               ignore_missing_vars=False)
 
     top1_accuracy, top5_accuracy = slim.evaluation.evaluate_once(
         master=FLAGS.master,
