@@ -199,7 +199,7 @@ def main(_):
     # Prepare dataset #
     ###################
     #dataset = imagenet.get_split(FLAGS.split_name, FLAGS.dataset_dir)
-    dataset = get_dataset(FLAGS.dataset_name, 'train')
+    dataset = get_dataset(FLAGS.dataset_name, 'test')
 
     provider = slim.dataset_data_provider.DatasetDataProvider(
         dataset,
@@ -208,9 +208,8 @@ def main(_):
         common_queue_min=FLAGS.batch_size)
 
     [dataset_image, label, im_h, im_w] = provider.get(['image', 'label', 'height', 'width'])
-    #dataset_image = preprocess_for_eval(dataset_image, im_h, im_w)
-    dataset_image = slim.preprocessing.inception_preprocessing.preprocess_for_eval(
-      dataset_image, im_h, im_w)
+    dataset_image = preprocess_for_eval(dataset_image, im_h, im_w)
+
 
     #label = tf.constant(1, dtype=tf.int64)
     dataset_images, labels = tf.train.batch(
