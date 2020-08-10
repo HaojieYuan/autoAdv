@@ -14,6 +14,22 @@
 #echo "TI-MI Done."
 #sh run_attack.sh 8 2  10 1.0 0   True True  None SI_TI_MI_FGSM 1> ./out/si_ti_mi_fgsm_log.log 2>&1
 #echo "SI-TI-MI Done."
-#sh run_attack.sh 8 2 1  0   0.7 False ./autoaug.txt ours_DI_FGSM 1> ./out/ours_di_fgsm_log.log 2>&1
-#sh run_attack.sh 8 2 10 0   0.7 False ./autoaug.txt ours_DI_IFGSM 1> ./out/ours_di_ifgsm_log.log 2>&1
-#sh run_attack.sh 8 2 10 1.0 0.7 False ./autoaug.txt ours_DI_MIFGSM 1> ./out/ours_di_mifgsm_log.log 2>&1
+
+#sh run_attack.sh 8 10 10 1.0 0 False False ./autoaug_b1.txt ours_MI_FGSM_b1_ti7
+#exit 0
+
+sh run_attack.sh 8 10 10 1.0 0 False False ./autoaug_b1.txt ours_MI_FGSM_b1_ti7 1> ./out/ours_MI_FGSM_b1_ti7_log.log 2>&1
+sh run_attack.sh 8 10 10 1.0 0 True  Fasle ./autoaug_b1.txt ours_TI_MI_FGSM_b1_ti7 1> ./out/ours_TI_MI_FGSM_b1_ti7_log.log 2>&1
+
+sh run_attack.sh 8 3 10 1.0 0 False False ./autoaug_b3.txt ours_MI_FGSM_b3_ti7 1> ./out/ours_MI_FGSM_b3_ti7_log.log 2>&1
+sh run_attack.sh 8 3 10 1.0 0 True  False ./autoaug_b3.txt ours_TI_MI_FGSM_b3_ti7 1> ./out/ours_TI_MI_FGSM_b3_ti7_log.log 2>&1
+
+sh run_attack.sh 8 1 10 1.0 0 False False ./autoaug_b5.txt ours_MI_FGSM_b5_ti7 1> ./out/ours_MI_FGSM_b5_ti7_log.log 2>&1
+sh run_attack.sh 8 1 10 1.0 0 True  False ./autoaug_b5.txt ours_TI_MI_FGSM_b5_ti7 1> ./out/ours_TI_MI_FGSM_b5_ti7_log.log 2>&1
+
+sh run_attack.sh 8 1 10 1.0 0 False False ./autoaug_b7.txt ours_MI_FGSM_b7_ti7 1> ./out/ours_MI_FGSM_b7_ti7_log.log 2>&1
+sh run_attack.sh 8 1 10 1.0 0 True  False ./autoaug_b7.txt ours_TI_MI_FGSM_b7_ti7 1> ./out/ours_TI_MI_FGSM_b7_ti7_log.log 2>&1
+
+sh run_attack.sh 8 1 10 1.0 0 False False ./autoaug_b9.txt ours_MI_FGSM_b9_ti7 1> ./out/ours_MI_FGSM_b9_ti7_log.log 2>&1
+sh run_attack.sh 8 1 10 1.0 0 True  False ./autoaug_b9.txt ours_TI_MI_FGSM_b9_ti7 1> ./out/ours_TI_MI_FGSM_b9_ti7_log.log 2>&1
+

@@ -9,6 +9,7 @@ __pycache__
 *.ckpt.index
 *.ckpt.meta
 benchmark/fine_grain_datsets/ckpts
+benchmark/fine_grain_datsets/ckpts_old
 benchmark/1stHGD/*
 !benchmark/1stHGD/Guided-Denoise-master/
 benchmark/1stHGD/Guided-Denoise-master/*

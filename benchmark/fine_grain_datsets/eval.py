@@ -199,7 +199,7 @@ def main(_):
     # Prepare dataset #
     ###################
     #dataset = imagenet.get_split(FLAGS.split_name, FLAGS.dataset_dir)
-    dataset = get_dataset(FLAGS.dataset_name, 'test')
+    dataset = get_dataset(FLAGS.dataset_name, 'train')
 
     provider = slim.dataset_data_provider.DatasetDataProvider(
         dataset,

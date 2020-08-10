@@ -26,6 +26,7 @@ slim = tf.contrib.slim
 DEBUG_ = False
 
 
+
 tf.flags.DEFINE_string('master', '', 'The address of the TensorFlow master to use.')
 
 tf.flags.DEFINE_string('checkpoint_path_inception_v3', '', 'Path to checkpoint for inception network.')
@@ -109,15 +110,18 @@ def augmentation(type, prob, mag_range, input_tensor):
     op_type = AUG_TYPE[type]
     mag_range = int(mag_range)
 
+    if mag_range == 0 or prob == 0:
+        return input_tensor
+
     if op_type == 'resize_padding':
         mag = tf.random_uniform((), 0, mag_range, dtype=tf.int32)
         mag = tf.cast(mag, tf.float32)
-        w_modified = 2*int(0.01*mag*FLAGS.image_width)
-        h_modified = 2*int(0.01*mag*FLAGS.image_width)
+        w_modified = 2*(1 + tf.cast(0.01*mag*FLAGS.image_width, tf.int32))
+        h_modified = 2*(1 + tf.cast(0.01*mag*FLAGS.image_width, tf.int32))
         w_resized = FLAGS.image_width - w_modified
         h_resized = FLAGS.image_width - h_modified
 
-        rescaled = tf.image.resize_images(input_tensor, [w_resized, h_resize],
+        rescaled = tf.image.resize_images(input_tensor, [w_resized, h_resized],
                                           method=tf.image.ResizeMethod.NEAREST_NEIGHBOR)
 
         h_padding_t = tf.random_uniform((), 0, h_modified, dtype=tf.int32)
@@ -375,8 +379,6 @@ def graph(x, y, i, x_max, x_min, grad, aug_x=None):
     with slim.arg_scope(resnet_v2.resnet_arg_scope()):
         logits_resnet, end_points_resnet = resnet_v2.resnet_v2_152(
             input_diversity(aug_x), num_classes=num_classes, is_training=False)
-        pdb.set_trace()
-
 
     if FLAGS.target_model == 'ens':
         logits = (logits_v3 + logits_v4 + logits_res_v2 + logits_resnet) / 4
