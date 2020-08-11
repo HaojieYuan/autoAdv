@@ -1,0 +1,73 @@
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:242: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:276: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:188: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: __init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:94: __init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.TFRecordDataset`.
+WARNING:tensorflow:From train_model.py:274: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From train_model.py:310: softmax_cross_entropy (from tensorflow.contrib.losses.python.losses.loss_ops) is deprecated and will be removed after 2016-12-30.
+Instructions for updating:
+Use tf.losses.softmax_cross_entropy instead. Note that the order of the logits and labels arguments has been changed.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/losses/python/losses/loss_ops.py:398: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/losses/python/losses/loss_ops.py:399: compute_weighted_loss (from tensorflow.contrib.losses.python.losses.loss_ops) is deprecated and will be removed after 2016-12-30.
+Instructions for updating:
+Use tf.losses.compute_weighted_loss instead.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/losses/python/losses/loss_ops.py:147: add_loss (from tensorflow.contrib.losses.python.losses.loss_ops) is deprecated and will be removed after 2016-12-30.
+Instructions for updating:
+Use tf.losses.add_loss instead.
+INFO:tensorflow:Fine-tuning from /home/haojieyuan/autoAdv/benchmark/pretrained/normal/inception_v3.ckpt
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/learning.py:737: __init__ (from tensorflow.python.training.supervisor) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.train.MonitoredTrainingSession
+2020-08-11 11:04:10.440334: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 AVX512F FMA
+2020-08-11 11:04:15.366456: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1432] Found device 0 with properties: 
+name: TITAN Xp major: 6 minor: 1 memoryClockRate(GHz): 1.582
+pciBusID: 0000:1a:00.0
+totalMemory: 11.91GiB freeMemory: 11.75GiB
+2020-08-11 11:04:15.366529: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1511] Adding visible gpu devices: 0
+2020-08-11 11:04:15.815974: I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] Device interconnect StreamExecutor with strength 1 edge matrix:
+2020-08-11 11:04:15.816039: I tensorflow/core/common_runtime/gpu/gpu_device.cc:988]      0 
+2020-08-11 11:04:15.816050: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1001] 0:   N 
+2020-08-11 11:04:15.816374: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 11366 MB memory) -> physical GPU (device: 0, name: TITAN Xp, pci bus id: 0000:1a:00.0, compute capability: 6.1)
+INFO:tensorflow:Restoring parameters from /home/haojieyuan/autoAdv/benchmark/pretrained/normal/inception_v3.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+INFO:tensorflow:Starting Session.
+INFO:tensorflow:Saving checkpoint to path ./ckpts/oxfordFlowers_imgnetpretrained/model.ckpt
+INFO:tensorflow:Starting Queues.
+INFO:tensorflow:global_step/sec: 0
+INFO:tensorflow:Recording summary at step 0.
+INFO:tensorflow:global step 9: loss = 7.0706 (0.291 sec/step)
+INFO:tensorflow:global step 19: loss = 7.2991 (0.313 sec/step)
+INFO:tensorflow:global step 29: loss = 7.0715 (0.294 sec/step)
+INFO:tensorflow:global step 39: loss = 5.4346 (0.284 sec/step)
+INFO:tensorflow:global step 49: loss = 5.8380 (0.283 sec/step)
+INFO:tensorflow:global step 59: loss = 6.8815 (0.282 sec/step)
+INFO:tensorflow:global step 69: loss = 4.2847 (0.284 sec/step)
+INFO:tensorflow:global step 79: loss = 4.8278 (0.311 sec/step)
+INFO:tensorflow:global step 89: loss = 5.3320 (0.297 sec/step)
+INFO:tensorflow:global step 99: loss = 3.3926 (0.285 sec/step)
+INFO:tensorflow:global step 109: loss = 3.7898 (0.292 sec/step)
+INFO:tensorflow:global step 119: loss = 4.7013 (0.282 sec/step)
+INFO:tensorflow:global step 129: loss = 3.4125 (0.279 sec/step)

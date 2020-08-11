@@ -74,6 +74,11 @@ tf.app.flags.DEFINE_integer(
     'num_classes', 0,
     'Size of adversarial perturbation in range [0, 255].')
 
+tf.app.flags.DEFINE_string(
+    'split', 'test',
+    'What kind of adversarial examples to use for evaluation. '
+    'Could be one of: "none", "stepll", "stepllnoise".')
+
 
 FLAGS = tf.app.flags.FLAGS
 
@@ -199,7 +204,7 @@ def main(_):
     # Prepare dataset #
     ###################
     #dataset = imagenet.get_split(FLAGS.split_name, FLAGS.dataset_dir)
-    dataset = get_dataset(FLAGS.dataset_name, 'train')
+    dataset = get_dataset(FLAGS.dataset_name, FLAGS.split)
 
     provider = slim.dataset_data_provider.DatasetDataProvider(
         dataset,

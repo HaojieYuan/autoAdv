@@ -22,6 +22,10 @@ tf.app.flags.DEFINE_string(
     'The directory where the model was written to or an absolute path to a '
     'checkpoint file.')
 
+tf.app.flags.DEFINE_string(
+    'pretrianed_model', None,
+    'pretrianed_imgNet mdoel')
+
 tf.app.flags.DEFINE_integer(
     'num_preprocessing_threads', 4,
     'The number of threads used to create the batches.')
@@ -180,6 +184,7 @@ def _get_init_fn():
     Returns:
     An init function run by the supervisor.
     """
+    '''
     if FLAGS.checkpoint_path is None:
         return None
 
@@ -209,6 +214,20 @@ def _get_init_fn():
         checkpoint_path = tf.train.latest_checkpoint(FLAGS.checkpoint_path)
     else:
         checkpoint_path = FLAGS.checkpoint_path
+    '''
+
+    exclusions = ['InceptionV3/AuxLogits', 'InceptionV3/Logits']
+    variables_to_restore = []
+    for var in slim.get_model_variables():
+        excluded = False
+        for exclusion in exclusions:
+            if var.op.name.startswith(exclusion):
+                excluded = True
+
+        if not excluded:
+            variables_to_restore.append(var)
+    checkpoint_path = FLAGS.pretrianed_model
+
 
     tf.logging.info('Fine-tuning from %s' % checkpoint_path)
 
