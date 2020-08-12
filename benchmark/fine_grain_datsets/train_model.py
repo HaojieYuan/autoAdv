@@ -334,8 +334,8 @@ def main(_):
             lr = tf.constant(1e-4, name='fixed_learning_rate') # For adam
             optimizer = tf.train.AdamOptimizer(lr, beta1=0.9, beta2=0.999, epsilon=1e-08)
         else:
-            # RMSProp 10 epochs per decay
-            decay_steps = int(train_sample_num[FLAGS.dataset_name] * 10 /FLAGS.batch_size)
+            # RMSProp 4 epochs per decay if transfer learning.
+            decay_steps = int(train_sample_num[FLAGS.dataset_name] * 4 /FLAGS.batch_size)
             lr = tf.train.exponential_decay(0.045,
                                         tf_global_step,
                                         decay_steps,

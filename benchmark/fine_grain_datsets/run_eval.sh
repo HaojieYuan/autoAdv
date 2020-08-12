@@ -1,7 +1,7 @@
 
 echo "Evaluating Inception v3 on Oxford Flowers."
 CUDA_VISIBLE_DEVICES=1 python eval.py --model_name="inception_v3" \
-  --checkpoint_path="/home/haojieyuan/autoAdv/benchmark/fine_grain_datsets/ckpts/oxfordFlowers_adam/" \
+  --checkpoint_path="/home/haojieyuan/autoAdv/benchmark/fine_grain_datsets/ckpts/oxfordFlowers_imgnetpretrained/" \
   --batch_size=50 \
   --dataset_name="oxfordFlowers" \
   --num_classes=102 \
@@ -9,7 +9,7 @@ CUDA_VISIBLE_DEVICES=1 python eval.py --model_name="inception_v3" \
 
 echo "Evaluating Inception v3 on Oxford Flowers."
 CUDA_VISIBLE_DEVICES=1 python eval.py --model_name="inception_v3" \
-  --checkpoint_path="/home/haojieyuan/autoAdv/benchmark/fine_grain_datsets/ckpts/oxfordFlowers_adam/" \
+  --checkpoint_path="/home/haojieyuan/autoAdv/benchmark/fine_grain_datsets/ckpts/oxfordFlowers_imgnetpretrained/" \
   --batch_size=50 \
   --dataset_name="oxfordFlowers" \
   --num_classes=102 \

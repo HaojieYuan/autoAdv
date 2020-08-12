@@ -19,17 +19,17 @@
 #exit 0
 
 #sh run_attack.sh 8 10 10 1.0 0 False False ./autoaug_b1.txt ours_MI_FGSM_b1_ti7 1> ./out/ours_MI_FGSM_b1_ti7_log.log 2>&1
-#sh run_attack.sh 8 10 10 1.0 0 True  False ./autoaug_b1.txt ours_TI_MI_FGSM_b1_ti7 1> ./out/ours_TI_MI_FGSM_b1_ti7_log.log 2>&1
+sh run_attack.sh 8 10 10 1.0 0 True  False ./autoaug_b1.txt ours_TI_MI_FGSM_b1_ti15 1> ./out/ours_TI_MI_FGSM_b1_ti15_log.log 2>&1
 
 #sh run_attack.sh 8 3 10 1.0 0 False False ./autoaug_b3.txt ours_MI_FGSM_b3_ti7 1> ./out/ours_MI_FGSM_b3_ti7_log.log 2>&1
-#sh run_attack.sh 8 3 10 1.0 0 True  False ./autoaug_b3.txt ours_TI_MI_FGSM_b3_ti7 1> ./out/ours_TI_MI_FGSM_b3_ti7_log.log 2>&1
+sh run_attack.sh 8 3 10 1.0 0 True  False ./autoaug_b3.txt ours_TI_MI_FGSM_b3_ti15 1> ./out/ours_TI_MI_FGSM_b3_ti15_log.log 2>&1
 
 #sh run_attack.sh 8 1 10 1.0 0 False False ./autoaug_b5.txt ours_MI_FGSM_b5_ti7 1> ./out/ours_MI_FGSM_b5_ti7_log.log 2>&1
-#sh run_attack.sh 8 1 10 1.0 0 True  False ./autoaug_b5.txt ours_TI_MI_FGSM_b5_ti7 1> ./out/ours_TI_MI_FGSM_b5_ti7_log.log 2>&1
+sh run_attack.sh 8 1 10 1.0 0 True  False ./autoaug_b5.txt ours_TI_MI_FGSM_b5_ti15 1> ./out/ours_TI_MI_FGSM_b5_ti15_log.log 2>&1
 
-sh run_attack.sh 8 1 10 1.0 0 False False ./autoaug_b7.txt ours_MI_FGSM_b7_ti7 1> ./out/ours_MI_FGSM_b7_ti7_log.log 2>&1
-sh run_attack.sh 8 1 10 1.0 0 True  False ./autoaug_b7.txt ours_TI_MI_FGSM_b7_ti7 1> ./out/ours_TI_MI_FGSM_b7_ti7_log.log 2>&1
+#sh run_attack.sh 8 1 10 1.0 0 False False ./autoaug_b7.txt ours_MI_FGSM_b7_ti7 1> ./out/ours_MI_FGSM_b7_ti7_log.log 2>&1
+sh run_attack.sh 8 1 10 1.0 0 True  False ./autoaug_b7.txt ours_TI_MI_FGSM_b7_ti15 1> ./out/ours_TI_MI_FGSM_b7_ti15_log.log 2>&1
 
-sh run_attack.sh 8 1 10 1.0 0 False False ./autoaug_b9.txt ours_MI_FGSM_b9_ti7 1> ./out/ours_MI_FGSM_b9_ti7_log.log 2>&1
-sh run_attack.sh 8 1 10 1.0 0 True  False ./autoaug_b9.txt ours_TI_MI_FGSM_b9_ti7 1> ./out/ours_TI_MI_FGSM_b9_ti7_log.log 2>&1
+#sh run_attack.sh 8 1 10 1.0 0 False False ./autoaug_b9.txt ours_MI_FGSM_b9_ti7 1> ./out/ours_MI_FGSM_b9_ti7_log.log 2>&1
+sh run_attack.sh 8 1 10 1.0 0 True  False ./autoaug_b9.txt ours_TI_MI_FGSM_b9_ti15 1> ./out/ours_TI_MI_FGSM_b9_ti15_log.log 2>&1
 
