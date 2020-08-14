@@ -79,6 +79,14 @@ tf.app.flags.DEFINE_string(
     'What kind of adversarial examples to use for evaluation. '
     'Could be one of: "none", "stepll", "stepllnoise".')
 
+tf.app.flags.DEFINE_integer(
+    'eval_interval_secs', 180,
+    'The frequency with which summaries are evaled, in seconds.')
+
+tf.app.flags.DEFINE_string(
+    'logdir', './eval_log/tmp',
+    'log dir. ')
+
 
 FLAGS = tf.app.flags.FLAGS
 
@@ -261,10 +269,10 @@ def main(_):
     #  predictions = tf.squeeze(predictions)
 
 
-    #labels = tf.squeeze(labels)
+    labels = tf.squeeze(labels)
     #labels = slim.one_hot_encoding(labels, NUM_CLASSES)
     names_to_values, names_to_updates = slim.metrics.aggregate_metric_map({
-        'Accuracy': slim.metrics.streaming_accuracy(predictions, labels),
+        'Accuracy': tf.metrics.accuracy(labels, predictions),
         'Recall_5': slim.metrics.streaming_sparse_recall_at_k(
             logits, tf.reshape(labels, [-1, 1]), 5),
     })
@@ -277,11 +285,13 @@ def main(_):
     else:
       # This ensures that we make a single pass over all of the data.
       num_batches = math.ceil(dataset.num_samples / float(FLAGS.batch_size))
-
+    '''
     if tf.gfile.IsDirectory(FLAGS.checkpoint_path):
       checkpoint_path = tf.train.latest_checkpoint(FLAGS.checkpoint_path)
     else:
       checkpoint_path = FLAGS.checkpoint_path
+    '''
+    checkpoint_path = FLAGS.checkpoint_path
 
     tf.logging.info('Evaluating %s' % checkpoint_path)
 
@@ -289,6 +299,17 @@ def main(_):
     #slim.assign_from_checkpoint_fn(checkpoint_path, variables_to_restore,
     #                               ignore_missing_vars=False)
 
+    top1_accuracy = slim.evaluation.evaluation_loop(
+        master=FLAGS.master,
+        checkpoint_dir=checkpoint_path,
+        logdir=FLAGS.logdir,
+        summary_op=tf.summary.merge(summary_ops),
+        num_evals=num_batches,
+        eval_op=list(names_to_updates.values()),
+        eval_interval_secs=FLAGS.eval_interval_secs,
+        variables_to_restore=variables_to_restore)
+
+    '''
     top1_accuracy, top5_accuracy = slim.evaluation.evaluate_once(
         master=FLAGS.master,
         checkpoint_path=checkpoint_path,
@@ -301,7 +322,7 @@ def main(_):
 
     print('Top1 Accuracy: ', top1_accuracy)
     print('Top5 Accuracy: ', top5_accuracy)
-
+    '''
 
 if __name__ == '__main__':
   tf.app.run()
