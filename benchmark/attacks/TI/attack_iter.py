@@ -186,7 +186,7 @@ def augmentation(type, prob, mag_range, input_tensor):
         mag = tf.random_uniform((), 0, mag_range, dtype=tf.int32)
         mag = tf.cast(mag, tf.float32)
         scaling_factor = 1.0 - 0.1*mag # 1.0~0.1
-        scaled_tensor = scaled_tensor*input_tensor
+        scaled_tensor = scaling_factor*input_tensor
         return tf.cond(tf.random_uniform(shape=[1])[0] < tf.constant(0.1*prob), lambda:scaled_tensor, lambda: input_tensor)
 
     elif op_type == 'invert':
