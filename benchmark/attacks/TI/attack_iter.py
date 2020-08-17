@@ -374,7 +374,7 @@ def graph(x, y, i, x_max, x_min, grad, aug_x=None):
 
     with slim.arg_scope(inception_resnet_v2.inception_resnet_v2_arg_scope()):
         logits_res_v2, end_points_res_v2 = inception_resnet_v2.inception_resnet_v2(
-            input_diversity(aug_x), num_classes=num_classes, is_training=False, reuse=True)
+            input_diversity(aug_x), num_classes=num_classes, is_training=False)
 
     with slim.arg_scope(resnet_v2.resnet_arg_scope()):
         logits_resnet, end_points_resnet = resnet_v2.resnet_v2_152(
