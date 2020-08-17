@@ -366,19 +366,19 @@ def graph(x, y, i, x_max, x_min, grad, aug_x=None):
     # should keep original x here for output
     with slim.arg_scope(inception_v3.inception_v3_arg_scope()):
         logits_v3, end_points_v3 = inception_v3.inception_v3(
-            input_diversity(aug_x), num_classes=num_classes, is_training=False)
+            input_diversity(aug_x), num_classes=num_classes, is_training=False, reuse=True)
 
     with slim.arg_scope(inception_v4.inception_v4_arg_scope()):
         logits_v4, end_points_v4 = inception_v4.inception_v4(
-            input_diversity(aug_x), num_classes=num_classes, is_training=False)
+            input_diversity(aug_x), num_classes=num_classes, is_training=False, reuse=True)
 
     with slim.arg_scope(inception_resnet_v2.inception_resnet_v2_arg_scope()):
         logits_res_v2, end_points_res_v2 = inception_resnet_v2.inception_resnet_v2(
-            input_diversity(aug_x), num_classes=num_classes, is_training=False)
+            input_diversity(aug_x), num_classes=num_classes, is_training=False, reuse=True)
 
     with slim.arg_scope(resnet_v2.resnet_arg_scope()):
         logits_resnet, end_points_resnet = resnet_v2.resnet_v2_152(
-            input_diversity(aug_x), num_classes=num_classes, is_training=False)
+            input_diversity(aug_x), num_classes=num_classes, is_training=False, reuse=True)
 
     if FLAGS.target_model == 'ens':
         logits = (logits_v3 + logits_v4 + logits_res_v2 + logits_resnet) / 4
@@ -499,17 +499,19 @@ def main(_):
 
         with slim.arg_scope(inception_resnet_v2.inception_resnet_v2_arg_scope()):
             logits_res_v2, end_points_res_v2 = inception_resnet_v2.inception_resnet_v2(
-                x_input, num_classes=num_classes, is_training=False, reuse=True)
+                x_input, num_classes=num_classes, is_training=False)
 
         with slim.arg_scope(resnet_v2.resnet_arg_scope()):
             logits_resnet, end_points_resnet = resnet_v2.resnet_v2_152(
                 x_input, num_classes=num_classes, is_training=False)
 
+        pdb.set_trace()
+
         if FLAGS.target_model == 'ens':
-            predicted_labels = tf.argmax(end_points_resnet['Predictions']+end_points_v3['Predictions']+end_points_v4['Predictions']+end_points_res_v2['Predictions'], 1)
+            predicted_labels = tf.argmax(end_points_resnet['predictions']+end_points_v3['Predictions']+end_points_v4['Predictions']+end_points_res_v2['Predictions'], 1)
 
         elif FLAGS.target_model == 'resnet':
-            predicted_labels = tf.argmax(end_points_resnet['Predictions'], 1)
+            predicted_labels = tf.argmax(end_points_resnet['predictions'], 1)
 
         elif FLAGS.target_model == 'inception_v3':
             predicted_labels = tf.argmax(end_points_v3['Predictions'], 1)
