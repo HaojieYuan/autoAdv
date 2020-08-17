@@ -480,12 +480,52 @@ def main(_):
         x_max = tf.clip_by_value(x_input + eps, -1.0, 1.0)
         x_min = tf.clip_by_value(x_input - eps, -1.0, 1.0)
 
+        '''
+        # old version
         with slim.arg_scope(inception_resnet_v2.inception_resnet_v2_arg_scope()):
             _, end_points = inception_resnet_v2.inception_resnet_v2(
                 x_input, num_classes=num_classes, is_training=False)
 
         predicted_labels = tf.argmax(end_points['Predictions'], 1)
         y = tf.one_hot(predicted_labels, num_classes)
+        '''
+        with slim.arg_scope(inception_v3.inception_v3_arg_scope()):
+            logits_v3, end_points_v3 = inception_v3.inception_v3(
+                input_diversity(aug_x), num_classes=num_classes, is_training=False)
+
+        with slim.arg_scope(inception_v4.inception_v4_arg_scope()):
+            logits_v4, end_points_v4 = inception_v4.inception_v4(
+                input_diversity(aug_x), num_classes=num_classes, is_training=False)
+
+        with slim.arg_scope(inception_resnet_v2.inception_resnet_v2_arg_scope()):
+            logits_res_v2, end_points_res_v2 = inception_resnet_v2.inception_resnet_v2(
+                input_diversity(aug_x), num_classes=num_classes, is_training=False, reuse=True)
+
+        with slim.arg_scope(resnet_v2.resnet_arg_scope()):
+            logits_resnet, end_points_resnet = resnet_v2.resnet_v2_152(
+                input_diversity(aug_x), num_classes=num_classes, is_training=False)
+
+        if FLAGS.target_model == 'ens':
+            predicted_labels = tf.argmax(end_points_resnet['Predictions']+end_points_v3['Predictions']+end_points_v4['Predictions']+end_points_res_v2['Predictions'], 1)
+
+        elif FLAGS.target_model == 'resnet':
+            predicted_labels = tf.argmax(end_points_resnet['Predictions'], 1)
+
+        elif FLAGS.target_model == 'inception_v3':
+            predicted_labels = tf.argmax(end_points_v3['Predictions'], 1)
+
+        elif FLAGS.target_model == 'inception_v4':
+            predicted_labels = tf.argmax(end_points_v4['Predictions'], 1)
+
+        elif FLAGS.target_model == 'inception_resnet_v2':
+            predicted_labels = tf.argmax(end_points_res_v2['Predictions'], 1)
+
+        else:
+            assert False, "Unknown arch."
+
+        y = tf.one_hot(predicted_labels, num_classes)
+
+
 
         i = tf.constant(0)
         grad = tf.zeros(shape=batch_shape)
