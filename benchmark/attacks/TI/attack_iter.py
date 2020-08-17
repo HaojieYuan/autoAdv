@@ -491,19 +491,19 @@ def main(_):
         '''
         with slim.arg_scope(inception_v3.inception_v3_arg_scope()):
             logits_v3, end_points_v3 = inception_v3.inception_v3(
-                input_diversity(aug_x), num_classes=num_classes, is_training=False)
+                x_input, num_classes=num_classes, is_training=False)
 
         with slim.arg_scope(inception_v4.inception_v4_arg_scope()):
             logits_v4, end_points_v4 = inception_v4.inception_v4(
-                input_diversity(aug_x), num_classes=num_classes, is_training=False)
+                x_input, num_classes=num_classes, is_training=False)
 
         with slim.arg_scope(inception_resnet_v2.inception_resnet_v2_arg_scope()):
             logits_res_v2, end_points_res_v2 = inception_resnet_v2.inception_resnet_v2(
-                input_diversity(aug_x), num_classes=num_classes, is_training=False, reuse=True)
+                x_input, num_classes=num_classes, is_training=False, reuse=True)
 
         with slim.arg_scope(resnet_v2.resnet_arg_scope()):
             logits_resnet, end_points_resnet = resnet_v2.resnet_v2_152(
-                input_diversity(aug_x), num_classes=num_classes, is_training=False)
+                x_input, num_classes=num_classes, is_training=False)
 
         if FLAGS.target_model == 'ens':
             predicted_labels = tf.argmax(end_points_resnet['Predictions']+end_points_v3['Predictions']+end_points_v4['Predictions']+end_points_res_v2['Predictions'], 1)
