@@ -40,14 +40,14 @@ print(OP_NUM, os.environ['SLURM_STEP_NODELIST'])
 # Search process hyper parameters
 interval = 0.5
 sample_batch = ARGS.policybatch
-lr = 5
-epoch = 300
+lr = 2
+epoch = 100
 
-RESUME = False
-resume = 210
-policy = None
-best_policy = None
-best_reward =  13.447103881835938
+RESUME = True
+resume = 43
+policy = [[9, [0.0, 9, 7.0], [3, 5.0, 9], [5.0, 0, 3.0], [8, 0, 7.0]], [9, [4.0, 9, 0], [1.0, 0, 0], [8, 7.0, 0], [5, 0, 9]], [9, [0, 9, 0], [5.0, 9.0, 2.0], [2.0, 2.0, 5.0], [7.0, 3.0, 5.0]]]
+best_policy = [[9, [2, 9, 8], [0.0, 8, 9], [6.0, 4, 6.0], [7.0, -0.0, 9]], [8.0, [2, 9, 2.0], [0, 3, -0.0], [8, 9, 0], [6, 2.0, 9]], [9, [0, 7.0, 0], [4, 8, 6.0], [2.0, 2.0, 4], [6, 0.0, 7.0]]]
+best_reward =  9.170172293980917
 
 
 
@@ -242,6 +242,7 @@ if __name__ == '__main__':
         best_reward = 0
         policy = random_policy()
         resume = -1
+        best_policy = policy.copy()
 
     reward_getter = RewardCal()
 
@@ -255,6 +256,10 @@ if __name__ == '__main__':
     for i in tqdm(range(resume+1, epoch)):
         policy, reward, epoch_best_policy, epoch_best_reward = single_epoch(policy, reward_getter,
                                                                             lr=lr, sample_batch=sample_batch)
+
+
+        # Eval models are randomrized, recalculate best policy.
+        best_reward = reward_getter.get_reward(best_policy)
 
         if reward > best_reward:
             best_reward = reward
