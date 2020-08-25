@@ -216,7 +216,8 @@ def _get_init_fn():
         checkpoint_path = FLAGS.checkpoint_path
     '''
 
-    exclusions = ['InceptionV3/AuxLogits', 'InceptionV3/Logits']
+    exclusions = ['InceptionV3/AuxLogits', 'InceptionV3/Logits',
+                  'InceptionV4/AuxLogits', 'InceptionV4/Logits']
     variables_to_restore = []
     pdb.set_trace()
     for var in slim.get_model_variables():
@@ -227,6 +228,7 @@ def _get_init_fn():
 
         if not excluded:
             variables_to_restore.append(var)
+    pdb.set_trace()
     checkpoint_path = FLAGS.pretrianed_model
 
 

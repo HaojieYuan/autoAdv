@@ -234,9 +234,8 @@ def preprocess_for_train(image, in_height, in_width, bbox,
     out_width = 299
     if out_height and out_width:
         distorted_image = tf.expand_dims(distorted_image, 0)
-        distorted_image = tf.image.resize_bilinear(distorted_image,
-                                         [out_height, out_width],
-                                         align_corners=False)
+        distorted_image = tf.image.resize_image_with_pad(distorted_image,
+                                         out_height, out_width)
         distorted_image = tf.squeeze(distorted_image, [0])
 
 
@@ -279,8 +278,7 @@ def preprocess_for_eval(image, in_height, in_width,
 
   if out_height and out_width:
     image = tf.expand_dims(image, 0)
-    image = tf.image.resize_bilinear(image, [out_height, out_width],
-                                         align_corners=False)
+    image = tf.image.resize_image_with_pad(image, out_height, out_width)
     image = tf.squeeze(image, [0])
 
   image = tf.subtract(image, 0.5)
