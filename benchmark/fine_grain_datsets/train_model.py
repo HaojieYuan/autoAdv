@@ -218,6 +218,7 @@ def _get_init_fn():
 
     exclusions = ['InceptionV3/AuxLogits', 'InceptionV3/Logits']
     variables_to_restore = []
+    pdb.set_trace()
     for var in slim.get_model_variables():
         excluded = False
         for exclusion in exclusions:

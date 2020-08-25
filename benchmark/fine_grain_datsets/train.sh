@@ -4,8 +4,8 @@ CUDA_VISIBLE_DEVICES=8 python train_model.py \
     --dataset_name "oxfordFlowers" \
     --model_name "inception_v3" \
     --train_dir "./ckpts/oxfordFlowers" \
-    --max_number_of_steps 63750  1> ./log/oxfordFlowers_RMSProp.log 2>&1
-
+    --max_number_of_steps 63750
+exit 0
 # 1000 * 6667/32 = 208343.75
 CUDA_VISIBLE_DEVICES=8 python train_model.py \
     --batch_size 32 \

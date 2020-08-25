@@ -1,0 +1,1737 @@
+WARNING:tensorflow:From /home/haojieyuan/autoAdv/benchmark/attacks/TI/nets/resnet_v2.py:209: calling reduce_mean (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+2020-08-16 09:29:12.870506: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 AVX512F FMA
+2020-08-16 09:29:13.173133: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1432] Found device 0 with properties: 
+name: TITAN Xp major: 6 minor: 1 memoryClockRate(GHz): 1.582
+pciBusID: 0000:3d:00.0
+totalMemory: 11.91GiB freeMemory: 11.76GiB
+2020-08-16 09:29:13.173179: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1511] Adding visible gpu devices: 0
+2020-08-16 09:29:13.512844: I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] Device interconnect StreamExecutor with strength 1 edge matrix:
+2020-08-16 09:29:13.512889: I tensorflow/core/common_runtime/gpu/gpu_device.cc:988]      0 
+2020-08-16 09:29:13.512895: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1001] 0:   N 
+2020-08-16 09:29:13.512990: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 11383 MB memory) -> physical GPU (device: 0, name: TITAN Xp, pci bus id: 0000:3d:00.0, compute capability: 6.1)
+INFO:tensorflow:Restoring parameters from /home/haojieyuan/autoAdv/benchmark/pretrained/normal/inception_v3.ckpt
+INFO:tensorflow:Restoring parameters from /home/haojieyuan/autoAdv/benchmark/pretrained/normal/inception_v4.ckpt
+INFO:tensorflow:Restoring parameters from /home/haojieyuan/autoAdv/benchmark/pretrained/normal/inception_resnet_v2_2016_08_30.ckpt
+INFO:tensorflow:Restoring parameters from /home/haojieyuan/autoAdv/benchmark/pretrained/normal/resnet_v2_152.ckpt
+2020-08-16 09:29:27.508453: E tensorflow/core/grappler/optimizers/dependency_optimizer.cc:666] Iteration = 0, topological sort failed with message: The graph couldn't be sorted in topological order.
+2020-08-16 09:29:27.705513: E tensorflow/core/grappler/optimizers/dependency_optimizer.cc:666] Iteration = 1, topological sort failed with message: The graph couldn't be sorted in topological order.
+2020-08-16 09:29:29.771829: I tensorflow/core/kernels/cuda_solvers.cc:159] Creating CudaSolver handles for stream 0x562f09200d50
+Using TI.
+Using auto augment.
+WARNING:tensorflow:From /home/haojieyuan/autoAdv/benchmark/attacks/TI/nets/resnet_v2.py:209: calling reduce_mean (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+2020-08-16 10:06:15.114412: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 AVX512F FMA
+2020-08-16 10:06:15.607737: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1432] Found device 0 with properties: 
+name: TITAN Xp major: 6 minor: 1 memoryClockRate(GHz): 1.582
+pciBusID: 0000:3d:00.0
+totalMemory: 11.91GiB freeMemory: 11.76GiB
+2020-08-16 10:06:15.607806: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1511] Adding visible gpu devices: 0
+2020-08-16 10:06:16.057487: I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] Device interconnect StreamExecutor with strength 1 edge matrix:
+2020-08-16 10:06:16.057548: I tensorflow/core/common_runtime/gpu/gpu_device.cc:988]      0 
+2020-08-16 10:06:16.057557: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1001] 0:   N 
+2020-08-16 10:06:16.057689: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 11383 MB memory) -> physical GPU (device: 0, name: TITAN Xp, pci bus id: 0000:3d:00.0, compute capability: 6.1)
+INFO:tensorflow:Restoring parameters from /home/haojieyuan/autoAdv/benchmark/pretrained/normal/inception_v3.ckpt
+INFO:tensorflow:Restoring parameters from /home/haojieyuan/autoAdv/benchmark/pretrained/normal/inception_v4.ckpt
+INFO:tensorflow:Restoring parameters from /home/haojieyuan/autoAdv/benchmark/pretrained/normal/inception_resnet_v2_2016_08_30.ckpt
+INFO:tensorflow:Restoring parameters from /home/haojieyuan/autoAdv/benchmark/pretrained/normal/resnet_v2_152.ckpt
+2020-08-16 10:06:22.491406: E tensorflow/core/grappler/optimizers/dependency_optimizer.cc:666] Iteration = 0, topological sort failed with message: The graph couldn't be sorted in topological order.
+2020-08-16 10:06:22.541624: E tensorflow/core/grappler/optimizers/dependency_optimizer.cc:666] Iteration = 1, topological sort failed with message: The graph couldn't be sorted in topological order.
+2020-08-16 10:06:24.039207: I tensorflow/core/kernels/cuda_solvers.cc:159] Creating CudaSolver handles for stream 0x563307795120
+Using TI.
+Using auto augment.
+WARNING:tensorflow:From /home/haojieyuan/autoAdv/benchmark/attacks/TI/nets/resnet_v2.py:209: calling reduce_mean (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+2020-08-16 10:19:54.740751: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 AVX512F FMA
+2020-08-16 10:19:55.075233: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1432] Found device 0 with properties: 
+name: TITAN Xp major: 6 minor: 1 memoryClockRate(GHz): 1.582
+pciBusID: 0000:3d:00.0
+totalMemory: 11.91GiB freeMemory: 11.76GiB
+2020-08-16 10:19:55.075272: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1511] Adding visible gpu devices: 0
+2020-08-16 10:19:55.378042: I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] Device interconnect StreamExecutor with strength 1 edge matrix:
+2020-08-16 10:19:55.378087: I tensorflow/core/common_runtime/gpu/gpu_device.cc:988]      0 
+2020-08-16 10:19:55.378093: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1001] 0:   N 
+2020-08-16 10:19:55.378201: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 11383 MB memory) -> physical GPU (device: 0, name: TITAN Xp, pci bus id: 0000:3d:00.0, compute capability: 6.1)
+INFO:tensorflow:Restoring parameters from /home/haojieyuan/autoAdv/benchmark/pretrained/normal/inception_v3.ckpt
+INFO:tensorflow:Restoring parameters from /home/haojieyuan/autoAdv/benchmark/pretrained/normal/inception_v4.ckpt
+INFO:tensorflow:Restoring parameters from /home/haojieyuan/autoAdv/benchmark/pretrained/normal/inception_resnet_v2_2016_08_30.ckpt
+INFO:tensorflow:Restoring parameters from /home/haojieyuan/autoAdv/benchmark/pretrained/normal/resnet_v2_152.ckpt
+2020-08-16 10:20:00.985807: E tensorflow/core/grappler/optimizers/dependency_optimizer.cc:666] Iteration = 0, topological sort failed with message: The graph couldn't be sorted in topological order.
+2020-08-16 10:20:01.024141: E tensorflow/core/grappler/optimizers/dependency_optimizer.cc:666] Iteration = 1, topological sort failed with message: The graph couldn't be sorted in topological order.
+2020-08-16 10:20:02.505427: I tensorflow/core/kernels/cuda_solvers.cc:159] Creating CudaSolver handles for stream 0x56272bfa02d0
+Using TI.
+Using auto augment.
+WARNING:tensorflow:From /home/haojieyuan/autoAdv/benchmark/attacks/TI/nets/resnet_v2.py:209: calling reduce_mean (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+2020-08-16 10:26:44.579522: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 AVX512F FMA
+2020-08-16 10:26:45.161505: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1432] Found device 0 with properties: 
+name: TITAN Xp major: 6 minor: 1 memoryClockRate(GHz): 1.582
+pciBusID: 0000:3d:00.0
+totalMemory: 11.91GiB freeMemory: 11.76GiB
+2020-08-16 10:26:45.161546: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1511] Adding visible gpu devices: 0
+2020-08-16 10:26:45.478121: I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] Device interconnect StreamExecutor with strength 1 edge matrix:
+2020-08-16 10:26:45.478166: I tensorflow/core/common_runtime/gpu/gpu_device.cc:988]      0 
+2020-08-16 10:26:45.478173: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1001] 0:   N 
+2020-08-16 10:26:45.478276: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 11383 MB memory) -> physical GPU (device: 0, name: TITAN Xp, pci bus id: 0000:3d:00.0, compute capability: 6.1)
+INFO:tensorflow:Restoring parameters from /home/haojieyuan/autoAdv/benchmark/pretrained/normal/inception_v3.ckpt
+INFO:tensorflow:Restoring parameters from /home/haojieyuan/autoAdv/benchmark/pretrained/normal/inception_v4.ckpt
+INFO:tensorflow:Restoring parameters from /home/haojieyuan/autoAdv/benchmark/pretrained/normal/inception_resnet_v2_2016_08_30.ckpt
+INFO:tensorflow:Restoring parameters from /home/haojieyuan/autoAdv/benchmark/pretrained/normal/resnet_v2_152.ckpt
+2020-08-16 10:26:51.569982: E tensorflow/core/grappler/optimizers/dependency_optimizer.cc:666] Iteration = 0, topological sort failed with message: The graph couldn't be sorted in topological order.
+2020-08-16 10:26:51.621079: E tensorflow/core/grappler/optimizers/dependency_optimizer.cc:666] Iteration = 1, topological sort failed with message: The graph couldn't be sorted in topological order.
+2020-08-16 10:26:53.176017: I tensorflow/core/kernels/cuda_solvers.cc:159] Creating CudaSolver handles for stream 0x559fc3e170c0
+Using TI.
+Using auto augment.
+WARNING:tensorflow:From /home/haojieyuan/autoAdv/benchmark/attacks/TI/nets/resnet_v2.py:209: calling reduce_mean (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+2020-08-16 10:38:11.470190: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 AVX512F FMA
+2020-08-16 10:38:12.110591: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1432] Found device 0 with properties: 
+name: TITAN Xp major: 6 minor: 1 memoryClockRate(GHz): 1.582
+pciBusID: 0000:3d:00.0
+totalMemory: 11.91GiB freeMemory: 11.76GiB
+2020-08-16 10:38:12.110626: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1511] Adding visible gpu devices: 0
+2020-08-16 10:38:12.453163: I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] Device interconnect StreamExecutor with strength 1 edge matrix:
+2020-08-16 10:38:12.453211: I tensorflow/core/common_runtime/gpu/gpu_device.cc:988]      0 
+2020-08-16 10:38:12.453219: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1001] 0:   N 
+2020-08-16 10:38:12.453339: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 11383 MB memory) -> physical GPU (device: 0, name: TITAN Xp, pci bus id: 0000:3d:00.0, compute capability: 6.1)
+INFO:tensorflow:Restoring parameters from /home/haojieyuan/autoAdv/benchmark/pretrained/normal/inception_v3.ckpt
+INFO:tensorflow:Restoring parameters from /home/haojieyuan/autoAdv/benchmark/pretrained/normal/inception_v4.ckpt
+INFO:tensorflow:Restoring parameters from /home/haojieyuan/autoAdv/benchmark/pretrained/normal/inception_resnet_v2_2016_08_30.ckpt
+INFO:tensorflow:Restoring parameters from /home/haojieyuan/autoAdv/benchmark/pretrained/normal/resnet_v2_152.ckpt
+2020-08-16 10:38:19.272259: E tensorflow/core/grappler/optimizers/dependency_optimizer.cc:666] Iteration = 0, topological sort failed with message: The graph couldn't be sorted in topological order.
+2020-08-16 10:38:19.331668: E tensorflow/core/grappler/optimizers/dependency_optimizer.cc:666] Iteration = 1, topological sort failed with message: The graph couldn't be sorted in topological order.
+2020-08-16 10:38:20.947257: I tensorflow/core/kernels/cuda_solvers.cc:159] Creating CudaSolver handles for stream 0x55f48c1fcfb0
+Using TI.
+Using auto augment.
+Now evaluating.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:242: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:276: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:188: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: __init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:94: __init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.TFRecordDataset`.
+WARNING:tensorflow:From eval.py:331: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From eval.py:361: streaming_accuracy (from tensorflow.contrib.metrics.python.ops.metric_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.metrics.accuracy. Note that the order of the labels and predictions arguments has been switched.
+INFO:tensorflow:Evaluating ./pretrained/ensemble/ens_adv_inception_resnet_v2.ckpt
+INFO:tensorflow:Starting evaluation at 2020-08-16-14:49:49
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ./pretrained/ensemble/ens_adv_inception_resnet_v2.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py:804: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+INFO:tensorflow:Evaluation [2/20]
+INFO:tensorflow:Evaluation [4/20]
+INFO:tensorflow:Evaluation [6/20]
+INFO:tensorflow:Evaluation [8/20]
+INFO:tensorflow:Evaluation [10/20]
+INFO:tensorflow:Evaluation [12/20]
+INFO:tensorflow:Evaluation [14/20]
+INFO:tensorflow:Evaluation [16/20]
+INFO:tensorflow:Evaluation [18/20]
+INFO:tensorflow:Evaluation [20/20]
+INFO:tensorflow:Finished evaluation at 2020-08-16-14:50:04
+Top1 Accuracy:  0.436
+Top5 Accuracy:  0.768
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:242: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:276: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:188: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: __init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:94: __init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.TFRecordDataset`.
+WARNING:tensorflow:From eval.py:331: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From eval.py:361: streaming_accuracy (from tensorflow.contrib.metrics.python.ops.metric_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.metrics.accuracy. Note that the order of the labels and predictions arguments has been switched.
+INFO:tensorflow:Evaluating ./pretrained/ensemble/ens3_adv_inception_v3.ckpt
+INFO:tensorflow:Starting evaluation at 2020-08-16-14:50:10
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ./pretrained/ensemble/ens3_adv_inception_v3.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py:804: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+INFO:tensorflow:Evaluation [2/20]
+INFO:tensorflow:Evaluation [4/20]
+INFO:tensorflow:Evaluation [6/20]
+INFO:tensorflow:Evaluation [8/20]
+INFO:tensorflow:Evaluation [10/20]
+INFO:tensorflow:Evaluation [12/20]
+INFO:tensorflow:Evaluation [14/20]
+INFO:tensorflow:Evaluation [16/20]
+INFO:tensorflow:Evaluation [18/20]
+INFO:tensorflow:Evaluation [20/20]
+INFO:tensorflow:Finished evaluation at 2020-08-16-14:50:19
+Top1 Accuracy:  0.307
+Top5 Accuracy:  0.674
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:242: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:276: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:188: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: __init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:94: __init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.TFRecordDataset`.
+WARNING:tensorflow:From eval.py:331: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From eval.py:361: streaming_accuracy (from tensorflow.contrib.metrics.python.ops.metric_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.metrics.accuracy. Note that the order of the labels and predictions arguments has been switched.
+INFO:tensorflow:Evaluating ./pretrained/ensemble/ens4_adv_inception_v3.ckpt
+INFO:tensorflow:Starting evaluation at 2020-08-16-14:50:23
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ./pretrained/ensemble/ens4_adv_inception_v3.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py:804: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+INFO:tensorflow:Evaluation [2/20]
+INFO:tensorflow:Evaluation [4/20]
+INFO:tensorflow:Evaluation [6/20]
+INFO:tensorflow:Evaluation [8/20]
+INFO:tensorflow:Evaluation [10/20]
+INFO:tensorflow:Evaluation [12/20]
+INFO:tensorflow:Evaluation [14/20]
+INFO:tensorflow:Evaluation [16/20]
+INFO:tensorflow:Evaluation [18/20]
+INFO:tensorflow:Evaluation [20/20]
+INFO:tensorflow:Finished evaluation at 2020-08-16-14:50:31
+Top1 Accuracy:  0.343
+Top5 Accuracy:  0.702
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:242: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:276: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:188: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: __init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:94: __init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.TFRecordDataset`.
+WARNING:tensorflow:From eval.py:331: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From /home/haojieyuan/autoAdv/benchmark/models/research/slim/nets/resnet_v2.py:213: calling reduce_mean (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+WARNING:tensorflow:From eval.py:361: streaming_accuracy (from tensorflow.contrib.metrics.python.ops.metric_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.metrics.accuracy. Note that the order of the labels and predictions arguments has been switched.
+INFO:tensorflow:Evaluating ./pretrained/normal/resnet_v2_152.ckpt
+INFO:tensorflow:Starting evaluation at 2020-08-16-14:50:39
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ./pretrained/normal/resnet_v2_152.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py:804: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+INFO:tensorflow:Evaluation [2/20]
+INFO:tensorflow:Evaluation [4/20]
+INFO:tensorflow:Evaluation [6/20]
+INFO:tensorflow:Evaluation [8/20]
+INFO:tensorflow:Evaluation [10/20]
+INFO:tensorflow:Evaluation [12/20]
+INFO:tensorflow:Evaluation [14/20]
+INFO:tensorflow:Evaluation [16/20]
+INFO:tensorflow:Evaluation [18/20]
+INFO:tensorflow:Evaluation [20/20]
+INFO:tensorflow:Finished evaluation at 2020-08-16-14:50:54
+Top1 Accuracy:  0.004
+Top5 Accuracy:  0.03
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:242: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:276: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:188: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: __init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:94: __init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.TFRecordDataset`.
+WARNING:tensorflow:From eval.py:331: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From eval.py:361: streaming_accuracy (from tensorflow.contrib.metrics.python.ops.metric_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.metrics.accuracy. Note that the order of the labels and predictions arguments has been switched.
+INFO:tensorflow:Evaluating ./pretrained/normal/inception_v3.ckpt
+INFO:tensorflow:Starting evaluation at 2020-08-16-14:50:59
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ./pretrained/normal/inception_v3.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py:804: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+INFO:tensorflow:Evaluation [2/20]
+INFO:tensorflow:Evaluation [4/20]
+INFO:tensorflow:Evaluation [6/20]
+INFO:tensorflow:Evaluation [8/20]
+INFO:tensorflow:Evaluation [10/20]
+INFO:tensorflow:Evaluation [12/20]
+INFO:tensorflow:Evaluation [14/20]
+INFO:tensorflow:Evaluation [16/20]
+INFO:tensorflow:Evaluation [18/20]
+INFO:tensorflow:Evaluation [20/20]
+INFO:tensorflow:Finished evaluation at 2020-08-16-14:51:08
+Top1 Accuracy:  0.142
+Top5 Accuracy:  0.458
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:242: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:276: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:188: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: __init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:94: __init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.TFRecordDataset`.
+WARNING:tensorflow:From eval.py:331: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From eval.py:361: streaming_accuracy (from tensorflow.contrib.metrics.python.ops.metric_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.metrics.accuracy. Note that the order of the labels and predictions arguments has been switched.
+INFO:tensorflow:Evaluating ./pretrained/normal/inception_v4.ckpt
+INFO:tensorflow:Starting evaluation at 2020-08-16-14:51:14
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ./pretrained/normal/inception_v4.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py:804: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+INFO:tensorflow:Evaluation [2/20]
+INFO:tensorflow:Evaluation [4/20]
+INFO:tensorflow:Evaluation [6/20]
+INFO:tensorflow:Evaluation [8/20]
+INFO:tensorflow:Evaluation [10/20]
+INFO:tensorflow:Evaluation [12/20]
+INFO:tensorflow:Evaluation [14/20]
+INFO:tensorflow:Evaluation [16/20]
+INFO:tensorflow:Evaluation [18/20]
+INFO:tensorflow:Evaluation [20/20]
+INFO:tensorflow:Finished evaluation at 2020-08-16-14:51:26
+Top1 Accuracy:  0.175
+Top5 Accuracy:  0.509
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:242: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:276: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:188: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: __init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:94: __init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.TFRecordDataset`.
+WARNING:tensorflow:From eval.py:331: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From eval.py:361: streaming_accuracy (from tensorflow.contrib.metrics.python.ops.metric_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.metrics.accuracy. Note that the order of the labels and predictions arguments has been switched.
+INFO:tensorflow:Evaluating ./pretrained/normal/inception_resnet_v2_2016_08_30.ckpt
+INFO:tensorflow:Starting evaluation at 2020-08-16-14:51:36
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ./pretrained/normal/inception_resnet_v2_2016_08_30.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py:804: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+INFO:tensorflow:Evaluation [2/20]
+INFO:tensorflow:Evaluation [4/20]
+INFO:tensorflow:Evaluation [6/20]
+INFO:tensorflow:Evaluation [8/20]
+INFO:tensorflow:Evaluation [10/20]
+INFO:tensorflow:Evaluation [12/20]
+INFO:tensorflow:Evaluation [14/20]
+INFO:tensorflow:Evaluation [16/20]
+INFO:tensorflow:Evaluation [18/20]
+INFO:tensorflow:Evaluation [20/20]
+INFO:tensorflow:Finished evaluation at 2020-08-16-14:51:50
+Top1 Accuracy:  0.18
+Top5 Accuracy:  0.506
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:242: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:276: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:188: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: __init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:94: __init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.TFRecordDataset`.
+WARNING:tensorflow:From eval.py:331: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From eval.py:361: streaming_accuracy (from tensorflow.contrib.metrics.python.ops.metric_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.metrics.accuracy. Note that the order of the labels and predictions arguments has been switched.
+INFO:tensorflow:Evaluating ./pretrained/ensemble/ens_adv_inception_resnet_v2.ckpt
+INFO:tensorflow:Starting evaluation at 2020-08-16-14:52:05
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ./pretrained/ensemble/ens_adv_inception_resnet_v2.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py:804: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+INFO:tensorflow:Evaluation [2/20]
+INFO:tensorflow:Evaluation [4/20]
+INFO:tensorflow:Evaluation [6/20]
+INFO:tensorflow:Evaluation [8/20]
+INFO:tensorflow:Evaluation [10/20]
+INFO:tensorflow:Evaluation [12/20]
+INFO:tensorflow:Evaluation [14/20]
+INFO:tensorflow:Evaluation [16/20]
+INFO:tensorflow:Evaluation [18/20]
+INFO:tensorflow:Evaluation [20/20]
+INFO:tensorflow:Finished evaluation at 2020-08-16-14:52:20
+Top1 Accuracy:  0.564
+Top5 Accuracy:  0.846
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:242: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:276: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:188: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: __init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:94: __init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.TFRecordDataset`.
+WARNING:tensorflow:From eval.py:331: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From eval.py:361: streaming_accuracy (from tensorflow.contrib.metrics.python.ops.metric_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.metrics.accuracy. Note that the order of the labels and predictions arguments has been switched.
+INFO:tensorflow:Evaluating ./pretrained/ensemble/ens3_adv_inception_v3.ckpt
+INFO:tensorflow:Starting evaluation at 2020-08-16-14:52:25
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ./pretrained/ensemble/ens3_adv_inception_v3.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py:804: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+INFO:tensorflow:Evaluation [2/20]
+INFO:tensorflow:Evaluation [4/20]
+INFO:tensorflow:Evaluation [6/20]
+INFO:tensorflow:Evaluation [8/20]
+INFO:tensorflow:Evaluation [10/20]
+INFO:tensorflow:Evaluation [12/20]
+INFO:tensorflow:Evaluation [14/20]
+INFO:tensorflow:Evaluation [16/20]
+INFO:tensorflow:Evaluation [18/20]
+INFO:tensorflow:Evaluation [20/20]
+INFO:tensorflow:Finished evaluation at 2020-08-16-14:52:34
+Top1 Accuracy:  0.378
+Top5 Accuracy:  0.73
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:242: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:276: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:188: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: __init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:94: __init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.TFRecordDataset`.
+WARNING:tensorflow:From eval.py:331: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From eval.py:361: streaming_accuracy (from tensorflow.contrib.metrics.python.ops.metric_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.metrics.accuracy. Note that the order of the labels and predictions arguments has been switched.
+INFO:tensorflow:Evaluating ./pretrained/ensemble/ens4_adv_inception_v3.ckpt
+INFO:tensorflow:Starting evaluation at 2020-08-16-14:52:38
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ./pretrained/ensemble/ens4_adv_inception_v3.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py:804: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+INFO:tensorflow:Evaluation [2/20]
+INFO:tensorflow:Evaluation [4/20]
+INFO:tensorflow:Evaluation [6/20]
+INFO:tensorflow:Evaluation [8/20]
+INFO:tensorflow:Evaluation [10/20]
+INFO:tensorflow:Evaluation [12/20]
+INFO:tensorflow:Evaluation [14/20]
+INFO:tensorflow:Evaluation [16/20]
+INFO:tensorflow:Evaluation [18/20]
+INFO:tensorflow:Evaluation [20/20]
+INFO:tensorflow:Finished evaluation at 2020-08-16-14:52:47
+Top1 Accuracy:  0.406
+Top5 Accuracy:  0.747
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:242: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:276: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:188: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: __init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:94: __init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.TFRecordDataset`.
+WARNING:tensorflow:From eval.py:331: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From /home/haojieyuan/autoAdv/benchmark/models/research/slim/nets/resnet_v2.py:213: calling reduce_mean (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+WARNING:tensorflow:From eval.py:361: streaming_accuracy (from tensorflow.contrib.metrics.python.ops.metric_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.metrics.accuracy. Note that the order of the labels and predictions arguments has been switched.
+INFO:tensorflow:Evaluating ./pretrained/normal/resnet_v2_152.ckpt
+INFO:tensorflow:Starting evaluation at 2020-08-16-14:52:55
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ./pretrained/normal/resnet_v2_152.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py:804: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+INFO:tensorflow:Evaluation [2/20]
+INFO:tensorflow:Evaluation [4/20]
+INFO:tensorflow:Evaluation [6/20]
+INFO:tensorflow:Evaluation [8/20]
+INFO:tensorflow:Evaluation [10/20]
+INFO:tensorflow:Evaluation [12/20]
+INFO:tensorflow:Evaluation [14/20]
+INFO:tensorflow:Evaluation [16/20]
+INFO:tensorflow:Evaluation [18/20]
+INFO:tensorflow:Evaluation [20/20]
+INFO:tensorflow:Finished evaluation at 2020-08-16-14:53:10
+Top1 Accuracy:  0.252
+Top5 Accuracy:  0.582
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:242: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:276: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:188: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: __init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:94: __init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.TFRecordDataset`.
+WARNING:tensorflow:From eval.py:331: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From eval.py:361: streaming_accuracy (from tensorflow.contrib.metrics.python.ops.metric_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.metrics.accuracy. Note that the order of the labels and predictions arguments has been switched.
+INFO:tensorflow:Evaluating ./pretrained/normal/inception_v3.ckpt
+INFO:tensorflow:Starting evaluation at 2020-08-16-14:53:15
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ./pretrained/normal/inception_v3.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py:804: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+INFO:tensorflow:Evaluation [2/20]
+INFO:tensorflow:Evaluation [4/20]
+INFO:tensorflow:Evaluation [6/20]
+INFO:tensorflow:Evaluation [8/20]
+INFO:tensorflow:Evaluation [10/20]
+INFO:tensorflow:Evaluation [12/20]
+INFO:tensorflow:Evaluation [14/20]
+INFO:tensorflow:Evaluation [16/20]
+INFO:tensorflow:Evaluation [18/20]
+INFO:tensorflow:Evaluation [20/20]
+INFO:tensorflow:Finished evaluation at 2020-08-16-14:53:24
+Top1 Accuracy:  0.0
+Top5 Accuracy:  0.008
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:242: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:276: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:188: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: __init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:94: __init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.TFRecordDataset`.
+WARNING:tensorflow:From eval.py:331: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From eval.py:361: streaming_accuracy (from tensorflow.contrib.metrics.python.ops.metric_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.metrics.accuracy. Note that the order of the labels and predictions arguments has been switched.
+INFO:tensorflow:Evaluating ./pretrained/normal/inception_v4.ckpt
+INFO:tensorflow:Starting evaluation at 2020-08-16-14:53:30
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ./pretrained/normal/inception_v4.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py:804: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+INFO:tensorflow:Evaluation [2/20]
+INFO:tensorflow:Evaluation [4/20]
+INFO:tensorflow:Evaluation [6/20]
+INFO:tensorflow:Evaluation [8/20]
+INFO:tensorflow:Evaluation [10/20]
+INFO:tensorflow:Evaluation [12/20]
+INFO:tensorflow:Evaluation [14/20]
+INFO:tensorflow:Evaluation [16/20]
+INFO:tensorflow:Evaluation [18/20]
+INFO:tensorflow:Evaluation [20/20]
+INFO:tensorflow:Finished evaluation at 2020-08-16-14:53:42
+Top1 Accuracy:  0.11
+Top5 Accuracy:  0.412
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:242: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:276: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:188: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: __init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:94: __init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.TFRecordDataset`.
+WARNING:tensorflow:From eval.py:331: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From eval.py:361: streaming_accuracy (from tensorflow.contrib.metrics.python.ops.metric_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.metrics.accuracy. Note that the order of the labels and predictions arguments has been switched.
+INFO:tensorflow:Evaluating ./pretrained/normal/inception_resnet_v2_2016_08_30.ckpt
+INFO:tensorflow:Starting evaluation at 2020-08-16-14:53:52
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ./pretrained/normal/inception_resnet_v2_2016_08_30.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py:804: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+INFO:tensorflow:Evaluation [2/20]
+INFO:tensorflow:Evaluation [4/20]
+INFO:tensorflow:Evaluation [6/20]
+INFO:tensorflow:Evaluation [8/20]
+INFO:tensorflow:Evaluation [10/20]
+INFO:tensorflow:Evaluation [12/20]
+INFO:tensorflow:Evaluation [14/20]
+INFO:tensorflow:Evaluation [16/20]
+INFO:tensorflow:Evaluation [18/20]
+INFO:tensorflow:Evaluation [20/20]
+INFO:tensorflow:Finished evaluation at 2020-08-16-14:54:06
+Top1 Accuracy:  0.169
+Top5 Accuracy:  0.467
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:242: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:276: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:188: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: __init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:94: __init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.TFRecordDataset`.
+WARNING:tensorflow:From eval.py:331: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From eval.py:361: streaming_accuracy (from tensorflow.contrib.metrics.python.ops.metric_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.metrics.accuracy. Note that the order of the labels and predictions arguments has been switched.
+INFO:tensorflow:Evaluating ./pretrained/ensemble/ens_adv_inception_resnet_v2.ckpt
+INFO:tensorflow:Starting evaluation at 2020-08-16-14:54:21
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ./pretrained/ensemble/ens_adv_inception_resnet_v2.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py:804: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+INFO:tensorflow:Evaluation [2/20]
+INFO:tensorflow:Evaluation [4/20]
+INFO:tensorflow:Evaluation [6/20]
+INFO:tensorflow:Evaluation [8/20]
+INFO:tensorflow:Evaluation [10/20]
+INFO:tensorflow:Evaluation [12/20]
+INFO:tensorflow:Evaluation [14/20]
+INFO:tensorflow:Evaluation [16/20]
+INFO:tensorflow:Evaluation [18/20]
+INFO:tensorflow:Evaluation [20/20]
+INFO:tensorflow:Finished evaluation at 2020-08-16-14:54:37
+Top1 Accuracy:  0.531
+Top5 Accuracy:  0.824
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:242: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:276: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:188: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: __init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:94: __init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.TFRecordDataset`.
+WARNING:tensorflow:From eval.py:331: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From eval.py:361: streaming_accuracy (from tensorflow.contrib.metrics.python.ops.metric_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.metrics.accuracy. Note that the order of the labels and predictions arguments has been switched.
+INFO:tensorflow:Evaluating ./pretrained/ensemble/ens3_adv_inception_v3.ckpt
+INFO:tensorflow:Starting evaluation at 2020-08-16-14:54:42
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ./pretrained/ensemble/ens3_adv_inception_v3.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py:804: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+INFO:tensorflow:Evaluation [2/20]
+INFO:tensorflow:Evaluation [4/20]
+INFO:tensorflow:Evaluation [6/20]
+INFO:tensorflow:Evaluation [8/20]
+INFO:tensorflow:Evaluation [10/20]
+INFO:tensorflow:Evaluation [12/20]
+INFO:tensorflow:Evaluation [14/20]
+INFO:tensorflow:Evaluation [16/20]
+INFO:tensorflow:Evaluation [18/20]
+INFO:tensorflow:Evaluation [20/20]
+INFO:tensorflow:Finished evaluation at 2020-08-16-14:54:50
+Top1 Accuracy:  0.368
+Top5 Accuracy:  0.73
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:242: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:276: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:188: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: __init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:94: __init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.TFRecordDataset`.
+WARNING:tensorflow:From eval.py:331: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From eval.py:361: streaming_accuracy (from tensorflow.contrib.metrics.python.ops.metric_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.metrics.accuracy. Note that the order of the labels and predictions arguments has been switched.
+INFO:tensorflow:Evaluating ./pretrained/ensemble/ens4_adv_inception_v3.ckpt
+INFO:tensorflow:Starting evaluation at 2020-08-16-14:54:55
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ./pretrained/ensemble/ens4_adv_inception_v3.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py:804: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+INFO:tensorflow:Evaluation [2/20]
+INFO:tensorflow:Evaluation [4/20]
+INFO:tensorflow:Evaluation [6/20]
+INFO:tensorflow:Evaluation [8/20]
+INFO:tensorflow:Evaluation [10/20]
+INFO:tensorflow:Evaluation [12/20]
+INFO:tensorflow:Evaluation [14/20]
+INFO:tensorflow:Evaluation [16/20]
+INFO:tensorflow:Evaluation [18/20]
+INFO:tensorflow:Evaluation [20/20]
+INFO:tensorflow:Finished evaluation at 2020-08-16-14:55:04
+Top1 Accuracy:  0.387
+Top5 Accuracy:  0.757
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:242: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:276: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:188: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: __init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:94: __init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.TFRecordDataset`.
+WARNING:tensorflow:From eval.py:331: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From /home/haojieyuan/autoAdv/benchmark/models/research/slim/nets/resnet_v2.py:213: calling reduce_mean (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+WARNING:tensorflow:From eval.py:361: streaming_accuracy (from tensorflow.contrib.metrics.python.ops.metric_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.metrics.accuracy. Note that the order of the labels and predictions arguments has been switched.
+INFO:tensorflow:Evaluating ./pretrained/normal/resnet_v2_152.ckpt
+INFO:tensorflow:Starting evaluation at 2020-08-16-14:55:12
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ./pretrained/normal/resnet_v2_152.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py:804: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+INFO:tensorflow:Evaluation [2/20]
+INFO:tensorflow:Evaluation [4/20]
+INFO:tensorflow:Evaluation [6/20]
+INFO:tensorflow:Evaluation [8/20]
+INFO:tensorflow:Evaluation [10/20]
+INFO:tensorflow:Evaluation [12/20]
+INFO:tensorflow:Evaluation [14/20]
+INFO:tensorflow:Evaluation [16/20]
+INFO:tensorflow:Evaluation [18/20]
+INFO:tensorflow:Evaluation [20/20]
+INFO:tensorflow:Finished evaluation at 2020-08-16-14:55:26
+Top1 Accuracy:  0.235
+Top5 Accuracy:  0.595
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:242: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:276: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:188: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: __init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:94: __init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.TFRecordDataset`.
+WARNING:tensorflow:From eval.py:331: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From eval.py:361: streaming_accuracy (from tensorflow.contrib.metrics.python.ops.metric_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.metrics.accuracy. Note that the order of the labels and predictions arguments has been switched.
+INFO:tensorflow:Evaluating ./pretrained/normal/inception_v3.ckpt
+INFO:tensorflow:Starting evaluation at 2020-08-16-14:55:31
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ./pretrained/normal/inception_v3.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py:804: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+INFO:tensorflow:Evaluation [2/20]
+INFO:tensorflow:Evaluation [4/20]
+INFO:tensorflow:Evaluation [6/20]
+INFO:tensorflow:Evaluation [8/20]
+INFO:tensorflow:Evaluation [10/20]
+INFO:tensorflow:Evaluation [12/20]
+INFO:tensorflow:Evaluation [14/20]
+INFO:tensorflow:Evaluation [16/20]
+INFO:tensorflow:Evaluation [18/20]
+INFO:tensorflow:Evaluation [20/20]
+INFO:tensorflow:Finished evaluation at 2020-08-16-14:55:40
+Top1 Accuracy:  0.097
+Top5 Accuracy:  0.356
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:242: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:276: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:188: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: __init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:94: __init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.TFRecordDataset`.
+WARNING:tensorflow:From eval.py:331: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From eval.py:361: streaming_accuracy (from tensorflow.contrib.metrics.python.ops.metric_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.metrics.accuracy. Note that the order of the labels and predictions arguments has been switched.
+INFO:tensorflow:Evaluating ./pretrained/normal/inception_v4.ckpt
+INFO:tensorflow:Starting evaluation at 2020-08-16-14:55:46
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ./pretrained/normal/inception_v4.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py:804: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+INFO:tensorflow:Evaluation [2/20]
+INFO:tensorflow:Evaluation [4/20]
+INFO:tensorflow:Evaluation [6/20]
+INFO:tensorflow:Evaluation [8/20]
+INFO:tensorflow:Evaluation [10/20]
+INFO:tensorflow:Evaluation [12/20]
+INFO:tensorflow:Evaluation [14/20]
+INFO:tensorflow:Evaluation [16/20]
+INFO:tensorflow:Evaluation [18/20]
+INFO:tensorflow:Evaluation [20/20]
+INFO:tensorflow:Finished evaluation at 2020-08-16-14:55:58
+Top1 Accuracy:  0.001
+Top5 Accuracy:  0.01
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:242: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:276: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:188: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: __init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:94: __init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.TFRecordDataset`.
+WARNING:tensorflow:From eval.py:331: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From eval.py:361: streaming_accuracy (from tensorflow.contrib.metrics.python.ops.metric_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.metrics.accuracy. Note that the order of the labels and predictions arguments has been switched.
+INFO:tensorflow:Evaluating ./pretrained/normal/inception_resnet_v2_2016_08_30.ckpt
+INFO:tensorflow:Starting evaluation at 2020-08-16-14:56:07
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ./pretrained/normal/inception_resnet_v2_2016_08_30.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py:804: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+INFO:tensorflow:Evaluation [2/20]
+INFO:tensorflow:Evaluation [4/20]
+INFO:tensorflow:Evaluation [6/20]
+INFO:tensorflow:Evaluation [8/20]
+INFO:tensorflow:Evaluation [10/20]
+INFO:tensorflow:Evaluation [12/20]
+INFO:tensorflow:Evaluation [14/20]
+INFO:tensorflow:Evaluation [16/20]
+INFO:tensorflow:Evaluation [18/20]
+INFO:tensorflow:Evaluation [20/20]
+INFO:tensorflow:Finished evaluation at 2020-08-16-14:56:22
+Top1 Accuracy:  0.134
+Top5 Accuracy:  0.474
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:242: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:276: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:188: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: __init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:94: __init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.TFRecordDataset`.
+WARNING:tensorflow:From eval.py:331: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From eval.py:361: streaming_accuracy (from tensorflow.contrib.metrics.python.ops.metric_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.metrics.accuracy. Note that the order of the labels and predictions arguments has been switched.
+INFO:tensorflow:Evaluating ./pretrained/ensemble/ens_adv_inception_resnet_v2.ckpt
+INFO:tensorflow:Starting evaluation at 2020-08-16-14:56:38
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ./pretrained/ensemble/ens_adv_inception_resnet_v2.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py:804: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+INFO:tensorflow:Evaluation [2/20]
+INFO:tensorflow:Evaluation [4/20]
+INFO:tensorflow:Evaluation [6/20]
+INFO:tensorflow:Evaluation [8/20]
+INFO:tensorflow:Evaluation [10/20]
+INFO:tensorflow:Evaluation [12/20]
+INFO:tensorflow:Evaluation [14/20]
+INFO:tensorflow:Evaluation [16/20]
+INFO:tensorflow:Evaluation [18/20]
+INFO:tensorflow:Evaluation [20/20]
+INFO:tensorflow:Finished evaluation at 2020-08-16-14:56:52
+Top1 Accuracy:  0.328
+Top5 Accuracy:  0.663
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:242: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:276: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:188: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: __init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:94: __init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.TFRecordDataset`.
+WARNING:tensorflow:From eval.py:331: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From eval.py:361: streaming_accuracy (from tensorflow.contrib.metrics.python.ops.metric_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.metrics.accuracy. Note that the order of the labels and predictions arguments has been switched.
+INFO:tensorflow:Evaluating ./pretrained/ensemble/ens3_adv_inception_v3.ckpt
+INFO:tensorflow:Starting evaluation at 2020-08-16-14:56:57
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ./pretrained/ensemble/ens3_adv_inception_v3.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py:804: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+INFO:tensorflow:Evaluation [2/20]
+INFO:tensorflow:Evaluation [4/20]
+INFO:tensorflow:Evaluation [6/20]
+INFO:tensorflow:Evaluation [8/20]
+INFO:tensorflow:Evaluation [10/20]
+INFO:tensorflow:Evaluation [12/20]
+INFO:tensorflow:Evaluation [14/20]
+INFO:tensorflow:Evaluation [16/20]
+INFO:tensorflow:Evaluation [18/20]
+INFO:tensorflow:Evaluation [20/20]
+INFO:tensorflow:Finished evaluation at 2020-08-16-14:57:05
+Top1 Accuracy:  0.222
+Top5 Accuracy:  0.566
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:242: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:276: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:188: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: __init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:94: __init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.TFRecordDataset`.
+WARNING:tensorflow:From eval.py:331: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From eval.py:361: streaming_accuracy (from tensorflow.contrib.metrics.python.ops.metric_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.metrics.accuracy. Note that the order of the labels and predictions arguments has been switched.
+INFO:tensorflow:Evaluating ./pretrained/ensemble/ens4_adv_inception_v3.ckpt
+INFO:tensorflow:Starting evaluation at 2020-08-16-14:57:10
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ./pretrained/ensemble/ens4_adv_inception_v3.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py:804: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+INFO:tensorflow:Evaluation [2/20]
+INFO:tensorflow:Evaluation [4/20]
+INFO:tensorflow:Evaluation [6/20]
+INFO:tensorflow:Evaluation [8/20]
+INFO:tensorflow:Evaluation [10/20]
+INFO:tensorflow:Evaluation [12/20]
+INFO:tensorflow:Evaluation [14/20]
+INFO:tensorflow:Evaluation [16/20]
+INFO:tensorflow:Evaluation [18/20]
+INFO:tensorflow:Evaluation [20/20]
+INFO:tensorflow:Finished evaluation at 2020-08-16-14:57:19
+Top1 Accuracy:  0.275
+Top5 Accuracy:  0.615
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:242: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:276: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:188: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: __init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:94: __init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.TFRecordDataset`.
+WARNING:tensorflow:From eval.py:331: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From /home/haojieyuan/autoAdv/benchmark/models/research/slim/nets/resnet_v2.py:213: calling reduce_mean (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+WARNING:tensorflow:From eval.py:361: streaming_accuracy (from tensorflow.contrib.metrics.python.ops.metric_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.metrics.accuracy. Note that the order of the labels and predictions arguments has been switched.
+INFO:tensorflow:Evaluating ./pretrained/normal/resnet_v2_152.ckpt
+INFO:tensorflow:Starting evaluation at 2020-08-16-14:57:27
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ./pretrained/normal/resnet_v2_152.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py:804: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+INFO:tensorflow:Evaluation [2/20]
+INFO:tensorflow:Evaluation [4/20]
+INFO:tensorflow:Evaluation [6/20]
+INFO:tensorflow:Evaluation [8/20]
+INFO:tensorflow:Evaluation [10/20]
+INFO:tensorflow:Evaluation [12/20]
+INFO:tensorflow:Evaluation [14/20]
+INFO:tensorflow:Evaluation [16/20]
+INFO:tensorflow:Evaluation [18/20]
+INFO:tensorflow:Evaluation [20/20]
+INFO:tensorflow:Finished evaluation at 2020-08-16-14:57:42
+Top1 Accuracy:  0.143
+Top5 Accuracy:  0.421
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:242: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:276: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:188: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: __init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:94: __init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.TFRecordDataset`.
+WARNING:tensorflow:From eval.py:331: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From eval.py:361: streaming_accuracy (from tensorflow.contrib.metrics.python.ops.metric_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.metrics.accuracy. Note that the order of the labels and predictions arguments has been switched.
+INFO:tensorflow:Evaluating ./pretrained/normal/inception_v3.ckpt
+INFO:tensorflow:Starting evaluation at 2020-08-16-14:57:47
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ./pretrained/normal/inception_v3.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py:804: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+INFO:tensorflow:Evaluation [2/20]
+INFO:tensorflow:Evaluation [4/20]
+INFO:tensorflow:Evaluation [6/20]
+INFO:tensorflow:Evaluation [8/20]
+INFO:tensorflow:Evaluation [10/20]
+INFO:tensorflow:Evaluation [12/20]
+INFO:tensorflow:Evaluation [14/20]
+INFO:tensorflow:Evaluation [16/20]
+INFO:tensorflow:Evaluation [18/20]
+INFO:tensorflow:Evaluation [20/20]
+INFO:tensorflow:Finished evaluation at 2020-08-16-14:57:55
+Top1 Accuracy:  0.07
+Top5 Accuracy:  0.263
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:242: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:276: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:188: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: __init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:94: __init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.TFRecordDataset`.
+WARNING:tensorflow:From eval.py:331: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From eval.py:361: streaming_accuracy (from tensorflow.contrib.metrics.python.ops.metric_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.metrics.accuracy. Note that the order of the labels and predictions arguments has been switched.
+INFO:tensorflow:Evaluating ./pretrained/normal/inception_v4.ckpt
+INFO:tensorflow:Starting evaluation at 2020-08-16-14:58:01
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ./pretrained/normal/inception_v4.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py:804: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+INFO:tensorflow:Evaluation [2/20]
+INFO:tensorflow:Evaluation [4/20]
+INFO:tensorflow:Evaluation [6/20]
+INFO:tensorflow:Evaluation [8/20]
+INFO:tensorflow:Evaluation [10/20]
+INFO:tensorflow:Evaluation [12/20]
+INFO:tensorflow:Evaluation [14/20]
+INFO:tensorflow:Evaluation [16/20]
+INFO:tensorflow:Evaluation [18/20]
+INFO:tensorflow:Evaluation [20/20]
+INFO:tensorflow:Finished evaluation at 2020-08-16-14:58:13
+Top1 Accuracy:  0.077
+Top5 Accuracy:  0.297
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:242: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:276: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:188: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: __init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:94: __init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.TFRecordDataset`.
+WARNING:tensorflow:From eval.py:331: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From eval.py:361: streaming_accuracy (from tensorflow.contrib.metrics.python.ops.metric_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.metrics.accuracy. Note that the order of the labels and predictions arguments has been switched.
+INFO:tensorflow:Evaluating ./pretrained/normal/inception_resnet_v2_2016_08_30.ckpt
+INFO:tensorflow:Starting evaluation at 2020-08-16-14:58:23
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ./pretrained/normal/inception_resnet_v2_2016_08_30.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py:804: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+INFO:tensorflow:Evaluation [2/20]
+INFO:tensorflow:Evaluation [4/20]
+INFO:tensorflow:Evaluation [6/20]
+INFO:tensorflow:Evaluation [8/20]
+INFO:tensorflow:Evaluation [10/20]
+INFO:tensorflow:Evaluation [12/20]
+INFO:tensorflow:Evaluation [14/20]
+INFO:tensorflow:Evaluation [16/20]
+INFO:tensorflow:Evaluation [18/20]
+INFO:tensorflow:Evaluation [20/20]
+INFO:tensorflow:Finished evaluation at 2020-08-16-14:58:38
+Top1 Accuracy:  0.001
+Top5 Accuracy:  0.009
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:242: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:276: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:188: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: __init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:94: __init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.TFRecordDataset`.
+WARNING:tensorflow:From eval.py:331: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From eval.py:361: streaming_accuracy (from tensorflow.contrib.metrics.python.ops.metric_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.metrics.accuracy. Note that the order of the labels and predictions arguments has been switched.
+INFO:tensorflow:Evaluating ./pretrained/ensemble/ens_adv_inception_resnet_v2.ckpt
+INFO:tensorflow:Starting evaluation at 2020-08-16-14:58:53
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ./pretrained/ensemble/ens_adv_inception_resnet_v2.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py:804: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+INFO:tensorflow:Evaluation [2/20]
+INFO:tensorflow:Evaluation [4/20]
+INFO:tensorflow:Evaluation [6/20]
+INFO:tensorflow:Evaluation [8/20]
+INFO:tensorflow:Evaluation [10/20]
+INFO:tensorflow:Evaluation [12/20]
+INFO:tensorflow:Evaluation [14/20]
+INFO:tensorflow:Evaluation [16/20]
+INFO:tensorflow:Evaluation [18/20]
+INFO:tensorflow:Evaluation [20/20]
+INFO:tensorflow:Finished evaluation at 2020-08-16-14:59:07
+Top1 Accuracy:  0.123
+Top5 Accuracy:  0.43
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:242: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:276: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:188: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: __init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:94: __init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.TFRecordDataset`.
+WARNING:tensorflow:From eval.py:331: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From eval.py:361: streaming_accuracy (from tensorflow.contrib.metrics.python.ops.metric_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.metrics.accuracy. Note that the order of the labels and predictions arguments has been switched.
+INFO:tensorflow:Evaluating ./pretrained/ensemble/ens3_adv_inception_v3.ckpt
+INFO:tensorflow:Starting evaluation at 2020-08-16-14:59:12
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ./pretrained/ensemble/ens3_adv_inception_v3.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py:804: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+INFO:tensorflow:Evaluation [2/20]
+INFO:tensorflow:Evaluation [4/20]
+INFO:tensorflow:Evaluation [6/20]
+INFO:tensorflow:Evaluation [8/20]
+INFO:tensorflow:Evaluation [10/20]
+INFO:tensorflow:Evaluation [12/20]
+INFO:tensorflow:Evaluation [14/20]
+INFO:tensorflow:Evaluation [16/20]
+INFO:tensorflow:Evaluation [18/20]
+INFO:tensorflow:Evaluation [20/20]
+INFO:tensorflow:Finished evaluation at 2020-08-16-14:59:21
+Top1 Accuracy:  0.061
+Top5 Accuracy:  0.291
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:242: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:276: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:188: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: __init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:94: __init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.TFRecordDataset`.
+WARNING:tensorflow:From eval.py:331: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From eval.py:361: streaming_accuracy (from tensorflow.contrib.metrics.python.ops.metric_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.metrics.accuracy. Note that the order of the labels and predictions arguments has been switched.
+INFO:tensorflow:Evaluating ./pretrained/ensemble/ens4_adv_inception_v3.ckpt
+INFO:tensorflow:Starting evaluation at 2020-08-16-14:59:25
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ./pretrained/ensemble/ens4_adv_inception_v3.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py:804: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+INFO:tensorflow:Evaluation [2/20]
+INFO:tensorflow:Evaluation [4/20]
+INFO:tensorflow:Evaluation [6/20]
+INFO:tensorflow:Evaluation [8/20]
+INFO:tensorflow:Evaluation [10/20]
+INFO:tensorflow:Evaluation [12/20]
+INFO:tensorflow:Evaluation [14/20]
+INFO:tensorflow:Evaluation [16/20]
+INFO:tensorflow:Evaluation [18/20]
+INFO:tensorflow:Evaluation [20/20]
+INFO:tensorflow:Finished evaluation at 2020-08-16-14:59:34
+Top1 Accuracy:  0.078
+Top5 Accuracy:  0.341
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:242: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:276: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:188: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: __init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:94: __init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.TFRecordDataset`.
+WARNING:tensorflow:From eval.py:331: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From /home/haojieyuan/autoAdv/benchmark/models/research/slim/nets/resnet_v2.py:213: calling reduce_mean (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+WARNING:tensorflow:From eval.py:361: streaming_accuracy (from tensorflow.contrib.metrics.python.ops.metric_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.metrics.accuracy. Note that the order of the labels and predictions arguments has been switched.
+INFO:tensorflow:Evaluating ./pretrained/normal/resnet_v2_152.ckpt
+INFO:tensorflow:Starting evaluation at 2020-08-16-14:59:42
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ./pretrained/normal/resnet_v2_152.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py:804: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+INFO:tensorflow:Evaluation [2/20]
+INFO:tensorflow:Evaluation [4/20]
+INFO:tensorflow:Evaluation [6/20]
+INFO:tensorflow:Evaluation [8/20]
+INFO:tensorflow:Evaluation [10/20]
+INFO:tensorflow:Evaluation [12/20]
+INFO:tensorflow:Evaluation [14/20]
+INFO:tensorflow:Evaluation [16/20]
+INFO:tensorflow:Evaluation [18/20]
+INFO:tensorflow:Evaluation [20/20]
+INFO:tensorflow:Finished evaluation at 2020-08-16-14:59:57
+Top1 Accuracy:  0.009
+Top5 Accuracy:  0.045
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:242: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:276: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:188: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: __init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:94: __init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.TFRecordDataset`.
+WARNING:tensorflow:From eval.py:331: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From eval.py:361: streaming_accuracy (from tensorflow.contrib.metrics.python.ops.metric_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.metrics.accuracy. Note that the order of the labels and predictions arguments has been switched.
+INFO:tensorflow:Evaluating ./pretrained/normal/inception_v3.ckpt
+INFO:tensorflow:Starting evaluation at 2020-08-16-15:00:02
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ./pretrained/normal/inception_v3.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py:804: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+INFO:tensorflow:Evaluation [2/20]
+INFO:tensorflow:Evaluation [4/20]
+INFO:tensorflow:Evaluation [6/20]
+INFO:tensorflow:Evaluation [8/20]
+INFO:tensorflow:Evaluation [10/20]
+INFO:tensorflow:Evaluation [12/20]
+INFO:tensorflow:Evaluation [14/20]
+INFO:tensorflow:Evaluation [16/20]
+INFO:tensorflow:Evaluation [18/20]
+INFO:tensorflow:Evaluation [20/20]
+INFO:tensorflow:Finished evaluation at 2020-08-16-15:00:10
+Top1 Accuracy:  0.002
+Top5 Accuracy:  0.009
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:242: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:276: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:188: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: __init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:94: __init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.TFRecordDataset`.
+WARNING:tensorflow:From eval.py:331: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From eval.py:361: streaming_accuracy (from tensorflow.contrib.metrics.python.ops.metric_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.metrics.accuracy. Note that the order of the labels and predictions arguments has been switched.
+INFO:tensorflow:Evaluating ./pretrained/normal/inception_v4.ckpt
+INFO:tensorflow:Starting evaluation at 2020-08-16-15:00:17
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ./pretrained/normal/inception_v4.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py:804: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+INFO:tensorflow:Evaluation [2/20]
+INFO:tensorflow:Evaluation [4/20]
+INFO:tensorflow:Evaluation [6/20]
+INFO:tensorflow:Evaluation [8/20]
+INFO:tensorflow:Evaluation [10/20]
+INFO:tensorflow:Evaluation [12/20]
+INFO:tensorflow:Evaluation [14/20]
+INFO:tensorflow:Evaluation [16/20]
+INFO:tensorflow:Evaluation [18/20]
+INFO:tensorflow:Evaluation [20/20]
+INFO:tensorflow:Finished evaluation at 2020-08-16-15:00:28
+Top1 Accuracy:  0.003
+Top5 Accuracy:  0.012
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:242: string_input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:276: input_producer (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensor_slices(input_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)`. If `shuffle=False`, omit the `.shuffle(...)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:188: limit_epochs (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)`.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: __init__ (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/input.py:197: add_queue_runner (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/contrib/slim/python/slim/data/parallel_reader.py:94: __init__ (from tensorflow.python.ops.io_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.TFRecordDataset`.
+WARNING:tensorflow:From eval.py:331: batch (from tensorflow.python.training.input) is deprecated and will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.Dataset.batch(batch_size)` (or `padded_batch(...)` if `dynamic_pad=True`).
+WARNING:tensorflow:From eval.py:361: streaming_accuracy (from tensorflow.contrib.metrics.python.ops.metric_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.metrics.accuracy. Note that the order of the labels and predictions arguments has been switched.
+INFO:tensorflow:Evaluating ./pretrained/normal/inception_resnet_v2_2016_08_30.ckpt
+INFO:tensorflow:Starting evaluation at 2020-08-16-15:00:37
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ./pretrained/normal/inception_resnet_v2_2016_08_30.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+WARNING:tensorflow:From /home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/tensorflow/python/training/monitored_session.py:804: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+INFO:tensorflow:Evaluation [2/20]
+INFO:tensorflow:Evaluation [4/20]
+INFO:tensorflow:Evaluation [6/20]
+INFO:tensorflow:Evaluation [8/20]
+INFO:tensorflow:Evaluation [10/20]
+INFO:tensorflow:Evaluation [12/20]
+INFO:tensorflow:Evaluation [14/20]
+INFO:tensorflow:Evaluation [16/20]
+INFO:tensorflow:Evaluation [18/20]
+INFO:tensorflow:Evaluation [20/20]
+INFO:tensorflow:Finished evaluation at 2020-08-16-15:00:51
+Top1 Accuracy:  0.005
+Top5 Accuracy:  0.036
+Things Done.

@@ -389,8 +389,9 @@ def main(_):
         final_op=[names_to_values['Accuracy'], names_to_values['Recall_5']],
         variables_to_restore=variables_to_restore)
 
-    print('Top1 Accuracy: ', top1_accuracy)
-    print('Top5 Accuracy: ', top5_accuracy)
+    #print('Top1 Accuracy: ', top1_accuracy)
+    #print('Top5 Accuracy: ', top5_accuracy)
+    print('Attack success rate: ', 1 - top1_accuracy)
 
 
 if __name__ == '__main__':

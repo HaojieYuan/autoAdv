@@ -1,4 +1,5 @@
 __pycache__
+*.png
 *.pyc
 *.tfrecords
 *.ckpt
@@ -8,6 +9,7 @@ __pycache__
 *.ckpt.data-00000-of-00001
 *.ckpt.index
 *.ckpt.meta
+benchmark/fine_grain_datsets/eval/models/
 benchmark/fine_grain_datsets/ckpts
 benchmark/fine_grain_datsets/ckpts_old
 benchmark/1stHGD/*
@@ -30,3 +32,4 @@ benchmark/attacks/DI/M-DI-2-FGSM_attack_out_resnet
 benchmark/attacks/TI/dataset/images
 benchmark/attacks/TI/outv1
 benchmark/attacks/TI/out
+benchmark/attacks/TI/out_old

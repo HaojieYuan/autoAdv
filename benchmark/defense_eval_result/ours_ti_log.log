@@ -1,0 +1,154 @@
+1st eval.
+/home/haojieyuan/anaconda3/envs/pytorch/lib/python3.7/site-packages/torchvision/transforms/transforms.py:210: UserWarning: The use of the transforms.Scale transform is deprecated, please use transforms.Resize instead.
+  warnings.warn("The use of the transforms.Scale transform is deprecated, " +
+./1stHGD/Guided-Denoise-master/nips_deploy/defense.py:72: UserWarning: volatile was removed and now has no effect. Use `with torch.no_grad():` instead.
+  mean_torch = autograd.Variable(torch.from_numpy(np.array([0.485, 0.456, 0.406]).reshape([1,3,1,1]).astype('float32')).cuda(), volatile=True)
+./1stHGD/Guided-Denoise-master/nips_deploy/defense.py:73: UserWarning: volatile was removed and now has no effect. Use `with torch.no_grad():` instead.
+  std_torch = autograd.Variable(torch.from_numpy(np.array([0.229, 0.224, 0.225]).reshape([1,3,1,1]).astype('float32')).cuda(), volatile=True)
+./1stHGD/Guided-Denoise-master/nips_deploy/defense.py:74: UserWarning: volatile was removed and now has no effect. Use `with torch.no_grad():` instead.
+  mean_tf = autograd.Variable(torch.from_numpy(np.array([0.5, 0.5, 0.5]).reshape([1,3,1,1]).astype('float32')).cuda(), volatile=True)
+./1stHGD/Guided-Denoise-master/nips_deploy/defense.py:75: UserWarning: volatile was removed and now has no effect. Use `with torch.no_grad():` instead.
+  std_tf = autograd.Variable(torch.from_numpy(np.array([0.5, 0.5, 0.5]).reshape([1,3,1,1]).astype('float32')).cuda(), volatile=True)
+./1stHGD/Guided-Denoise-master/nips_deploy/defense.py:128: UserWarning: volatile was removed and now has no effect. Use `with torch.no_grad():` instead.
+  input_var = autograd.Variable(input, volatile=True)
+/home/haojieyuan/anaconda3/envs/pytorch/lib/python3.7/site-packages/torch/nn/functional.py:2479: UserWarning: Default upsampling behavior when mode=bilinear is changed to align_corners=False since 0.4.0. Please specify align_corners=True if the old behavior is desired. See the documentation of nn.Upsample for details.
+  "See the documentation of nn.Upsample for details.".format(mode))
+ Attack success rate: 0.548
+/home/haojieyuan/anaconda3/envs/pytorch/lib/python3.7/site-packages/torchvision/transforms/transforms.py:210: UserWarning: The use of the transforms.Scale transform is deprecated, please use transforms.Resize instead.
+  warnings.warn("The use of the transforms.Scale transform is deprecated, " +
+./1stHGD/Guided-Denoise-master/nips_deploy/defense.py:72: UserWarning: volatile was removed and now has no effect. Use `with torch.no_grad():` instead.
+  mean_torch = autograd.Variable(torch.from_numpy(np.array([0.485, 0.456, 0.406]).reshape([1,3,1,1]).astype('float32')).cuda(), volatile=True)
+./1stHGD/Guided-Denoise-master/nips_deploy/defense.py:73: UserWarning: volatile was removed and now has no effect. Use `with torch.no_grad():` instead.
+  std_torch = autograd.Variable(torch.from_numpy(np.array([0.229, 0.224, 0.225]).reshape([1,3,1,1]).astype('float32')).cuda(), volatile=True)
+./1stHGD/Guided-Denoise-master/nips_deploy/defense.py:74: UserWarning: volatile was removed and now has no effect. Use `with torch.no_grad():` instead.
+  mean_tf = autograd.Variable(torch.from_numpy(np.array([0.5, 0.5, 0.5]).reshape([1,3,1,1]).astype('float32')).cuda(), volatile=True)
+./1stHGD/Guided-Denoise-master/nips_deploy/defense.py:75: UserWarning: volatile was removed and now has no effect. Use `with torch.no_grad():` instead.
+  std_tf = autograd.Variable(torch.from_numpy(np.array([0.5, 0.5, 0.5]).reshape([1,3,1,1]).astype('float32')).cuda(), volatile=True)
+./1stHGD/Guided-Denoise-master/nips_deploy/defense.py:128: UserWarning: volatile was removed and now has no effect. Use `with torch.no_grad():` instead.
+  input_var = autograd.Variable(input, volatile=True)
+/home/haojieyuan/anaconda3/envs/pytorch/lib/python3.7/site-packages/torch/nn/functional.py:2479: UserWarning: Default upsampling behavior when mode=bilinear is changed to align_corners=False since 0.4.0. Please specify align_corners=True if the old behavior is desired. See the documentation of nn.Upsample for details.
+  "See the documentation of nn.Upsample for details.".format(mode))
+ Attack success rate: 0.556
+/home/haojieyuan/anaconda3/envs/pytorch/lib/python3.7/site-packages/torchvision/transforms/transforms.py:210: UserWarning: The use of the transforms.Scale transform is deprecated, please use transforms.Resize instead.
+  warnings.warn("The use of the transforms.Scale transform is deprecated, " +
+./1stHGD/Guided-Denoise-master/nips_deploy/defense.py:72: UserWarning: volatile was removed and now has no effect. Use `with torch.no_grad():` instead.
+  mean_torch = autograd.Variable(torch.from_numpy(np.array([0.485, 0.456, 0.406]).reshape([1,3,1,1]).astype('float32')).cuda(), volatile=True)
+./1stHGD/Guided-Denoise-master/nips_deploy/defense.py:73: UserWarning: volatile was removed and now has no effect. Use `with torch.no_grad():` instead.
+  std_torch = autograd.Variable(torch.from_numpy(np.array([0.229, 0.224, 0.225]).reshape([1,3,1,1]).astype('float32')).cuda(), volatile=True)
+./1stHGD/Guided-Denoise-master/nips_deploy/defense.py:74: UserWarning: volatile was removed and now has no effect. Use `with torch.no_grad():` instead.
+  mean_tf = autograd.Variable(torch.from_numpy(np.array([0.5, 0.5, 0.5]).reshape([1,3,1,1]).astype('float32')).cuda(), volatile=True)
+./1stHGD/Guided-Denoise-master/nips_deploy/defense.py:75: UserWarning: volatile was removed and now has no effect. Use `with torch.no_grad():` instead.
+  std_tf = autograd.Variable(torch.from_numpy(np.array([0.5, 0.5, 0.5]).reshape([1,3,1,1]).astype('float32')).cuda(), volatile=True)
+./1stHGD/Guided-Denoise-master/nips_deploy/defense.py:128: UserWarning: volatile was removed and now has no effect. Use `with torch.no_grad():` instead.
+  input_var = autograd.Variable(input, volatile=True)
+/home/haojieyuan/anaconda3/envs/pytorch/lib/python3.7/site-packages/torch/nn/functional.py:2479: UserWarning: Default upsampling behavior when mode=bilinear is changed to align_corners=False since 0.4.0. Please specify align_corners=True if the old behavior is desired. See the documentation of nn.Upsample for details.
+  "See the documentation of nn.Upsample for details.".format(mode))
+ Attack success rate: 0.722
+/home/haojieyuan/anaconda3/envs/pytorch/lib/python3.7/site-packages/torchvision/transforms/transforms.py:210: UserWarning: The use of the transforms.Scale transform is deprecated, please use transforms.Resize instead.
+  warnings.warn("The use of the transforms.Scale transform is deprecated, " +
+./1stHGD/Guided-Denoise-master/nips_deploy/defense.py:72: UserWarning: volatile was removed and now has no effect. Use `with torch.no_grad():` instead.
+  mean_torch = autograd.Variable(torch.from_numpy(np.array([0.485, 0.456, 0.406]).reshape([1,3,1,1]).astype('float32')).cuda(), volatile=True)
+./1stHGD/Guided-Denoise-master/nips_deploy/defense.py:73: UserWarning: volatile was removed and now has no effect. Use `with torch.no_grad():` instead.
+  std_torch = autograd.Variable(torch.from_numpy(np.array([0.229, 0.224, 0.225]).reshape([1,3,1,1]).astype('float32')).cuda(), volatile=True)
+./1stHGD/Guided-Denoise-master/nips_deploy/defense.py:74: UserWarning: volatile was removed and now has no effect. Use `with torch.no_grad():` instead.
+  mean_tf = autograd.Variable(torch.from_numpy(np.array([0.5, 0.5, 0.5]).reshape([1,3,1,1]).astype('float32')).cuda(), volatile=True)
+./1stHGD/Guided-Denoise-master/nips_deploy/defense.py:75: UserWarning: volatile was removed and now has no effect. Use `with torch.no_grad():` instead.
+  std_tf = autograd.Variable(torch.from_numpy(np.array([0.5, 0.5, 0.5]).reshape([1,3,1,1]).astype('float32')).cuda(), volatile=True)
+./1stHGD/Guided-Denoise-master/nips_deploy/defense.py:128: UserWarning: volatile was removed and now has no effect. Use `with torch.no_grad():` instead.
+  input_var = autograd.Variable(input, volatile=True)
+/home/haojieyuan/anaconda3/envs/pytorch/lib/python3.7/site-packages/torch/nn/functional.py:2479: UserWarning: Default upsampling behavior when mode=bilinear is changed to align_corners=False since 0.4.0. Please specify align_corners=True if the old behavior is desired. See the documentation of nn.Upsample for details.
+  "See the documentation of nn.Upsample for details.".format(mode))
+ Attack success rate: 0.619
+1st eval done.
+2nd eval.
+INFO:tensorflow:Graph was finalized.
+2020-08-18 08:03:27.241890: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 AVX512F FMA
+2020-08-18 08:03:27.714382: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1432] Found device 0 with properties: 
+name: TITAN Xp major: 6 minor: 1 memoryClockRate(GHz): 1.582
+pciBusID: 0000:3f:00.0
+totalMemory: 11.91GiB freeMemory: 11.76GiB
+2020-08-18 08:03:27.714425: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1511] Adding visible gpu devices: 0
+2020-08-18 08:03:28.064957: I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] Device interconnect StreamExecutor with strength 1 edge matrix:
+2020-08-18 08:03:28.065003: I tensorflow/core/common_runtime/gpu/gpu_device.cc:988]      0 
+2020-08-18 08:03:28.065010: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1001] 0:   N 
+2020-08-18 08:03:28.065124: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 11383 MB memory) -> physical GPU (device: 0, name: TITAN Xp, pci bus id: 0000:3f:00.0, compute capability: 6.1)
+INFO:tensorflow:Restoring parameters from ./2nd/NIPS2017_adv_challenge_defense/ens_adv_inception_resnet_v2.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+ Attack success rate: 0.516
+INFO:tensorflow:Graph was finalized.
+2020-08-18 08:07:50.316775: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 AVX512F FMA
+2020-08-18 08:07:50.742932: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1432] Found device 0 with properties: 
+name: TITAN Xp major: 6 minor: 1 memoryClockRate(GHz): 1.582
+pciBusID: 0000:3f:00.0
+totalMemory: 11.91GiB freeMemory: 11.76GiB
+2020-08-18 08:07:50.742976: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1511] Adding visible gpu devices: 0
+2020-08-18 08:07:51.113170: I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] Device interconnect StreamExecutor with strength 1 edge matrix:
+2020-08-18 08:07:51.113224: I tensorflow/core/common_runtime/gpu/gpu_device.cc:988]      0 
+2020-08-18 08:07:51.113232: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1001] 0:   N 
+2020-08-18 08:07:51.113361: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 11383 MB memory) -> physical GPU (device: 0, name: TITAN Xp, pci bus id: 0000:3f:00.0, compute capability: 6.1)
+INFO:tensorflow:Restoring parameters from ./2nd/NIPS2017_adv_challenge_defense/ens_adv_inception_resnet_v2.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+ Attack success rate: 0.527
+INFO:tensorflow:Graph was finalized.
+2020-08-18 08:12:13.778103: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 AVX512F FMA
+2020-08-18 08:12:14.380584: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1432] Found device 0 with properties: 
+name: TITAN Xp major: 6 minor: 1 memoryClockRate(GHz): 1.582
+pciBusID: 0000:3f:00.0
+totalMemory: 11.91GiB freeMemory: 11.76GiB
+2020-08-18 08:12:14.380628: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1511] Adding visible gpu devices: 0
+2020-08-18 08:12:14.905163: I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] Device interconnect StreamExecutor with strength 1 edge matrix:
+2020-08-18 08:12:14.905226: I tensorflow/core/common_runtime/gpu/gpu_device.cc:988]      0 
+2020-08-18 08:12:14.905236: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1001] 0:   N 
+2020-08-18 08:12:14.905384: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 11383 MB memory) -> physical GPU (device: 0, name: TITAN Xp, pci bus id: 0000:3f:00.0, compute capability: 6.1)
+INFO:tensorflow:Restoring parameters from ./2nd/NIPS2017_adv_challenge_defense/ens_adv_inception_resnet_v2.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+ Attack success rate: 0.735
+INFO:tensorflow:Graph was finalized.
+2020-08-18 08:16:37.286164: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 AVX512F FMA
+2020-08-18 08:16:37.695975: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1432] Found device 0 with properties: 
+name: TITAN Xp major: 6 minor: 1 memoryClockRate(GHz): 1.582
+pciBusID: 0000:3f:00.0
+totalMemory: 11.91GiB freeMemory: 11.76GiB
+2020-08-18 08:16:37.696013: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1511] Adding visible gpu devices: 0
+2020-08-18 08:16:38.095905: I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] Device interconnect StreamExecutor with strength 1 edge matrix:
+2020-08-18 08:16:38.095954: I tensorflow/core/common_runtime/gpu/gpu_device.cc:988]      0 
+2020-08-18 08:16:38.095961: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1001] 0:   N 
+2020-08-18 08:16:38.096063: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 11383 MB memory) -> physical GPU (device: 0, name: TITAN Xp, pci bus id: 0000:3f:00.0, compute capability: 6.1)
+INFO:tensorflow:Restoring parameters from ./2nd/NIPS2017_adv_challenge_defense/ens_adv_inception_resnet_v2.ckpt
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+ Attack success rate: 0.58
+2nd eval done.
+3rd eval.
+INFO:tensorflow:Restoring parameters from ./3rd/mmd/../../pretrained/ensemble/ens_adv_inception_resnet_v2.ckpt
+INFO:tensorflow:Restoring parameters from ./3rd/mmd/./adv_inception_v3.ckpt
+INFO:tensorflow:Restoring parameters from ./3rd/mmd/../../pretrained/normal/resnet_v2_152.ckpt
+INFO:tensorflow:Restoring parameters from ./3rd/mmd/./vgg_16.ckpt
+/home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/scipy/ndimage/interpolation.py:605: UserWarning: From scipy 0.13.0, the output shape of zoom() is calculated with round() instead of int() - for these inputs the size of the returned array has changed.
+  "the returned array has changed.", UserWarning)
+ Attack success rate: 0.56
+INFO:tensorflow:Restoring parameters from ./3rd/mmd/../../pretrained/ensemble/ens_adv_inception_resnet_v2.ckpt
+INFO:tensorflow:Restoring parameters from ./3rd/mmd/./adv_inception_v3.ckpt
+INFO:tensorflow:Restoring parameters from ./3rd/mmd/../../pretrained/normal/resnet_v2_152.ckpt
+INFO:tensorflow:Restoring parameters from ./3rd/mmd/./vgg_16.ckpt
+/home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/scipy/ndimage/interpolation.py:605: UserWarning: From scipy 0.13.0, the output shape of zoom() is calculated with round() instead of int() - for these inputs the size of the returned array has changed.
+  "the returned array has changed.", UserWarning)
+ Attack success rate: 0.547
+INFO:tensorflow:Restoring parameters from ./3rd/mmd/../../pretrained/ensemble/ens_adv_inception_resnet_v2.ckpt
+INFO:tensorflow:Restoring parameters from ./3rd/mmd/./adv_inception_v3.ckpt
+INFO:tensorflow:Restoring parameters from ./3rd/mmd/../../pretrained/normal/resnet_v2_152.ckpt
+INFO:tensorflow:Restoring parameters from ./3rd/mmd/./vgg_16.ckpt
+/home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/scipy/ndimage/interpolation.py:605: UserWarning: From scipy 0.13.0, the output shape of zoom() is calculated with round() instead of int() - for these inputs the size of the returned array has changed.
+  "the returned array has changed.", UserWarning)
+ Attack success rate: 0.731
+INFO:tensorflow:Restoring parameters from ./3rd/mmd/../../pretrained/ensemble/ens_adv_inception_resnet_v2.ckpt
+INFO:tensorflow:Restoring parameters from ./3rd/mmd/./adv_inception_v3.ckpt
+INFO:tensorflow:Restoring parameters from ./3rd/mmd/../../pretrained/normal/resnet_v2_152.ckpt
+INFO:tensorflow:Restoring parameters from ./3rd/mmd/./vgg_16.ckpt
+/home/haojieyuan/anaconda3/envs/tf/lib/python2.7/site-packages/scipy/ndimage/interpolation.py:605: UserWarning: From scipy 0.13.0, the output shape of zoom() is calculated with round() instead of int() - for these inputs the size of the returned array has changed.
+  "the returned array has changed.", UserWarning)
+ Attack success rate: 0.617
+3rd eval done.

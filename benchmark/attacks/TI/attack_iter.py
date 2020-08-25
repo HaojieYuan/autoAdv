@@ -65,7 +65,9 @@ tf.flags.DEFINE_float('prob', 0.4, 'probability of using diverse inputs.')
 
 tf.flags.DEFINE_string('autoaug_file', '', 'auto augmentation search result.')
 
+tf.flags.DEFINE_integer('class_num', 1001, 'Number of classes.')
 
+tf.flags.DEFINE_bool('FGVC_eval', False, 'Evaluating on FGVC dataset or not.')
 
 FLAGS = tf.flags.FLAGS
 
@@ -186,7 +188,7 @@ def augmentation(type, prob, mag_range, input_tensor):
         mag = tf.random_uniform((), 0, mag_range, dtype=tf.int32)
         mag = tf.cast(mag, tf.float32)
         scaling_factor = 1.0 - 0.1*mag # 1.0~0.1
-        scaled_tensor = scaled_tensor*input_tensor
+        scaled_tensor = scaling_factor*input_tensor
         return tf.cond(tf.random_uniform(shape=[1])[0] < tf.constant(0.1*prob), lambda:scaled_tensor, lambda: input_tensor)
 
     elif op_type == 'invert':
@@ -280,7 +282,7 @@ def gkern(kernlen=21, nsig=3):
   return kernel
 
 # 7 for normal models, 15 for adv trained models.
-kernel = gkern(15, 3).astype(np.float32)
+kernel = gkern(7, 3).astype(np.float32)
 stack_kernel = np.stack([kernel, kernel, kernel]).swapaxes(2, 0)
 stack_kernel = np.expand_dims(stack_kernel, 3)
 
@@ -339,7 +341,7 @@ def graph(x, y, i, x_max, x_min, grad, aug_x=None):
     num_iter = FLAGS.num_iter
     alpha = eps / num_iter
     momentum = FLAGS.momentum
-    num_classes = 1001
+    num_classes = FLAGS.class_num
 
     if USE_AUTO_AUG:
         aug_x = autoaug_diversity(x)    # x -> [aug_type*bs, w, h, c]
@@ -366,19 +368,20 @@ def graph(x, y, i, x_max, x_min, grad, aug_x=None):
     # should keep original x here for output
     with slim.arg_scope(inception_v3.inception_v3_arg_scope()):
         logits_v3, end_points_v3 = inception_v3.inception_v3(
-            input_diversity(aug_x), num_classes=num_classes, is_training=False)
-
-    with slim.arg_scope(inception_v4.inception_v4_arg_scope()):
-        logits_v4, end_points_v4 = inception_v4.inception_v4(
-            input_diversity(aug_x), num_classes=num_classes, is_training=False)
-
-    with slim.arg_scope(inception_resnet_v2.inception_resnet_v2_arg_scope()):
-        logits_res_v2, end_points_res_v2 = inception_resnet_v2.inception_resnet_v2(
             input_diversity(aug_x), num_classes=num_classes, is_training=False, reuse=True)
 
-    with slim.arg_scope(resnet_v2.resnet_arg_scope()):
-        logits_resnet, end_points_resnet = resnet_v2.resnet_v2_152(
-            input_diversity(aug_x), num_classes=num_classes, is_training=False)
+    if not FLAGS.FGVC_eval:
+        with slim.arg_scope(inception_v4.inception_v4_arg_scope()):
+            logits_v4, end_points_v4 = inception_v4.inception_v4(
+                input_diversity(aug_x), num_classes=num_classes, is_training=False, reuse=True)
+
+        with slim.arg_scope(inception_resnet_v2.inception_resnet_v2_arg_scope()):
+            logits_res_v2, end_points_res_v2 = inception_resnet_v2.inception_resnet_v2(
+                input_diversity(aug_x), num_classes=num_classes, is_training=False, reuse=True)
+
+        with slim.arg_scope(resnet_v2.resnet_arg_scope()):
+            logits_resnet, end_points_resnet = resnet_v2.resnet_v2_152(
+                input_diversity(aug_x), num_classes=num_classes, is_training=False, reuse=True)
 
     if FLAGS.target_model == 'ens':
         logits = (logits_v3 + logits_v4 + logits_res_v2 + logits_resnet) / 4
@@ -468,7 +471,7 @@ def main(_):
         os.mkdir(FLAGS.output_dir)
 
     eps = 2.0 * FLAGS.max_epsilon / 255.0
-    num_classes = 1001
+    num_classes = FLAGS.class_num
     batch_shape = [FLAGS.batch_size, FLAGS.image_height, FLAGS.image_width, 3]
 
     tf.logging.set_verbosity(tf.logging.INFO)
@@ -480,11 +483,50 @@ def main(_):
         x_max = tf.clip_by_value(x_input + eps, -1.0, 1.0)
         x_min = tf.clip_by_value(x_input - eps, -1.0, 1.0)
 
+        '''
+        # old version
         with slim.arg_scope(inception_resnet_v2.inception_resnet_v2_arg_scope()):
             _, end_points = inception_resnet_v2.inception_resnet_v2(
                 x_input, num_classes=num_classes, is_training=False)
 
         predicted_labels = tf.argmax(end_points['Predictions'], 1)
+        y = tf.one_hot(predicted_labels, num_classes)
+        '''
+
+        with slim.arg_scope(inception_v3.inception_v3_arg_scope()):
+            logits_v3, end_points_v3 = inception_v3.inception_v3(
+                x_input, num_classes=num_classes, is_training=False)
+        if not FLAGS.FGVC_eval:
+            with slim.arg_scope(inception_v4.inception_v4_arg_scope()):
+                logits_v4, end_points_v4 = inception_v4.inception_v4(
+                    x_input, num_classes=num_classes, is_training=False)
+
+            with slim.arg_scope(inception_resnet_v2.inception_resnet_v2_arg_scope()):
+                logits_res_v2, end_points_res_v2 = inception_resnet_v2.inception_resnet_v2(
+                    x_input, num_classes=num_classes, is_training=False)
+
+            with slim.arg_scope(resnet_v2.resnet_arg_scope()):
+                logits_resnet, end_points_resnet = resnet_v2.resnet_v2_152(
+                    x_input, num_classes=num_classes, is_training=False)
+
+        if FLAGS.target_model == 'ens':
+            predicted_labels = tf.argmax(end_points_resnet['predictions']+end_points_v3['Predictions']+end_points_v4['Predictions']+end_points_res_v2['Predictions'], 1)
+
+        elif FLAGS.target_model == 'resnet':
+            predicted_labels = tf.argmax(end_points_resnet['predictions'], 1)
+
+        elif FLAGS.target_model == 'inception_v3':
+            predicted_labels = tf.argmax(end_points_v3['Predictions'], 1)
+
+        elif FLAGS.target_model == 'inception_v4':
+            predicted_labels = tf.argmax(end_points_v4['Predictions'], 1)
+
+        elif FLAGS.target_model == 'inception_resnet_v2':
+            predicted_labels = tf.argmax(end_points_res_v2['Predictions'], 1)
+
+        else:
+            assert False, "Unknown arch."
+
         y = tf.one_hot(predicted_labels, num_classes)
 
         i = tf.constant(0)
@@ -500,15 +542,17 @@ def main(_):
 
         # Run computation
         s1 = tf.train.Saver(slim.get_model_variables(scope='InceptionV3'))
-        s5 = tf.train.Saver(slim.get_model_variables(scope='InceptionV4'))
-        s6 = tf.train.Saver(slim.get_model_variables(scope='InceptionResnetV2'))
-        s8 = tf.train.Saver(slim.get_model_variables(scope='resnet_v2'))
+        if not FLAGS.FGVC_eval:
+            s5 = tf.train.Saver(slim.get_model_variables(scope='InceptionV4'))
+            s6 = tf.train.Saver(slim.get_model_variables(scope='InceptionResnetV2'))
+            s8 = tf.train.Saver(slim.get_model_variables(scope='resnet_v2'))
 
         with tf.Session() as sess:
             s1.restore(sess, FLAGS.checkpoint_path_inception_v3)
-            s5.restore(sess, FLAGS.checkpoint_path_inception_v4)
-            s6.restore(sess, FLAGS.checkpoint_path_inception_resnet_v2)
-            s8.restore(sess, FLAGS.checkpoint_path_resnet)
+            if not FLAGS.FGVC_eval:
+                s5.restore(sess, FLAGS.checkpoint_path_inception_v4)
+                s6.restore(sess, FLAGS.checkpoint_path_inception_resnet_v2)
+                s8.restore(sess, FLAGS.checkpoint_path_resnet)
 
             for filenames, images in load_images(FLAGS.input_dir, batch_shape):
                 #sess = tf_debug.LocalCLIDebugWrapperSession(sess)
