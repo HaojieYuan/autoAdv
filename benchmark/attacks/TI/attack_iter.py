@@ -69,6 +69,8 @@ tf.flags.DEFINE_integer('class_num', 1001, 'Number of classes.')
 
 tf.flags.DEFINE_bool('FGVC_eval', False, 'Evaluating on FGVC dataset or not.')
 
+tf.flags.DEFINE_bool('branch_pool', False, 'Autoaug in branch avg(default) or branch pool style.')
+
 FLAGS = tf.flags.FLAGS
 
 if FLAGS.prob !=0 :
@@ -88,6 +90,7 @@ if os.path.exists(FLAGS.autoaug_file):
     with open(FLAGS.autoaug_file) as f:
         AUG_POLICY = eval(f.readline())
     #AUG_weights = [aug_weight for aug_type, aug_weight, aug_prob, aug_range in AUG_POLICY]
+    BRANCH_NUM = len(AUG_POLICY)
     AUG_weights = [branch[0] for branch in AUG_POLICY]
     w_sum = sum(AUG_weights)
     AUG_weights = [aug_weight/w_sum for aug_weight in AUG_weights]
@@ -263,6 +266,21 @@ def branch_augmentation(x, branch_policy):
 
     return x
 
+def autoaug_diversity_pool(input_tensor):
+    auged_list = [branch_augmentation(input_tensor, branch_policy[1:]) for \
+                                      branch_policy in AUG_POLICY]
+
+    # the output range is 0 ~ BRANCH_NUM-1
+    picked_out_branch_id = tf.random_uniform((), 0, BRANCH_NUM, dtype=tf.int32)
+
+    for i in range(BRANCH_NUM):
+        out_tensor = tf.cond(tf.random_uniform(shape=[1])[0] <= tf.constant(i/(BRANCH_NUM-1)),
+                             lambda: tf.gather(auged_list, picked_out_branch_id),
+                             lambda: input_tensor)
+
+    return out_tensor
+
+
 
 def si_diversity(input_tensor):
     scale_list = [1.0, 1.0/2.0, 1.0/4.0, 1.0/8.0, 1.0/16.0]
@@ -344,11 +362,17 @@ def graph(x, y, i, x_max, x_min, grad, aug_x=None):
     num_classes = FLAGS.class_num
 
     if USE_AUTO_AUG:
-        aug_x = autoaug_diversity(x)    # x -> [aug_type*bs, w, h, c]
-        y = tf.tile(y, [AUG_num, 1])    # y -> [aug_type*bs, 1]
+        if not FLAGS.branch_pool:
+            aug_x = autoaug_diversity(x)    # x -> [aug_type*bs, w, h, c]
+            y = tf.tile(y, [AUG_num, 1])    # y -> [aug_type*bs, 1]
 
-        logits_weights = AUG_weights_1
-        aux_logits_weights = AUG_weights_04
+            logits_weights = AUG_weights_1
+            aux_logits_weights = AUG_weights_04
+        else:
+            aug_x = autoaug_diversity_pool(x) # x shape will not change.
+
+            logits_weights = 1.0
+            aux_logits_weights = 0.4
 
     elif FLAGS.use_si:
         aug_x = si_diversity(x)         # x -> [5*bs, w, h, c]
