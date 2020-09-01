@@ -21,8 +21,9 @@ DI_PROB=$5
 USE_TI=$6
 USE_SI=$7
 AUTO_AUGFILE=$8
+USE_NI=$9
 
-OUT_DIR_PREFIX=$9
+OUT_DIR_PREFIX=$10
 
 
 OUTPUT_DIR=./out/${OUT_DIR_PREFIX}_ens/
@@ -41,7 +42,8 @@ CUDA_VISIBLE_DEVICES=$CUDA_ID python attack_iter.py \
   --use_ti=$USE_TI \
   --use_si=$USE_SI \
   --prob=$DI_PROB \
-  --autoaug_file="$AUTO_AUGFILE"
+  --autoaug_file="$AUTO_AUGFILE" \
+  --use_ni=$USE_NI
 
 
 OUTPUT_DIR=./out/${OUT_DIR_PREFIX}_resnet/
@@ -60,7 +62,8 @@ CUDA_VISIBLE_DEVICES=$CUDA_ID python attack_iter.py \
   --use_ti=$USE_TI \
   --use_si=$USE_SI \
   --prob=$DI_PROB \
-  --autoaug_file="$AUTO_AUGFILE"
+  --autoaug_file="$AUTO_AUGFILE" \
+  --use_ni=$USE_NI
 
 
 OUTPUT_DIR=./out/${OUT_DIR_PREFIX}_inception_v3/
@@ -79,7 +82,8 @@ CUDA_VISIBLE_DEVICES=$CUDA_ID python attack_iter.py \
   --use_ti=$USE_TI \
   --use_si=$USE_SI \
   --prob=$DI_PROB \
-  --autoaug_file="$AUTO_AUGFILE"
+  --autoaug_file="$AUTO_AUGFILE" \
+  --use_ni=$USE_NI
 
 
 OUTPUT_DIR=./out/${OUT_DIR_PREFIX}_inception_v4/
@@ -98,7 +102,8 @@ CUDA_VISIBLE_DEVICES=$CUDA_ID python attack_iter.py \
   --use_ti=$USE_TI \
   --use_si=$USE_SI \
   --prob=$DI_PROB \
-  --autoaug_file="$AUTO_AUGFILE"
+  --autoaug_file="$AUTO_AUGFILE" \
+  --use_ni=$USE_NI
 
 
 OUTPUT_DIR=./out/${OUT_DIR_PREFIX}_inception_resnet_v2/
@@ -117,7 +122,8 @@ CUDA_VISIBLE_DEVICES=$CUDA_ID python attack_iter.py \
   --use_ti=$USE_TI \
   --use_si=$USE_SI \
   --prob=$DI_PROB \
-  --autoaug_file="$AUTO_AUGFILE"
+  --autoaug_file="$AUTO_AUGFILE" \
+  --use_ni=$USE_NI
 
 
 
@@ -126,10 +132,10 @@ echo "Now evaluating."
 
 cd /home/haojieyuan/autoAdv/benchmark
 
-sh run_eval_on_img_dir.sh $CUDA_ID /home/haojieyuan/autoAdv/benchmark/attacks/TI/out/${OUT_DIR_PREFIX}_resnet
 sh run_eval_on_img_dir.sh $CUDA_ID /home/haojieyuan/autoAdv/benchmark/attacks/TI/out/${OUT_DIR_PREFIX}_inception_v3
 sh run_eval_on_img_dir.sh $CUDA_ID /home/haojieyuan/autoAdv/benchmark/attacks/TI/out/${OUT_DIR_PREFIX}_inception_v4
 sh run_eval_on_img_dir.sh $CUDA_ID /home/haojieyuan/autoAdv/benchmark/attacks/TI/out/${OUT_DIR_PREFIX}_inception_resnet_v2
+sh run_eval_on_img_dir.sh $CUDA_ID /home/haojieyuan/autoAdv/benchmark/attacks/TI/out/${OUT_DIR_PREFIX}_resnet
 sh run_eval_on_img_dir.sh $CUDA_ID /home/haojieyuan/autoAdv/benchmark/attacks/TI/out/${OUT_DIR_PREFIX}_ens
 
 echo "Things Done."

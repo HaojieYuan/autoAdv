@@ -10,15 +10,6 @@ CUDA_VISIBLE_DEVICES=$CUDA_ID python transform2TFrecords.py --folder $IMG_DIR --
 
 
 
-MODEL_NAME=inception_resnet_v2
-CHECKPOINT_PATH=./pretrained/ensemble/ens_adv_inception_resnet_v2.ckpt
-
-CUDA_VISIBLE_DEVICES=$CUDA_ID python eval.py --model_name=$MODEL_NAME \
-  --checkpoint_path=$CHECKPOINT_PATH \
-  --batch_size=50 \
-  --test_tfrecords=$TMP_OUT
-
-
 
 MODEL_NAME=inception_v3
 CHECKPOINT_PATH=./pretrained/ensemble/ens3_adv_inception_v3.ckpt
@@ -39,8 +30,10 @@ CUDA_VISIBLE_DEVICES=$CUDA_ID python eval.py --model_name=$MODEL_NAME \
   --test_tfrecords=$TMP_OUT
 
 
-MODEL_NAME=resnet_v2
-CHECKPOINT_PATH=./pretrained/normal/resnet_v2_152.ckpt
+
+
+MODEL_NAME=inception_resnet_v2
+CHECKPOINT_PATH=./pretrained/ensemble/ens_adv_inception_resnet_v2.ckpt
 
 CUDA_VISIBLE_DEVICES=$CUDA_ID python eval.py --model_name=$MODEL_NAME \
   --checkpoint_path=$CHECKPOINT_PATH \
@@ -74,5 +67,13 @@ CUDA_VISIBLE_DEVICES=$CUDA_ID python eval.py --model_name=$MODEL_NAME \
   --batch_size=50 \
   --test_tfrecords=$TMP_OUT
 
+
+MODEL_NAME=resnet_v2
+CHECKPOINT_PATH=./pretrained/normal/resnet_v2_152.ckpt
+
+CUDA_VISIBLE_DEVICES=$CUDA_ID python eval.py --model_name=$MODEL_NAME \
+  --checkpoint_path=$CHECKPOINT_PATH \
+  --batch_size=50 \
+  --test_tfrecords=$TMP_OUT
 
 rm $TMP_OUT
