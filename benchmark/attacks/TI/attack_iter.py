@@ -71,6 +71,8 @@ tf.flags.DEFINE_bool('FGVC_eval', False, 'Evaluating on FGVC dataset or not.')
 
 tf.flags.DEFINE_bool('branch_pool', False, 'Autoaug in branch avg(default) or branch pool style.')
 
+tf.flags.DEFINE_bool('use_ni', False, 'Use Nesterov acclerated gradient or not.')
+
 FLAGS = tf.flags.FLAGS
 
 if FLAGS.prob !=0 :
@@ -273,10 +275,7 @@ def autoaug_diversity_pool(input_tensor):
     # the output range is 0 ~ BRANCH_NUM-1
     picked_out_branch_id = tf.random_uniform((), 0, BRANCH_NUM, dtype=tf.int32)
 
-    for i in range(BRANCH_NUM):
-        out_tensor = tf.cond(tf.random_uniform(shape=[1])[0] <= tf.constant(i/(BRANCH_NUM-1)),
-                             lambda: tf.gather(auged_list, picked_out_branch_id),
-                             lambda: input_tensor)
+    out_tensor = tf.gather(auged_list, picked_out_branch_id)
 
     return out_tensor
 
@@ -300,7 +299,7 @@ def gkern(kernlen=21, nsig=3):
   return kernel
 
 # 7 for normal models, 15 for adv trained models.
-kernel = gkern(7, 3).astype(np.float32)
+kernel = gkern(15, 3).astype(np.float32)
 stack_kernel = np.stack([kernel, kernel, kernel]).swapaxes(2, 0)
 stack_kernel = np.expand_dims(stack_kernel, 3)
 
@@ -361,28 +360,32 @@ def graph(x, y, i, x_max, x_min, grad, aug_x=None):
     momentum = FLAGS.momentum
     num_classes = FLAGS.class_num
 
+    aug_x = x
+
+    if FLAGS.use_ni:
+        aug_x = aug_x + momentum * alpha * grad
+
     if USE_AUTO_AUG:
         if not FLAGS.branch_pool:
-            aug_x = autoaug_diversity(x)    # x -> [aug_type*bs, w, h, c]
-            y = tf.tile(y, [AUG_num, 1])    # y -> [aug_type*bs, 1]
+            aug_x = autoaug_diversity(aug_x)    # x -> [aug_type*bs, w, h, c]
+            y = tf.tile(y, [AUG_num, 1])        # y -> [aug_type*bs, 1]
 
             logits_weights = AUG_weights_1
             aux_logits_weights = AUG_weights_04
         else:
-            aug_x = autoaug_diversity_pool(x) # x shape will not change.
+            aug_x = autoaug_diversity_pool(aug_x) # x shape will not change.
 
             logits_weights = 1.0
             aux_logits_weights = 0.4
 
     elif FLAGS.use_si:
-        aug_x = si_diversity(x)         # x -> [5*bs, w, h, c]
-        y = tf.tile(y, [5, 1])          # y -> [5*bs, 1]
+        aug_x = si_diversity(aug_x)         # x -> [5*bs, w, h, c]
+        y = tf.tile(y, [5, 1])              # y -> [5*bs, 1]
 
         logits_weights = SI_weights
         aux_logits_weights = SI_weights_04
 
     else:
-        aug_x = x
 
         logits_weights = 1.0
         aux_logits_weights = 0.4
@@ -452,8 +455,9 @@ def graph(x, y, i, x_max, x_min, grad, aug_x=None):
     i = tf.add(i, 1)
 
     if USE_AUTO_AUG:
-        y = tf.reshape(y, [AUG_num, FLAGS.batch_size, -1])
-        y = y[0]
+        if not FLAGS.branch_pool:
+            y = tf.reshape(y, [AUG_num, FLAGS.batch_size, -1])
+            y = y[0]
     elif FLAGS.use_si:
         y = tf.reshape(y, [5, FLAGS.batch_size, -1])
         y = y[0]
