@@ -4,8 +4,10 @@
 # MOMENTUM=1.0
 # DI_PROB=0.7
 # USE_TI=False
+# TI_KERNEL=15
 # USE_SI=False
 # AUTO_AUGFILE=./autoaug.txt or None
+# USE_NI=False
 # OUT_DIR_PREFIX=ours
 
 
@@ -70,13 +72,23 @@
 #sh run_attack.sh 6 3 10 1.0 0 False  False ./autoaug_op4_avg.txt ours_op4_avg_MI_FGSM 1> ./out/ours_op4_avg_MI_FGSM.log 2>&1 &
 #sh run_attack.sh 7 3 10 1.0 0 False  False ./autoaug_op5_avg.txt ours_op5_avg_MI_FGSM 1> ./out/ours_op5_avg_MI_FGSM.log 2>&1 &
 # TI
-sh run_attack.sh 4 3 10 1.0 0 True   False ./rand_6.txt ours_rand6_TI7_MI_FGSM 1> ./out/ours_rand6_TI7_MI_FGSM.log 2>&1 &
-sh run_attack.sh 5 3 10 1.0 0 True   False ./rand_7.txt ours_rand7_TI7_MI_FGSM 1> ./out/ours_rand7_TI7_MI_FGSM.log 2>&1 &
-sh run_attack.sh 6 3 10 1.0 0 True   False ./rand_8.txt ours_rand8_TI7_MI_FGSM 1> ./out/ours_rand8_TI7_MI_FGSM.log 2>&1 &
-sh run_attack.sh 7 3 10 1.0 0 True   False ./rand_9.txt ours_rand9_TI7_MI_FGSM 1> ./out/ours_rand9_TI7_MI_FGSM.log 2>&1 &
-sh run_attack.sh 8 3 10 1.0 0 True   False ./rand_10.txt ours_rand10_TI7_MI_FGSM 1> ./out/ours_rand10_TI7_MI_FGSM.log 2>&1 &
+#sh run_attack.sh 4 3 10 1.0 0 True   False ./rand_6.txt ours_rand6_TI7_MI_FGSM 1> ./out/ours_rand6_TI7_MI_FGSM.log 2>&1 &
+#sh run_attack.sh 5 3 10 1.0 0 True   False ./rand_7.txt ours_rand7_TI7_MI_FGSM 1> ./out/ours_rand7_TI7_MI_FGSM.log 2>&1 &
+#sh run_attack.sh 6 3 10 1.0 0 True   False ./rand_8.txt ours_rand8_TI7_MI_FGSM 1> ./out/ours_rand8_TI7_MI_FGSM.log 2>&1 &
+#sh run_attack.sh 7 3 10 1.0 0 True   False ./rand_9.txt ours_rand9_TI7_MI_FGSM 1> ./out/ours_rand9_TI7_MI_FGSM.log 2>&1 &
+#sh run_attack.sh 8 3 10 1.0 0 True   False ./rand_10.txt ours_rand10_TI7_MI_FGSM 1> ./out/ours_rand10_TI7_MI_FGSM.log 2>&1 &
 #sh run_attack.sh 7 3 10 1.0 0 True   False ./autoaug_op5_avg.txt ours_op5_avg_TI7_MI_FGSM 1> ./out/ours_op5_avg_TI7_MI_FGSM.log 2>&1 &
 #sh run_attack.sh 7 10 10 1.0 0.5 False  False None DI_05_MI_FGSM 1> ./out/DI_05_MI_FGSM.log 2>&1 &
 #sh run_attack.sh 7 10 10 1.0 0.5 True   False None DI_05_TI7_MI_FGSM 1> ./out/DI_05_TI7_MI_FGSM.log 2>&1 &
+# MI
+#sh run_attack.sh 0 10 10 1.0 0 False  False ./branch_pool1.txt ours_pool1_MI_FGSM 1> ./out/ours_pool1_MI_FGSM.log 2>&1 &
+#sh run_attack.sh 1 3  10 1.0 0 False  False ./branch_pool3.txt ours_pool3_MI_FGSM 1> ./out/ours_pool3_MI_FGSM.log 2>&1 &
+#sh run_attack.sh 2 1  10 1.0 0 False  False ./branch_pool5.txt ours_pool5_MI_FGSM 1> ./out/ours_pool5_MI_FGSM.log 2>&1 &
+#sh run_attack.sh 3 1  10 1.0 0 False  False ./branch_pool7.txt ours_pool7_MI_FGSM 1> ./out/ours_pool7_MI_FGSM.log 2>&1 &
+#sh run_attack.sh 1 10 10 1.0 0 True   False ./branch_pool1.txt ours_pool1_TI15_MI_FGSM 1> ./out/ours_pool1_TI15_MI_FGSM.log 2>&1 &
+#sh run_attack.sh 2 3  10 1.0 0 True   False ./branch_pool3.txt ours_pool3_TI15_MI_FGSM 1> ./out/ours_pool3_TI15_MI_FGSM.log 2>&1 &
+#wait
+#sh run_attack.sh 8 1  10 1.0 0 True   False ./branch_pool5.txt ours_pool5_TI15_MI_FGSM 1> ./out/ours_pool5_TI15_MI_FGSM.log 2>&1 &
+#sh run_attack.sh 9 1  10 1.0 0 True   False ./branch_pool7.txt ours_pool7_TI15_MI_FGSM 1> ./out/ours_pool7_TI15_MI_FGSM.log 2>&1 &
 wait
 echo "Done."

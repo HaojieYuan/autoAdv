@@ -73,6 +73,8 @@ tf.flags.DEFINE_bool('branch_pool', False, 'Autoaug in branch avg(default) or br
 
 tf.flags.DEFINE_bool('use_ni', False, 'Use Nesterov acclerated gradient or not.')
 
+tf.flags.DEFINE_integer('ti_kernel', 15, '15 for breaking defenses, 7 for attacking normal models.')
+
 FLAGS = tf.flags.FLAGS
 
 if FLAGS.prob !=0 :
@@ -299,7 +301,9 @@ def gkern(kernlen=21, nsig=3):
   return kernel
 
 # 7 for normal models, 15 for adv trained models.
-kernel = gkern(15, 3).astype(np.float32)
+k_size = FLAGS.ti_kernel
+#kernel = gkern(15, 3).astype(np.float32)
+kernel = gkern(k_size, 3).astype(np.float32)
 stack_kernel = np.stack([kernel, kernel, kernel]).swapaxes(2, 0)
 stack_kernel = np.expand_dims(stack_kernel, 3)
 
