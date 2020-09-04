@@ -75,6 +75,8 @@ tf.flags.DEFINE_bool('use_ni', False, 'Use Nesterov acclerated gradient or not.'
 
 tf.flags.DEFINE_integer('ti_kernel', 15, '15 for breaking defenses, 7 for attacking normal models.')
 
+tf.flags.DEFINE_bool('use_logits_avg', True, 'Augment images as logits avg or loss avg.')
+
 FLAGS = tf.flags.FLAGS
 
 if FLAGS.prob !=0 :
@@ -372,10 +374,16 @@ def graph(x, y, i, x_max, x_min, grad, aug_x=None):
     if USE_AUTO_AUG:
         if not FLAGS.branch_pool:
             aug_x = autoaug_diversity(aug_x)    # x -> [aug_type*bs, w, h, c]
-            y = tf.tile(y, [AUG_num, 1])        # y -> [aug_type*bs, 1]
+            if not FLAGS.use_logits_avg:
+                y = tf.tile(y, [AUG_num, 1])        # y -> [aug_type*bs, 1]
 
-            logits_weights = AUG_weights_1
-            aux_logits_weights = AUG_weights_04
+                logits_weights = AUG_weights_1
+                aux_logits_weights = AUG_weights_04
+            else:
+
+                logits_weights = 1.0
+                aux_logits_weights = 0.4
+
         else:
             aug_x = autoaug_diversity_pool(aug_x) # x shape will not change.
 
@@ -384,10 +392,14 @@ def graph(x, y, i, x_max, x_min, grad, aug_x=None):
 
     elif FLAGS.use_si:
         aug_x = si_diversity(aug_x)         # x -> [5*bs, w, h, c]
-        y = tf.tile(y, [5, 1])              # y -> [5*bs, 1]
+        if not FLAGS.use_logits_avg:
+            y = tf.tile(y, [5, 1])              # y -> [5*bs, 1]
 
-        logits_weights = SI_weights
-        aux_logits_weights = SI_weights_04
+            logits_weights = SI_weights
+            aux_logits_weights = SI_weights_04
+        else:
+            logits_weights = 1.0
+            aux_logits_weights = 0.4
 
     else:
 
@@ -438,6 +450,11 @@ def graph(x, y, i, x_max, x_min, grad, aug_x=None):
     else:
         assert False, "Unknown arch."
 
+    if FLAGS.use_logits_avg:
+        logits = tf.reshape(logits, [-1, FLAGS.batch_size,
+                                     FLAGS.image_height, FLAGS.image_width, 3])
+        logits = tf.reduce_mean(logits, axis=0)
+
 
     cross_entropy = tf.losses.softmax_cross_entropy(y,
                                                     logits,
@@ -459,12 +476,13 @@ def graph(x, y, i, x_max, x_min, grad, aug_x=None):
     i = tf.add(i, 1)
 
     if USE_AUTO_AUG:
-        if not FLAGS.branch_pool:
+        if (not FLAGS.branch_pool) and (not FLAGS.use_logits_avg):
             y = tf.reshape(y, [AUG_num, FLAGS.batch_size, -1])
             y = y[0]
     elif FLAGS.use_si:
-        y = tf.reshape(y, [5, FLAGS.batch_size, -1])
-        y = y[0]
+        if not FLAGS.use_logits_avg:
+            y = tf.reshape(y, [5, FLAGS.batch_size, -1])
+            y = y[0]
     else:
         pass
 
