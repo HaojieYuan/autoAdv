@@ -10,9 +10,9 @@
 #   MAX_EPSILON - maximum allowed L_{\infty} norm of adversarial perturbation
 #
 
-CUDA_ID=$1
 INPUT_DIR=/home/haojieyuan/Data/ImageNet/nips2017_dev
 MAX_EPSILON=16
+CUDA_ID=$1
 BATCH_SIZE=$2
 
 NUM_ITER=$3
@@ -23,8 +23,9 @@ TI_KERNEL=$7
 USE_SI=$8
 AUTO_AUGFILE=$9
 USE_NI=$10
+LOGITS_AVG=$11
 
-OUT_DIR_PREFIX=$11
+OUT_DIR_PREFIX=$12
 
 
 OUTPUT_DIR=./out/${OUT_DIR_PREFIX}_ens/
@@ -45,7 +46,8 @@ CUDA_VISIBLE_DEVICES=$CUDA_ID python attack_iter.py \
   --use_si=$USE_SI \
   --prob=$DI_PROB \
   --autoaug_file="$AUTO_AUGFILE" \
-  --use_ni=$USE_NI
+  --use_ni=$USE_NI \
+  --use_logits_avg=$LOGITS_AVG
 
 
 OUTPUT_DIR=./out/${OUT_DIR_PREFIX}_resnet/
@@ -66,7 +68,8 @@ CUDA_VISIBLE_DEVICES=$CUDA_ID python attack_iter.py \
   --use_si=$USE_SI \
   --prob=$DI_PROB \
   --autoaug_file="$AUTO_AUGFILE" \
-  --use_ni=$USE_NI
+  --use_ni=$USE_NI \
+  --use_logits_avg=$LOGITS_AVG
 
 
 OUTPUT_DIR=./out/${OUT_DIR_PREFIX}_inception_v3/
@@ -87,7 +90,8 @@ CUDA_VISIBLE_DEVICES=$CUDA_ID python attack_iter.py \
   --use_si=$USE_SI \
   --prob=$DI_PROB \
   --autoaug_file="$AUTO_AUGFILE" \
-  --use_ni=$USE_NI
+  --use_ni=$USE_NI \
+  --use_logits_avg=$LOGITS_AVG
 
 
 OUTPUT_DIR=./out/${OUT_DIR_PREFIX}_inception_v4/
@@ -108,7 +112,8 @@ CUDA_VISIBLE_DEVICES=$CUDA_ID python attack_iter.py \
   --use_si=$USE_SI \
   --prob=$DI_PROB \
   --autoaug_file="$AUTO_AUGFILE" \
-  --use_ni=$USE_NI
+  --use_ni=$USE_NI \
+  --use_logits_avg=$LOGITS_AVG
 
 
 OUTPUT_DIR=./out/${OUT_DIR_PREFIX}_inception_resnet_v2/
@@ -129,7 +134,8 @@ CUDA_VISIBLE_DEVICES=$CUDA_ID python attack_iter.py \
   --use_si=$USE_SI \
   --prob=$DI_PROB \
   --autoaug_file="$AUTO_AUGFILE" \
-  --use_ni=$USE_NI
+  --use_ni=$USE_NI \
+  --use_logits_avg=$LOGITS_AVG
 
 
 
