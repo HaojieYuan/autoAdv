@@ -451,8 +451,7 @@ def graph(x, y, i, x_max, x_min, grad, aug_x=None):
         assert False, "Unknown arch."
 
     if FLAGS.use_logits_avg:
-        logits = tf.reshape(logits, [-1, FLAGS.batch_size,
-                                     FLAGS.image_height, FLAGS.image_width, 3])
+        logits = tf.reshape(logits, [-1, FLAGS.batch_size, FLAGS.class_num])
         logits = tf.reduce_mean(logits, axis=0)
 
 
@@ -461,6 +460,9 @@ def graph(x, y, i, x_max, x_min, grad, aug_x=None):
                                                     label_smoothing=0.0,
                                                     weights=logits_weights)
     if FLAGS.target_model != 'resnet':
+        if FLAGS.use_logits_avg:
+            auxlogits = tf.reshape(auxlogits, [-1, FLAGS.batch_size, FLAGS.class_num])
+            auxlogits = tf.reduce_mean(auxlogits, axis=0)
         cross_entropy += tf.losses.softmax_cross_entropy(y,
                                                          auxlogits,
                                                          label_smoothing=0.0,
