@@ -4,11 +4,8 @@
 # MOMENTUM=1.0
 # DI_PROB=0.7
 # USE_TI=False
-# TI_KERNEL=15
 # USE_SI=False
 # AUTO_AUGFILE=./autoaug.txt or None
-# USE_NI=False
-# LOGITS_AVG=True
 # OUT_DIR_PREFIX=ours
 
 
@@ -22,120 +19,48 @@
 #exit 0
 
 #sh run_attack.sh 8 10 10 1.0 0 False False ./autoaug_b1.txt ours_MI_FGSM_b1_ti7 1> ./out/ours_MI_FGSM_b1_ti7_log.log 2>&1
-#sh run_attack.sh 4 10 10 1.0 0 True  False ./autoaug_b1.txt ours_TI_MI_FGSM_b1_ti15 1> ./out/ours_TI_MI_FGSM_b1_ti15_log.log 2>&1
+#sh run_attack.sh 8 10 10 1.0 0 True  False ./autoaug_b1.txt ours_TI_MI_FGSM_b1_ti15 1> ./out/ours_TI_MI_FGSM_b1_ti15_log.log 2>&1
 
 #sh run_attack.sh 8 3 10 1.0 0 False False ./autoaug_b3.txt ours_MI_FGSM_b3_ti7 1> ./out/ours_MI_FGSM_b3_ti7_log.log 2>&1
-#sh run_attack.sh 5 3 10 1.0 0 True  False ./autoaug_b3.txt ours_TI_MI_FGSM_b3_ti15 1> ./out/ours_TI_MI_FGSM_b3_ti15_log.log 2>&1
+#sh run_attack.sh 8 3 10 1.0 0 True  False ./autoaug_b3.txt ours_TI_MI_FGSM_b3_ti15 1> ./out/ours_TI_MI_FGSM_b3_ti15_log.log 2>&1
 
 #sh run_attack.sh 8 1 10 1.0 0 False False ./autoaug_b5.txt ours_MI_FGSM_b5_ti7 1> ./out/ours_MI_FGSM_b5_ti7_log.log 2>&1
-#sh run_attack.sh 6 1 10 1.0 0 True  False ./autoaug_b5.txt ours_TI_MI_FGSM_b5_ti15 1> ./out/ours_TI_MI_FGSM_b5_ti15_log.log 2>&1
+#sh run_attack.sh 8 1 10 1.0 0 True  False ./autoaug_b5.txt ours_TI_MI_FGSM_b5_ti15 1> ./out/ours_TI_MI_FGSM_b5_ti15_log.log 2>&1
 
 #sh run_attack.sh 8 1 10 1.0 0 False False ./autoaug_b7.txt ours_MI_FGSM_b7_ti7 1> ./out/ours_MI_FGSM_b7_ti7_log.log 2>&1
-#sh run_attack.sh 7 1 10 1.0 0 True  False ./autoaug_b7.txt ours_TI_MI_FGSM_b7_ti15 1> ./out/ours_TI_MI_FGSM_b7_ti15_log.log 2>&1
+#sh run_attack.sh 8 1 10 1.0 0 True  False ./autoaug_b7.txt ours_TI_MI_FGSM_b7_ti15 1> ./out/ours_TI_MI_FGSM_b7_ti15_log.log 2>&1
 
 #sh run_attack.sh 8 1 10 1.0 0 False False ./autoaug_b9.txt ours_MI_FGSM_b9_ti7 1> ./out/ours_MI_FGSM_b9_ti7_log.log 2>&1
 #sh run_attack.sh 8 1 10 1.0 0 True  False ./autoaug_b9.txt ours_TI_MI_FGSM_b9_ti15 1> ./out/ours_TI_MI_FGSM_b9_ti15_log.log 2>&1
+#sh run_attack.sh 1 2 10 1.0 0 False False ./autoaug_b5.txt IJCAI_ours 1> ./out/IJCAI_ours.log 2>&1 &
+#sh run_attack.sh 0 2 10 1.0 0 False False ./autoaug_b5_2.txt IJCAI_ours2 1> ./out/IJCAI_ours2.log 2>&1 &
+#                       TI      k   SI      DEM     NI      ours    out
 
-# MI-FGSM
-#sh run_attack.sh 4 10 10 1.0 0   False  False None MI_FGSM 1> ./out/MI_FGSM.log 2>&1 &
-# DI-MI-FGSM
-#sh run_attack.sh 5 10 10 1.0 0.7 False  False None DI_MI_FGSM 1> ./out/DI_MI_FGSM.log 2>&1 &
-# SI-MI-FGSM
-#sh run_attack.sh 6 2  10 1.0 0   False  True  None SI_MI_FGSM 1> ./out/SI_MI_FGSM.log 2>&1 &
-
-# TI-MI-FGSM
-#sh run_attack.sh 4 10 10 1.0 0   True   False None TI15_MI_FGSM 1> ./out/TI15_MI_FGSM.log 2>&1 &
-# DI-TI-MI-FGSM
-#sh run_attack.sh 5 10 10 1.0 0.7 True   False None DI_TI15_MI_FGSM 1> ./out/DI_TI15_MI_FGSM.log 2>&1 &
-# SI-TI-MI-FGSM
-#sh run_attack.sh 6 2  10 1.0 0   True   True  None SI_TI15_MI_FGSM 1> ./out/SI_TI15_MI_FGSM.log 2>&1 &
-
-
-# ours branch num
-# MI
-#sh run_attack.sh 4 10 10 1.0 0 False False ./autoaug_b1.txt ours_b1_MI_FGSM 1> ./out/ours_b1_MI_FGSM.log 2>&1 &
-#sh run_attack.sh 4 3  10 1.0 0 False False ./autoaug_b3_avg.txt ours_b3_avg_MI_FGSM 1> ./out/ours_b3_avg_MI_FGSM.log 2>&1 &
-#sh run_attack.sh 5 1  10 1.0 0 False False ./autoaug_b5_avg.txt ours_b5_avg_MI_FGSM 1> ./out/ours_b5_avg_MI_FGSM.log 2>&1 &
-#sh run_attack.sh 6 1  10 1.0 0 False False ./autoaug_b7_avg.txt ours_b7_avg_MI_FGSM 1> ./out/ours_b7_avg_MI_FGSM.log 2>&1 &
-#sh run_attack.sh 8 1  10 1.0 0 False False ./autoaug_b9.txt ours_b9_MI_FGSM 1> ./out/ours_b9_MI_FGSM.log 2>&1 &
-# TI
-#sh run_attack.sh 7 10 10 1.0 0 True False ./autoaug_b1.txt ours_b1_TI7_MI_FGSM 1> ./out/ours_b1_TI15_MI_FGSM.log 2>&1 &
-#sh run_attack.sh 7 3  10 1.0 0 True False ./autoaug_b3_avg.txt ours_b3_avg_TI15_MI_FGSM 1> ./out/ours_b3_avg_TI15_MI_FGSM.log 2>&1 &
-#sh run_attack.sh 8 1  10 1.0 0 True False ./autoaug_b5_avg.txt ours_b5_avg_TI15_MI_FGSM 1> ./out/ours_b5_avg_TI15_MI_FGSM.log 2>&1 &
-#sh run_attack.sh 9 1  10 1.0 0 True False ./autoaug_b7_avg.txt ours_b7_avg_TI15_MI_FGSM 1> ./out/ours_b7_avg_TI15_MI_FGSM.log 2>&1 &
-#sh run_attack.sh 5 1  10 1.0 0 True False ./autoaug_b9.txt ours_b9_TI7_MI_FGSM 1> ./out/ours_b9_TI15_MI_FGSM.log 2>&1 &
-
-# ours OP num
-# MI
-#sh run_attack.sh 4 3 10 1.0 0 False  False ./autoaug_op2_avg.txt ours_op2_avg_MI_FGSM 1> ./out/ours_op2_avg_MI_FGSM.log 2>&1 &
-#sh run_attack.sh 5 3 10 1.0 0 False  False ./autoaug_op3_avg.txt ours_op3_avg_MI_FGSM 1> ./out/ours_op3_avg_MI_FGSM.log 2>&1 &
-
-#sh run_attack.sh 6 3 10 1.0 0 False  False ./autoaug_op4_avg.txt ours_op4_avg_MI_FGSM 1> ./out/ours_op4_avg_MI_FGSM.log 2>&1 &
-#sh run_attack.sh 7 3 10 1.0 0 False  False ./autoaug_op5_avg.txt ours_op5_avg_MI_FGSM 1> ./out/ours_op5_avg_MI_FGSM.log 2>&1 &
-# TI
-#sh run_attack.sh 4 3 10 1.0 0 True   False ./rand_6.txt ours_rand6_TI7_MI_FGSM 1> ./out/ours_rand6_TI7_MI_FGSM.log 2>&1 &
-#sh run_attack.sh 5 3 10 1.0 0 True   False ./rand_7.txt ours_rand7_TI7_MI_FGSM 1> ./out/ours_rand7_TI7_MI_FGSM.log 2>&1 &
-#sh run_attack.sh 6 3 10 1.0 0 True   False ./rand_8.txt ours_rand8_TI7_MI_FGSM 1> ./out/ours_rand8_TI7_MI_FGSM.log 2>&1 &
-#sh run_attack.sh 7 3 10 1.0 0 True   False ./rand_9.txt ours_rand9_TI7_MI_FGSM 1> ./out/ours_rand9_TI7_MI_FGSM.log 2>&1 &
-#sh run_attack.sh 8 3 10 1.0 0 True   False ./rand_10.txt ours_rand10_TI7_MI_FGSM 1> ./out/ours_rand10_TI7_MI_FGSM.log 2>&1 &
-#sh run_attack.sh 7 3 10 1.0 0 True   False ./autoaug_op5_avg.txt ours_op5_avg_TI7_MI_FGSM 1> ./out/ours_op5_avg_TI7_MI_FGSM.log 2>&1 &
-#sh run_attack.sh 7 10 10 1.0 0.5 False  False None DI_05_MI_FGSM 1> ./out/DI_05_MI_FGSM.log 2>&1 &
-#sh run_attack.sh 7 10 10 1.0 0.5 True   False None DI_05_TI7_MI_FGSM 1> ./out/DI_05_TI7_MI_FGSM.log 2>&1 &
-# MI
-#sh run_attack.sh 0 10 10 1.0 0 False  False ./branch_pool1.txt ours_pool1_MI_FGSM 1> ./out/ours_pool1_MI_FGSM.log 2>&1 &
-#sh run_attack.sh 1 3  10 1.0 0 False  False ./branch_pool3.txt ours_pool3_MI_FGSM 1> ./out/ours_pool3_MI_FGSM.log 2>&1 &
-#sh run_attack.sh 2 1  10 1.0 0 False  False ./branch_pool5.txt ours_pool5_MI_FGSM 1> ./out/ours_pool5_MI_FGSM.log 2>&1 &
-#sh run_attack.sh 3 1  10 1.0 0 False  False ./branch_pool7.txt ours_pool7_MI_FGSM 1> ./out/ours_pool7_MI_FGSM.log 2>&1 &
-#sh run_attack.sh 1 10 10 1.0 0 True   False ./branch_pool1.txt ours_pool1_TI15_MI_FGSM 1> ./out/ours_pool1_TI15_MI_FGSM.log 2>&1 &
-#sh run_attack.sh 2 3  10 1.0 0 True   False ./branch_pool3.txt ours_pool3_TI15_MI_FGSM 1> ./out/ours_pool3_TI15_MI_FGSM.log 2>&1 &
-#wait
-#sh run_attack.sh 8 1  10 1.0 0 True   False ./branch_pool5.txt ours_pool5_TI15_MI_FGSM 1> ./out/ours_pool5_TI15_MI_FGSM.log 2>&1 &
-#sh run_attack.sh 9 1  10 1.0 0 True   False ./branch_pool7.txt ours_pool7_TI15_MI_FGSM 1> ./out/ours_pool7_TI15_MI_FGSM.log 2>&1 &
-
-
-#                            DI  TI       SI    ours                  NI
-# NI
-#sh run_attack.sh 4 10 10 1.0 0   False 15 False None                  True  NI_FGSM          1> ./out/NI_FGSM.log 2>&1 &
-# ours + NI
-#sh run_attack.sh 5 3  10 1.0 0   False 15 False ./autoaug_op3_avg.txt True  ours_op3_NI_FGSM 1> ./out/ours_op3_NI_FGSM.log 2>&1 &
-# SI + NI
-#sh run_attack.sh 6 2  10 1.0 0   False 15 True  None                  True  SI_NI_FGSM       1> ./out/SI_NI_FGSM.log 2>&1 &
-# DI + NI
-#sh run_attack.sh 7 10 10 1.0 0.5 False 15 False None                  True  DI_NI_FGSM       1> ./out/DI_NI_FGSM.log 2>&1 &
-
-# TI + NI
-#sh run_attack.sh 8 10 10 1.0 0   True  7  False None                  True  TI7_NI_FGSM           1> ./out/TI7_NI_FGSM.log 2>&1 &
-#sh run_attack.sh 9 10 10 1.0 0   True  15 False None                  True  TI15_NI_FGSM          1> ./out/TI15_NI_FGSM.log 2>&1 &
+#sh run_attack_v3.sh 7 4 False   7   True    False   False   None    GHOSTNET_5  1>./out/GHOSTNET_5.log 2>&1 &
+#sh run_attack_v3.sh 8 4 False   7   True    False   True    None    NI_GHOSTNET_5  1>./out/NI_GHOSTNET_5.log 2>&1 &
+#sh run_attack_v3.sh 9 4 True    15  True    False   False   None    TI_GHOSTNET_5  1>./out/TI_GHOSTNET_5.log 2>&1 &
 
 #wait
+#exit 0
+#sh run_attack_v3.sh 8 4 False   7   False   False   True    None    NI_GHOSTNET  1>./out/NI_GHOSTNET.log 2>&1 &
 
-# ours + TI + NI
-#sh run_attack.sh 4 3  10 1.0 0   True  7  False ./autoaug_op3_avg.txt True  ours_op3_TI7_NI_FGSM  1> ./out/ours_op3_TI7_NI_FGSM.log 2>&1 &
-#sh run_attack.sh 5 3  10 1.0 0   True  15 False ./autoaug_op3_avg.txt True  ours_op3_TI15_NI_FGSM 1> ./out/ours_op3_TI15_NI_FGSM.log 2>&1 &
-# SI + TI + NI
-#sh run_attack.sh 6 2  10 1.0 0   True  7  True  None                  True  SI_TI7_NI_FGSM        1> ./out/SI_TI7_NI_FGSM.log 2>&1 &
-#sh run_attack.sh 7 2  10 1.0 0   True  15 True  None                  True  SI_TI15_NI_FGSM       1> ./out/SI_TI15_NI_FGSM.log 2>&1 &
-# DI + TI + NI
-#sh run_attack.sh 8 10 10 1.0 0.5 True  7  False None                  True  DI_TI7_NI_FGSM        1> ./out/DI_TI7_NI_FGSM.log 2>&1 &
-#sh run_attack.sh 9 10 10 1.0 0.5 True  15 False None                  True  DI_TI15_NI_FGSM       1> ./out/DI_TI15_NI_FGSM.log 2>&1 &
+#echo GHOST
+#sh run_attack_v3.sh 5 4 False    15  False   False   False   None    GHOST 1>./out/GHOST.log 2>&1
 
+
+sh run_attack.sh  0 4    True   15   False   False   False   ./autoaug_b5_1.txt    ours  1>./out/ours.log 2>&1 &
+#sh run_attack.sh 1 4    True    7   False   False   False   ./autoaug_b5_1.txt    IJCAI_ours_TI7 1>./out/IJCAI_ours_TI7.log 2>&1 &
+#sh run_attack.sh 3 4    False   7   False   False   True    ./autoaug_b5_1.txt    IJCAI_ours_NI 1>./out/IJCAI_ours_NI.log 2>&1 &
 #wait
 
-# SI + DI + NI
-#sh run_attack.sh 4 2  10 1.0 0.5 False 15 True  None                  True  SI_DI_NI_FGSM            1> ./out/SI_DI_NI_FGSM.log 2>&1 &
-
-# SI + DI + TI + NI
-#sh run_attack.sh 5 2  10 1.0 0.5 True  7  True  None                  True  SI_DI_TI7_NI_FGSM        1> ./out/SI_DI_TI7_NI_FGSM.log 2>&1 &
-#sh run_attack.sh 6 2  10 1.0 0.5 True  15 True  None                  True  SI_DI_TI15_NI_FGSM       1> ./out/SI_DI_TI15_NI_FGSM.log 2>&1 &
-
-# SI + DI
-#sh run_attack.sh 7 2  10 1.0 0.5 False 15 True  None                  False SI_DI_MI_FGSM            1> ./out/SI_DI_MI_FGSM.log 2>&1 &
-
-# SI + DI + TI
-#sh run_attack.sh 8 2  10 1.0 0.5 True  7  True  None                  False SI_DI_TI7_MI_FGSM        1> ./out/SI_DI_TI7_MI_FGSM.log 2>&1 &
-#sh run_attack.sh 9 2  10 1.0 0.5 True  15 True  None                  False SI_DI_TI15_MI_FGSM       1> ./out/SI_DI_TI15_MI_FGSM.log 2>&1 &
-
-sh run_attack.sh 4 3  10 1.0 0   False 7  False ./autoaug_op3_avg.txt False ours_op3_avg_MI_FGSM_logitsAVG  1> ./out/ours_op3_avg_MI_FGSM_logitsAVG.log 2>&1 &
-wait
-
-echo "Done."
+#sh run_attack.sh 0 4    True    7   False   False   False   ./random_1.txt        IJCAI_random1  1>./out/IJCAI_random1.log 2>&1 &
+#sh run_attack.sh 1 4    True    7   False   False   False   ./random_2.txt        IJCAI_random2  1>./out/IJCAI_random2.log 2>&1 &
+#sh run_attack.sh 2 4    True    7   False   False   False   ./random_3.txt        IJCAI_random3  1>./out/IJCAI_random3.log 2>&1 &
+#sh run_attack.sh 3 4    True    7   False   False   False   ./random_4.txt        IJCAI_random4  1>./out/IJCAI_random4.log 2>&1 &
+#sh run_attack.sh 4 4    True    7   False   False   False   ./random_5.txt        IJCAI_random5  1>./out/IJCAI_random5.log 2>&1 &
+#sh run_attack.sh 3 4    True    7   False   False   False   ./random_4.txt        clean  1>./out/clean.log 2>&1 &
+#sh run_attack.sh 3 4    True    15   False   False   False   ./1_branch.txt        1_branch  1>./out/1_branch.log 2>&1 &
+#sh run_attack.sh 1 4    True    15   False   False   False   ./3_branch.txt        3_branch  1>./out/3_branch.log 2>&1 &
+#sh run_attack.sh 2 2    True    15   False   False   False   ./7_branch.txt        7_branch  1>./out/7_branch.log 2>&1 &
+#sh run_attack.sh 2 2    False    15   False   False   False   ./fix_on_AlexNet.txt       fix_on_AlexNet_MIM  1>./out/fix_on_AlexNet_MIM.log 2>&1 &
+#sh run_attack.sh 3 2    False    15   False   False   False   ./fix_on_MnasNet.txt       fix_on_MnasNet_MIM  1>./out/fix_on_MnasNet_MIM.log 2>&1 &
