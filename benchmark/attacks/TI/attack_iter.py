@@ -18,7 +18,8 @@ import tensorflow as tf
 from tensorflow.python import debug as tf_debug
 import pdb
 from nets import inception_v3, inception_v4, inception_resnet_v2, resnet_v2
-
+#from nets import inception_v4, inception_resnet_v2, resnet_v2
+#from nets import inception_v3_ghost as inception_v3
 slim = tf.contrib.slim
 
 
@@ -43,7 +44,7 @@ tf.flags.DEFINE_string('input_dir', '', 'Input directory with images.')
 
 tf.flags.DEFINE_string('output_dir', '', 'Output directory with images.')
 
-tf.flags.DEFINE_float('max_epsilon', 32.0, 'Maximum size of adversarial perturbation.')
+tf.flags.DEFINE_float('max_epsilon', 16.0, 'Maximum size of adversarial perturbation.')
 
 tf.flags.DEFINE_integer('num_iter', 10, 'Number of iterations.')
 
@@ -57,25 +58,27 @@ tf.flags.DEFINE_integer('batch_size', 2, 'How many images process at one time.')
 
 tf.flags.DEFINE_float('momentum', 1.0, 'Momentum.')
 
-tf.flags.DEFINE_bool('use_ti', False, 'Use translation invariant or not.')
-
-tf.flags.DEFINE_bool('use_si', False, 'Use scale invariant or not.')
-
-tf.flags.DEFINE_float('prob', 0.4, 'probability of using diverse inputs.')
-
-tf.flags.DEFINE_string('autoaug_file', '', 'auto augmentation search result.')
-
 tf.flags.DEFINE_integer('class_num', 1001, 'Number of classes.')
 
 tf.flags.DEFINE_bool('FGVC_eval', False, 'Evaluating on FGVC dataset or not.')
 
-tf.flags.DEFINE_bool('branch_pool', False, 'Autoaug in branch avg(default) or branch pool style.')
+tf.flags.DEFINE_bool('use_ti', False, 'Use translation invariant or not.')
 
-tf.flags.DEFINE_bool('use_ni', False, 'Use Nesterov acclerated gradient or not.')
+tf.flags.DEFINE_integer('kernel', 15, 'How many images process at one time.')
 
-tf.flags.DEFINE_integer('ti_kernel', 15, '15 for breaking defenses, 7 for attacking normal models.')
+tf.flags.DEFINE_bool('use_si', False, 'Use scale invariant or not.')
 
-tf.flags.DEFINE_bool('use_logits_avg', True, 'Augment images as logits avg or loss avg.')
+tf.flags.DEFINE_bool('use_dem', False, 'Use dem or not.')
+
+tf.flags.DEFINE_bool('use_ni', False, 'Use Nestrov or not.')
+
+tf.flags.DEFINE_float('prob', 0, 'probability of using diverse inputs.')
+
+tf.flags.DEFINE_string('autoaug_file', '', 'auto augmentation search result.')
+
+
+tf.flags.DEFINE_bool('rf', False, 'Region fitting.')
+
 
 FLAGS = tf.flags.FLAGS
 
@@ -90,13 +93,17 @@ if FLAGS.use_si:
     SI_weights = FLAGS.batch_size*[1.0, 1.0, 1.0, 1.0, 1.0]
     SI_weights_04 = FLAGS.batch_size*[0.4, 0.4, 0.4, 0.4, 0.4]
 
+if FLAGS.use_dem:
+    print("using dem.")
+    SI_weights = FLAGS.batch_size*[1.0, 1.0, 1.0, 1.0, 1.0]
+    SI_weights_04 = FLAGS.batch_size*[0.4, 0.4, 0.4, 0.4, 0.4]
+
 if os.path.exists(FLAGS.autoaug_file):
     print("Using auto augment.")
     USE_AUTO_AUG = True
     with open(FLAGS.autoaug_file) as f:
         AUG_POLICY = eval(f.readline())
     #AUG_weights = [aug_weight for aug_type, aug_weight, aug_prob, aug_range in AUG_POLICY]
-    BRANCH_NUM = len(AUG_POLICY)
     AUG_weights = [branch[0] for branch in AUG_POLICY]
     w_sum = sum(AUG_weights)
     AUG_weights = [aug_weight/w_sum for aug_weight in AUG_weights]
@@ -111,11 +118,14 @@ else:
 assert not(FLAGS.use_si and USE_AUTO_AUG), "Using both auto aug and scale invariant is not supported yet."
 
 
-AUG_TYPE = {0: 'resize_padding', 1: 'translation', 2: 'rotation',
-            3: 'gaussian_noise', 4: 'horizontal_flip', 5: 'vertical_flip',
-            6: 'scaling', 7: 'invert', 8: 'solarize'}
+AUG_TYPE = {0: 'rotation', 1: 'translation', 2: 'resize_padding',
+            3: 'scaling', 4: 'gaussian_noise', 5: 'adjust_mean', 6: 'adjust_var',
+            7: 'adjust_hue', 8: 'adjust_saturation', 9: 'adjust_brightness',
+            10: 'solarize', 11: 'sample_pairing',
+            12: 'horizontal_flip', 13: 'vertical_flip', 14:'invert'}
 
 
+'''
 def augmentation(type, prob, mag_range, input_tensor):
 
     op_type = AUG_TYPE[type]
@@ -255,7 +265,353 @@ def augmentation(type, prob, mag_range, input_tensor):
         out_batch = (out_batch/255.0)*2.0 - 1.0 # 0~255 -> -1~1
 
         return tf.cond(tf.random_uniform(shape=[1])[0] < tf.constant(0.1*prob), lambda:out_batch, lambda: input_tensor)
+'''
+def augmentation(op_type, prob, mag_range, input_tensor):
+    op_type = AUG_TYPE[op_type]
+    mag_range = float(mag_range)
 
+    if mag_range == 0.0:
+        return input_tensor
+
+    if op_type == 'rotation':
+        r1 = tf.random_uniform(shape=[1])[0]
+        rotate_direction = tf.math.sign(r1-0.5)
+        mag = tf.random_uniform((), mag_range-1, mag_range, dtype=tf.float32)
+        #mag = tf.random_uniform((), 0, mag_range, dtype=tf.int32)
+        #mag = tf.random_uniform((), mag_range-1, mag_range, dtype=tf.float32)
+        mag = tf.cast(mag, tf.float32)
+
+        rotate_reg = rotate_direction*math.pi/2. *mag/ 10. # maximum 90
+        rotated = tf.contrib.image.rotate(input_tensor, rotate_reg)
+        return rotated
+
+    elif op_type == 'translation':
+        r1 = tf.random_uniform(shape=[1])[0]
+        r2 = tf.random_uniform(shape=[1])[0]
+        w_direction = tf.math.sign(r1-0.5)
+        h_direction = tf.math.sign(r2-0.5)
+
+        mag = tf.random_uniform((), mag_range-1, mag_range, dtype=tf.float32)
+        #mag = tf.random_uniform((), mag_range-1, mag_range, dtype=tf.float32)
+        mag = tf.cast(mag, tf.float32)
+        w_modified = w_direction*0.1*mag*FLAGS.image_width
+        h_modified = h_direction*0.1*mag*FLAGS.image_width
+
+        w_modified = tf.cast(w_modified, tf.int32)
+        h_modified = tf.cast(h_modified, tf.int32)
+        w_modified = tf.cast(w_modified, tf.float32)
+        h_modified = tf.cast(h_modified, tf.float32)
+
+        translated = tf.contrib.image.translate(input_tensor, [w_modified, h_modified])
+        return translated
+
+
+
+    elif op_type == 'resize_padding':
+        mag = tf.random_uniform((), mag_range-1, mag_range, dtype=tf.float32)
+        #mag = tf.random_uniform((), mag_range-1, mag_range, dtype=tf.float32)
+        mag = tf.cast(mag, tf.float32)
+        #w_modified = 2*(1 + tf.cast(0.01*mag*FLAGS.image_width, tf.int32))
+        #h_modified = 2*(1 + tf.cast(0.01*mag*FLAGS.image_width, tf.int32))
+        w_modified = 2*(1 + tf.cast(0.05*mag*FLAGS.image_width, tf.int32))
+        h_modified = 2*(1 + tf.cast(0.05*mag*FLAGS.image_width, tf.int32))
+        w_resized = FLAGS.image_width - w_modified
+        h_resized = FLAGS.image_width - h_modified
+
+        rescaled = tf.image.resize_images(input_tensor, [w_resized, h_resized],
+                                          method=tf.image.ResizeMethod.NEAREST_NEIGHBOR)
+
+        h_padding_t = tf.random_uniform((), 0, h_modified, dtype=tf.int32)
+        h_padding_b = h_modified - h_padding_t
+        w_padding_l = tf.random_uniform((), 0, w_modified, dtype=tf.int32)
+        w_padding_r = w_modified - w_padding_l
+
+        padded = tf.pad(rescaled, [[0, 0], [h_padding_t, h_padding_b],
+                                           [w_padding_l, w_padding_r], [0, 0]], constant_values=0.)
+        padded.set_shape((input_tensor.shape[0], FLAGS.image_width, FLAGS.image_width, 3))
+        return padded
+
+    elif op_type == 'scaling':
+        '''
+        mag = tf.random_uniform((), 0, mag_range, dtype=tf.int32)
+        mag = tf.cast(mag, tf.float32)
+        scaling_factor = 1.0 - 0.1*mag # 1.0~0.1
+        scaled_tensor = scaling_factor*input_tensor
+        return tf.cond(tf.random_uniform(shape=[1])[0] < tf.constant(0.1*prob), lambda:scaled_tensor, lambda: input_tensor)
+        '''
+        base = math.sqrt(0.5)
+        mag = tf.random_uniform((), mag_range-1, mag_range, dtype=tf.float32) #0~10
+        mag = tf.cast(mag, tf.float32)
+        '''
+        random_bais = tf.random_uniform((), -5, 6, dtype=tf.int32)
+        random_bais = tf.cast(random_bais, tf.float32)
+        mag = tf.random_uniform((), mag_range-1, mag_range, dtype=tf.float32) + 0.1*random_bais
+        scaling_factor = base**mag
+        '''
+        scaling_factor = tf.pow(base, mag)
+        scaled_tensor = scaling_factor*input_tensor
+        return scaled_tensor
+
+
+
+    elif op_type == 'gaussian_noise':
+        #mag = tf.random_uniform((), 0, mag_range, dtype=tf.int32)
+        mag = tf.random_uniform((), mag_range-1, mag_range, dtype=tf.float32)
+        #mag = tf.random_uniform((), mag_range-1, mag_range, dtype=tf.float32)
+        mag = tf.cast(mag, tf.float32)
+        # image tensor here ranges [-1, 1]
+        input_tensor = (input_tensor + 1.0) * 0.5  # now [0, 1]
+        rnd = tf.random_uniform(shape=input_tensor.shape)
+        #noised = input_tensor + rnd * mag/30
+        noised = input_tensor + rnd * mag/10. * 1.0 # sigma 0~1
+        noised = tf.clip_by_value(noised, 0, 1.0)
+        noised = noised * 2.0 - 1.0  # [-1, 1] again
+        return noised
+
+    elif op_type == 'adjust_hue':
+        mag = tf.random_uniform((), mag_range-1, mag_range, dtype=tf.float32)
+        mag = tf.cast(mag, tf.float32)
+        mag = mag - 5
+        mag = mag*2 # -10~10
+
+        input_tensor = (input_tensor + 1.0) * 0.5 # now [0, 1]
+
+        #adjusted = tf.image.adjust_hue(input_tensor, mag/10.)
+        splited_imgs = tf.unstack(input_tensor)
+        adjusted_imgs = []
+        for splited_img in splited_imgs:
+            splited_img_hsv = my_rgb_to_hsv(splited_img)
+            h,s,v = tf.unstack(splited_img_hsv, axis=-1)
+
+            #h = splited_img[..., 0]
+            #s = splited_img[..., 1]
+            #v = splited_img[..., 2]
+            adjusted_h = h * (1.2**mag)
+
+            adjusted_hsv = tf.stack([adjusted_h, s, v], axis=-1)
+            adjusted = my_hsv_to_rgb(adjusted_hsv)
+            adjusted = adjusted * 2 - 1 # now [-1, 1]
+            adjusted_imgs.append(adjusted)
+
+        return tf.stack(adjusted_imgs)
+
+    elif op_type == 'adjust_saturation':
+        mag = tf.random_uniform((), mag_range-1, mag_range, dtype=tf.float32)
+        mag = tf.cast(mag, tf.float32)
+        mag = mag - 5
+        mag = mag*2 # -10~10
+        input_tensor = (input_tensor + 1.0) * 0.5  # now [0, 1]
+
+        #adjusted = tf.image.adjust_saturation(input_tensor, tf.pow(1.2, mag))
+        #adjusted = adjusted * 2 - 1 # now [-1, 1]
+
+        splited_imgs = tf.unstack(input_tensor)
+        adjusted_imgs = []
+        for splited_img in splited_imgs:
+            splited_img = my_rgb_to_hsv(splited_img)
+            h = splited_img[..., 0]
+            s = splited_img[..., 1]
+            v = splited_img[..., 2]
+            adjusted_s = s * (1.2**mag)
+            adjusted_s = tf.clip_by_value(adjusted_s, 0., 1.)
+
+            adjusted = tf.stack([h, adjusted_s, v], axis=-1)
+            adjusted = my_hsv_to_rgb(adjusted)
+            adjusted = adjusted * 2 - 1 # now [-1, 1]
+            adjusted_imgs.append(adjusted)
+
+
+
+        return tf.stack(adjusted_imgs)
+
+
+    elif op_type == 'adjust_brightness':
+        '''
+        mag = tf.random_uniform((), mag_range-1, mag_range, dtype=tf.float32)
+        mag = mag - 5
+        mag = mag*2 # -10~10
+        input_tensor = (input_tensor + 1.0) * 0.5  # now [0, 1]
+
+        adjusted = input_tensor * (1.1**mag)
+
+        adjusted = adjusted * 2 - 1
+
+        return adjusted
+
+        '''
+        mag = tf.random_uniform((), mag_range-1, mag_range, dtype=tf.float32)
+        mag = tf.cast(mag, tf.float32)
+        mag = mag - 5
+        mag = mag*2 # -10~10
+        input_tensor = (input_tensor + 1.0) * 0.5  # now [0, 1]
+
+
+        splited_imgs = tf.unstack(input_tensor)
+        adjusted_imgs = []
+        for splited_img in splited_imgs:
+            splited_img = my_rgb_to_hsv(splited_img)
+            h = splited_img[..., 0]
+            s = splited_img[..., 1]
+            v = splited_img[..., 2]
+            adjusted_v = v * (1.1**mag)
+            adjusted_v = tf.clip_by_value(adjusted_v, 0., 1.)
+
+            adjusted = tf.stack([h, s, adjusted_v], axis=-1)
+            adjusted = my_hsv_to_rgb(adjusted)
+            adjusted = adjusted * 2 - 1 # now [-1, 1]
+            adjusted_imgs.append(adjusted)
+
+        return tf.stack(adjusted_imgs)
+
+
+    elif op_type == 'adjust_mean':
+        mag = tf.random_uniform((), mag_range-1, mag_range, dtype=tf.float32)
+        mag = tf.cast(mag, tf.float32)
+        mag = mag - 5
+        mag = mag*2 # -10~10
+        input_tensor = (input_tensor + 1.0) * 0.5  # now [0, 1]
+        splited_imgs = tf.unstack(input_tensor)
+
+        adjusted_imgs = []
+        for splited_img in splited_imgs:
+            mean = tf.reduce_mean(splited_img)
+            delta = splited_img - mean
+
+            adjusted = mean*(1.3**mag) + delta
+            adjusted = tf.clip_by_value(adjusted, 0., 1.)
+
+            adjusted = adjusted * 2 - 1 # now [-1, 1]
+            adjusted_imgs.append(adjusted)
+
+        return tf.stack(adjusted_imgs)
+
+        '''
+        splited_imgs = tf.unstack(input_tensor)
+        adjusted_imgs = []
+        for splited_img in splited_imgs:
+            h = splited_img[..., 0]
+            s = splited_img[..., 1]
+            v = splited_img[..., 2]
+            adjusted_v = v * (1.1**mag)
+            adjusted_v = tf.clip_by_value(adjusted_v, 0., 1.)
+
+            adjusted = tf.stack([h, s, adjusted_v], axis=-1)
+            adjusted = adjusted * 2 - 1 # now [-1, 1]
+            adjusted_imgs.append(adjusted)
+
+        return tf.stack(adjusted_imgs)
+        '''
+
+    elif op_type == 'adjust_var':
+        mag = tf.random_uniform((), mag_range-1, mag_range, dtype=tf.float32)
+        mag = tf.cast(mag, tf.float32)
+        mag = mag - 5
+        mag = mag*2 # -10~10
+        input_tensor = (input_tensor + 1.0) * 0.5  # now [0, 1]
+        splited_imgs = tf.unstack(input_tensor)
+
+        adjusted_imgs = []
+        for splited_img in splited_imgs:
+            mean = tf.reduce_mean(splited_img)
+            delta = splited_img - mean
+
+            adjusted = mean + delta * (1.3**mag)
+            adjusted = tf.clip_by_value(adjusted, 0., 1.)
+
+            adjusted = adjusted * 2 - 1 # now [-1, 1]
+            adjusted_imgs.append(adjusted)
+
+        return tf.stack(adjusted_imgs)
+
+    elif op_type == 'adjust_var_exp':
+        #mag = tf.random_uniform((), mag_range-1, mag_range, dtype=tf.float32)
+        mag = tf.random_uniform((), mag_range-1, mag_range, dtype=tf.float32)
+        mag = tf.cast(mag, tf.float32)
+        mag = mag - 5
+        mag = mag*2 # -10~10
+        input_tensor = (input_tensor + 1.0) * 0.5  # now [0, 1]
+        splited_imgs = tf.unstack(input_tensor)
+
+        adjusted_imgs = []
+        for splited_img in splited_imgs:
+            mean = tf.reduce_mean(splited_img)
+            delta = splited_img - mean
+
+            adjusted = mean + delta * (1.3**mag)
+            adjusted = tf.clip_by_value(adjusted, 0., 1.)
+
+            adjusted = adjusted * 2 - 1 # now [-1, 1]
+            adjusted_imgs.append(adjusted)
+
+        return tf.stack(adjusted_imgs)
+
+
+    elif op_type == 'adjust_contrast':
+        mag = tf.random_uniform((), mag_range-1, mag_range, dtype=tf.float32)
+        mag = tf.cast(mag, tf.float32)
+        mag = mag - 5
+        mag = mag*2 # -10~10
+        input_tensor = (input_tensor + 1.0) * 0.5  # now [0, 1]
+        splited_imgs = tf.unstack(input_tensor)
+
+        adjusted_imgs = []
+        for splited_img in splited_imgs:
+            mean = tf.stop_gradient(tf.reduce_mean(splited_img))
+            delta = splited_img - mean
+
+            adjusted = mean + delta * (1.3**mag)
+            adjusted = tf.clip_by_value(adjusted, 0., 1.)
+
+            adjusted = adjusted * 2 - 1 # now [-1, 1]
+            adjusted_imgs.append(adjusted)
+
+        return tf.stack(adjusted_imgs)
+
+
+    elif op_type == 'solarize':
+        #mag = tf.random_uniform((), 0, mag_range, dtype=tf.int32)
+        mag = tf.random_uniform((), mag_range-1, mag_range, dtype=tf.float32)
+        #mag = tf.random_uniform((), mag_range-1, mag_range, dtype=tf.float32)
+        mag = tf.cast(mag, tf.float32)
+        input_tensor = (input_tensor + 1.0)/2.0 # -1~1 to 0~1
+        solarize_threshold = 1.0 - 0.09*mag
+        mask = tf.greater(input_tensor, solarize_threshold)
+        mask = tf.cast(mask, tf.float32)
+
+        solarized = input_tensor*(1.0-mask) + (1.0-input_tensor)*mask # invert those above thres
+        solarized = solarized*2.0 - 1.0  # 0~1 to -1~1
+
+        return solarized
+
+    elif op_type == 'sample_pairing':
+        mag = tf.random_uniform((), mag_range-1, mag_range, dtype=tf.float32)
+        mag = tf.cast(mag, tf.float32)
+        mag = mag * 0.05 # 0~0.5
+        pair_id_clean = list(range(0, FLAGS.batch_size))
+        pair_id_t = tf.constant(pair_id_clean)
+        pair_id = tf.random.shuffle(pair_id_t)
+        #pair_id = tf.random_uniform((), 0, FLAGS.batch_size, dtype=tf.int32)
+        pair_part = tf.gather(input_tensor, pair_id)
+
+        return (1-mag) * input_tensor + mag * tf.stop_gradient(pair_part)
+
+
+    elif op_type == 'horizontal_flip':
+        h_fliped = tf.image.flip_left_right(input_tensor)
+        return h_fliped
+
+    elif op_type == 'vertical_flip':
+        v_fliped = tf.image.flip_up_down(input_tensor)
+        return v_fliped
+
+
+    elif op_type == 'invert':
+        inverted = 1.0 - input_tensor
+        return inverted
+
+    else:
+        print(op_type)
+        assert False, 'Unknown aug type.'
 
 
 def autoaug_diversity(input_tensor):
@@ -272,24 +628,32 @@ def branch_augmentation(x, branch_policy):
 
     return x
 
-def autoaug_diversity_pool(input_tensor):
-    auged_list = [branch_augmentation(input_tensor, branch_policy[1:]) for \
-                                      branch_policy in AUG_POLICY]
-
-    # the output range is 0 ~ BRANCH_NUM-1
-    picked_out_branch_id = tf.random_uniform((), 0, BRANCH_NUM, dtype=tf.int32)
-
-    out_tensor = tf.gather(auged_list, picked_out_branch_id)
-
-    return out_tensor
-
-
 
 def si_diversity(input_tensor):
     scale_list = [1.0, 1.0/2.0, 1.0/4.0, 1.0/8.0, 1.0/16.0]
     si_list = [input_tensor*scale_factor for scale_factor in scale_list]
 
     return tf.concat(si_list, 0)
+
+def de_diversity(input_tensor):
+    resize_list = [340, 380, 420, 460, 500]
+    out_list = []
+    for image_width in resize_list:
+        rnd = tf.random_uniform((), 299, image_width, dtype=tf.int32)
+        rescaled = tf.image.resize_images(input_tensor, [rnd, rnd], method=tf.image.ResizeMethod.NEAREST_NEIGHBOR)
+        h_rem = image_width - rnd
+        w_rem = image_width - rnd
+        pad_top = tf.random_uniform((), 0, h_rem, dtype=tf.int32)
+        pad_bottom = h_rem - pad_top
+        pad_left = tf.random_uniform((), 0, w_rem, dtype=tf.int32)
+        pad_right = w_rem - pad_left
+        padded = tf.pad(rescaled, [[0, 0], [pad_top, pad_bottom], [pad_left, pad_right], [0, 0]], constant_values=0.)
+        padded.set_shape((input_tensor.shape[0], image_width, image_width, 3))
+        padded = tf.image.resize_images(padded, [299, 299], method=tf.image.ResizeMethod.NEAREST_NEIGHBOR)
+        padded.set_shape((input_tensor.shape[0], 299, 299, 3))
+        out_list.append(padded)
+
+    return tf.concat(out_list, 0)
 
 
 def gkern(kernlen=21, nsig=3):
@@ -303,9 +667,7 @@ def gkern(kernlen=21, nsig=3):
   return kernel
 
 # 7 for normal models, 15 for adv trained models.
-k_size = FLAGS.ti_kernel
-#kernel = gkern(15, 3).astype(np.float32)
-kernel = gkern(k_size, 3).astype(np.float32)
+kernel = gkern(FLAGS.kernel, 3).astype(np.float32)
 stack_kernel = np.stack([kernel, kernel, kernel]).swapaxes(2, 0)
 stack_kernel = np.expand_dims(stack_kernel, 3)
 
@@ -362,7 +724,11 @@ def save_images(images, filenames, output_dir):
 def graph(x, y, i, x_max, x_min, grad, aug_x=None):
     eps = 2.0 * FLAGS.max_epsilon / 255.0
     num_iter = FLAGS.num_iter
-    alpha = eps / num_iter
+    #alpha = eps / num_iter
+    if FLAGS.rf:
+        alpha = eps
+    else:
+        alpha = eps / num_iter
     momentum = FLAGS.momentum
     num_classes = FLAGS.class_num
 
@@ -372,36 +738,28 @@ def graph(x, y, i, x_max, x_min, grad, aug_x=None):
         aug_x = aug_x + momentum * alpha * grad
 
     if USE_AUTO_AUG:
-        if not FLAGS.branch_pool:
-            aug_x = autoaug_diversity(aug_x)    # x -> [aug_type*bs, w, h, c]
-            if not FLAGS.use_logits_avg:
-                y = tf.tile(y, [AUG_num, 1])        # y -> [aug_type*bs, 1]
+        aug_x = autoaug_diversity(aug_x)    # x -> [aug_type*bs, w, h, c]
+        y = tf.tile(y, [AUG_num, 1])    # y -> [aug_type*bs, 1]
 
-                logits_weights = AUG_weights_1
-                aux_logits_weights = AUG_weights_04
-            else:
-
-                logits_weights = 1.0
-                aux_logits_weights = 0.4
-
-        else:
-            aug_x = autoaug_diversity_pool(aug_x) # x shape will not change.
-
-            logits_weights = 1.0
-            aux_logits_weights = 0.4
+        logits_weights = AUG_weights_1
+        aux_logits_weights = AUG_weights_04
 
     elif FLAGS.use_si:
         aug_x = si_diversity(aug_x)         # x -> [5*bs, w, h, c]
-        if not FLAGS.use_logits_avg:
-            y = tf.tile(y, [5, 1])              # y -> [5*bs, 1]
+        y = tf.tile(y, [5, 1])          # y -> [5*bs, 1]
 
-            logits_weights = SI_weights
-            aux_logits_weights = SI_weights_04
-        else:
-            logits_weights = 1.0
-            aux_logits_weights = 0.4
+        logits_weights = SI_weights
+        aux_logits_weights = SI_weights_04
+
+    elif FLAGS.use_dem:
+        aug_x = de_diversity(aug_x)         # x -> [5*bs, w, h, c]
+        y = tf.tile(y, [5, 1])          # y -> [5*bs, 1]
+
+        logits_weights = SI_weights
+        aux_logits_weights = SI_weights_04
 
     else:
+        aug_x = aug_x
 
         logits_weights = 1.0
         aux_logits_weights = 0.4
@@ -411,22 +769,20 @@ def graph(x, y, i, x_max, x_min, grad, aug_x=None):
     # should keep original x here for output
     with slim.arg_scope(inception_v3.inception_v3_arg_scope()):
         logits_v3, end_points_v3 = inception_v3.inception_v3(
-            input_diversity(aug_x), num_classes=num_classes, is_training=False, reuse=True)
+            aug_x, num_classes=num_classes, is_training=False, reuse=True)
 
     if not FLAGS.FGVC_eval:
         with slim.arg_scope(inception_v4.inception_v4_arg_scope()):
             logits_v4, end_points_v4 = inception_v4.inception_v4(
-                input_diversity(aug_x), num_classes=num_classes, is_training=False, reuse=True)
-
+                aug_x, num_classes=num_classes, is_training=False, reuse=True)
 
         with slim.arg_scope(inception_resnet_v2.inception_resnet_v2_arg_scope()):
             logits_res_v2, end_points_res_v2 = inception_resnet_v2.inception_resnet_v2(
-                input_diversity(aug_x), num_classes=num_classes, is_training=False, reuse=True)
-
+                aug_x, num_classes=num_classes, is_training=False, reuse=True)
 
         with slim.arg_scope(resnet_v2.resnet_arg_scope()):
             logits_resnet, end_points_resnet = resnet_v2.resnet_v2_152(
-                input_diversity(aug_x), num_classes=num_classes, is_training=False, reuse=True)
+                aug_x, num_classes=num_classes, is_training=False, reuse=True)
 
     if FLAGS.target_model == 'ens':
         logits = (logits_v3 + logits_v4 + logits_res_v2 + logits_resnet) / 4
@@ -434,6 +790,7 @@ def graph(x, y, i, x_max, x_min, grad, aug_x=None):
 
     elif FLAGS.target_model == 'resnet':
         logits = logits_resnet
+        auxlogits = end_points_resnet['predictions']
 
     elif FLAGS.target_model == 'inception_v3':
         logits = logits_v3
@@ -450,24 +807,18 @@ def graph(x, y, i, x_max, x_min, grad, aug_x=None):
     else:
         assert False, "Unknown arch."
 
-    if FLAGS.use_logits_avg:
-        logits = tf.reshape(logits, [-1, FLAGS.batch_size, FLAGS.class_num])
-        logits = tf.reduce_mean(logits, axis=0)
-
 
     cross_entropy = tf.losses.softmax_cross_entropy(y,
                                                     logits,
                                                     label_smoothing=0.0,
                                                     weights=logits_weights)
-    if FLAGS.target_model != 'resnet':
-        if FLAGS.use_logits_avg:
-            auxlogits = tf.reshape(auxlogits, [-1, FLAGS.batch_size, FLAGS.class_num])
-            auxlogits = tf.reduce_mean(auxlogits, axis=0)
-        cross_entropy += tf.losses.softmax_cross_entropy(y,
+
+    '''
+    cross_entropy += tf.losses.softmax_cross_entropy(y,
                                                          auxlogits,
                                                          label_smoothing=0.0,
                                                          weights=aux_logits_weights)
-
+    '''
     noise = tf.gradients(cross_entropy, x)[0]
     if FLAGS.use_ti:
         noise = tf.nn.depthwise_conv2d(noise, stack_kernel, strides=[1, 1, 1, 1], padding='SAME')
@@ -478,13 +829,11 @@ def graph(x, y, i, x_max, x_min, grad, aug_x=None):
     i = tf.add(i, 1)
 
     if USE_AUTO_AUG:
-        if (not FLAGS.branch_pool) and (not FLAGS.use_logits_avg):
-            y = tf.reshape(y, [AUG_num, FLAGS.batch_size, -1])
-            y = y[0]
-    elif FLAGS.use_si:
-        if not FLAGS.use_logits_avg:
-            y = tf.reshape(y, [5, FLAGS.batch_size, -1])
-            y = y[0]
+        y = tf.reshape(y, [AUG_num, FLAGS.batch_size, -1])
+        y = y[0]
+    elif FLAGS.use_si or FLAGS.use_dem:
+        y = tf.reshape(y, [5, FLAGS.batch_size, -1])
+        y = y[0]
     else:
         pass
 
@@ -546,10 +895,10 @@ def main(_):
         predicted_labels = tf.argmax(end_points['Predictions'], 1)
         y = tf.one_hot(predicted_labels, num_classes)
         '''
-
         with slim.arg_scope(inception_v3.inception_v3_arg_scope()):
             logits_v3, end_points_v3 = inception_v3.inception_v3(
                 x_input, num_classes=num_classes, is_training=False)
+
         if not FLAGS.FGVC_eval:
             with slim.arg_scope(inception_v4.inception_v4_arg_scope()):
                 logits_v4, end_points_v4 = inception_v4.inception_v4(
@@ -562,6 +911,7 @@ def main(_):
             with slim.arg_scope(resnet_v2.resnet_arg_scope()):
                 logits_resnet, end_points_resnet = resnet_v2.resnet_v2_152(
                     x_input, num_classes=num_classes, is_training=False)
+
 
         if FLAGS.target_model == 'ens':
             predicted_labels = tf.argmax(end_points_resnet['predictions']+end_points_v3['Predictions']+end_points_v4['Predictions']+end_points_res_v2['Predictions'], 1)
@@ -582,6 +932,8 @@ def main(_):
             assert False, "Unknown arch."
 
         y = tf.one_hot(predicted_labels, num_classes)
+
+
 
         i = tf.constant(0)
         grad = tf.zeros(shape=batch_shape)
@@ -618,6 +970,98 @@ def main(_):
                 save_images(adv_images, filenames, FLAGS.output_dir)
 
 
+def my_rgb_to_hsv(tensor):
+     '''
+     input tensor [h, w, c] 0~1
+     output h in 0~1,  s in 0~1, v in 0~1
+     '''
+     r = tensor[..., 0]
+     g = tensor[..., 1]
+     b = tensor[..., 2]
+     vv = tf.math.maximum(r, tf.math.maximum(g,b))
+     range_ = vv - tf.math.minimum(r, tf.math.minimum(g,b))
+
+
+     # 0 components
+     component_shape = tf.shape(tensor)[:-1]
+     dtype = tensor.dtype
+     h_0 = tf.zeros(component_shape, dtype=dtype)
+     s_0 = tf.zeros(component_shape, dtype=dtype)
+     v_0 = tf.zeros(component_shape, dtype=dtype)
+
+     h = tf.zeros(component_shape, dtype=dtype)
+     s = tf.zeros(component_shape, dtype=dtype)
+     v = tf.zeros(component_shape, dtype=dtype)
+
+     # saturation
+     vv_0 = tf.equal(vv, 0)
+     s = tf.where(vv_0, s, range_/vv)
+
+     # hue
+     norm = 1.0/ (6.0 * range_)
+     r_vv = tf.equal(r, vv)
+     g_vv = tf.equal(g, vv)
+     b_vv = tf.equal(b, vv)
+     h = tf.where(r_vv, norm*(g-b), h)
+     h = tf.where(g_vv, norm*(b-r) + 2.0/6.0, h)
+     h = tf.where(b_vv, norm*(r-g) + 4.0/6.0, h)
+     range_0 = tf.math.less_equal(range_, 0)
+     h = tf.where(range_0, h_0, h)
+
+     # v
+     v = vv
+
+     return tf.stack([h, s, v], axis=-1)
+
+
+
+def my_hsv_to_rgb(tensor):
+     '''
+     input hsv tensor 0~1
+     output r in 0~1,  g in 0~1, b in 0~1
+     '''
+     h = tensor[..., 0]
+     s = tensor[..., 1]
+     v = tensor[..., 2]
+     c = s * v
+     m = v - c
+     dh = h * 6
+     h_category = tf.cast(dh, tf.int32)
+     fmodu = tf.mod(dh, 2)
+     x = c * (1 - tf.abs(fmodu - 1))
+     component_shape = tf.shape(tensor)[:-1]
+     dtype = tensor.dtype
+     rr = tf.zeros(component_shape, dtype=dtype)
+     gg = tf.zeros(component_shape, dtype=dtype)
+     bb = tf.zeros(component_shape, dtype=dtype)
+
+     h0 = tf.equal(h_category, 0)
+     rr = tf.where(h0, c, rr)
+     gg = tf.where(h0, x, gg)
+
+     h1 = tf.equal(h_category, 1)
+     rr = tf.where(h1, x, rr)
+     gg = tf.where(h1, c, gg)
+
+     h2 = tf.equal(h_category, 2)
+     gg = tf.where(h2, c, gg)
+     bb = tf.where(h2, x, bb)
+
+     h3 = tf.equal(h_category, 3)
+     gg = tf.where(h3, x, gg)
+     bb = tf.where(h3, c, bb)
+
+     h4 = tf.equal(h_category, 4)
+     rr = tf.where(h4, x, rr)
+     bb = tf.where(h4, c, bb)
+
+     h5 = tf.equal(h_category, 5)
+     rr = tf.where(h5, c, rr)
+     bb = tf.where(h5, x, bb)
+     r = rr + m
+     g = gg + m
+     b = bb + m
+     return tf.stack([r, g, b], axis=-1)
 
 if __name__ == '__main__':
     tf.app.run()
