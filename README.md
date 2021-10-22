@@ -8,8 +8,9 @@ We propose an Automatic Model Augmentation (AutoMA) approach to ﬁnd a strong m
 
 ## Requirements
 tensorflow==1.12.0 for policy evaluation
+
 torch==1.2.0 for policy searching
 
 ## Run the code
-The evaluation models in paper could downloaded from [here]:http://ml.cs.tsinghua.edu.cn/~yinpeng/downloads . The searching models (ResNet18, AlexNet, etc.) are implemented and pretrained in torch official release.
+The evaluation models in paper could downloaded from [here]:(http://ml.cs.tsinghua.edu.cn/~yinpeng/downloads). The searching models (ResNet18, AlexNet, etc.) are implemented and pretrained in torch official release.
 For experimental results in paper, simply run `benchmark/attacks/TI/run_lots_of_eval.sh`
