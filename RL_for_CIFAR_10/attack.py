@@ -2,8 +2,16 @@ import torch
 import numpy as np
 import math
 
-import pdb
 
+def single_step(loss, adv_x, eps, ord, clip_min=None, clip_max=None):
+    loss = loss.sum()
+    loss.backward()
+    optimal_perturbation = optimize_linear(adv_x.grad, eps, ord)
+    adv_x = adv_x - optimal_perturbation
+    if (clip_min is not None) or (clip_max is not None):
+        adv_x = torch.clamp(adv_x, clip_min, clip_max)
+
+    return adv_x
 
 def attack(img_batch, model, aug_list=None, type='iterative', momentum_mu=None,
            y=None, eps=5, eps_iter=2, nb_iter=3, ord=2, clip_min=0, clip_max=1):
@@ -67,21 +75,6 @@ def attack(img_batch, model, aug_list=None, type='iterative', momentum_mu=None,
         if clip_min is not None or clip_max is not None:
             adv_x = torch.clamp(adv_x, clip_min, clip_max)
         i += 1
-
-    return adv_x
-
-
-
-
-
-def single_step(loss, adv_x, eps, ord, clip_min=None, clip_max=None):
-    loss = loss.sum()
-    loss.backward()
-    optimal_perturbation = optimize_linear(adv_x.grad, eps, ord)
-    adv_x = adv_x - optimal_perturbation
-    if (clip_min is not None) or (clip_max is not None):
-        adv_x = torch.clamp(adv_x, clip_min, clip_max)
-
     return adv_x
 
 
